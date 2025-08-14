@@ -5,15 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>No Resume - Revolutionizing Recruitment</title>
     
-    <!-- Basic Meta Tags -->
+    <!-- Meta Tags -->
     <meta name="description" content="No Resume - Revolutionizing recruitment with quality matches, automation, and human connection">
     <meta property="og:title" content="No Resume">
     <meta property="og:url" content="https://noresume.co">
     <meta property="og:type" content="website">
+    <meta property="og:image" content="/assets/images/noresume_logo-color-orange.png">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700&display=swap">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
     
     <!-- Styles -->
     <style>
@@ -23,11 +27,22 @@
             box-sizing: border-box;
         }
         
+        :root {
+            --primary-green: #74b9a7;
+            --primary-orange: #f5a623;
+            --dark-text: #2d3436;
+            --light-text: #636e72;
+            --white: #ffffff;
+            --light-bg: #f8f9fa;
+            --border-color: #e1e8ed;
+        }
+        
         body {
             font-family: 'Poppins', sans-serif;
             line-height: 1.6;
-            color: #2d3436;
-            background: #fff;
+            color: var(--dark-text);
+            background: var(--white);
+            overflow-x: hidden;
         }
         
         .container {
@@ -38,7 +53,7 @@
         
         /* Header */
         header {
-            background: white;
+            background: var(--white);
             padding: 1rem 0;
             position: fixed;
             width: 100%;
@@ -57,47 +72,51 @@
         }
         
         .logo img {
-            height: 50px;
+            height: 45px;
+            width: auto;
         }
         
         nav {
             display: flex;
             align-items: center;
-            gap: 3rem;
+            gap: 2.5rem;
         }
         
         nav a {
             text-decoration: none;
-            color: #636e72;
+            color: var(--light-text);
             font-weight: 400;
-            font-size: 16px;
+            font-size: 15px;
             transition: color 0.3s;
+            position: relative;
         }
         
         nav a:hover {
-            color: #74b9a7;
+            color: var(--primary-green);
         }
         
         .btn-demo {
             background: #000;
-            color: white;
-            padding: 12px 30px;
+            color: var(--white);
+            padding: 10px 28px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 500;
-            transition: transform 0.3s;
+            font-size: 14px;
+            transition: all 0.3s;
         }
         
         .btn-demo:hover {
             transform: translateY(-2px);
-            color: white !important;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            color: var(--white) !important;
         }
         
         /* Hero Section */
         .hero {
-            margin-top: 80px;
-            padding: 80px 0;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            margin-top: 70px;
+            padding: 100px 0 80px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8f4f1 100%);
             position: relative;
             overflow: hidden;
         }
@@ -109,70 +128,119 @@
             align-items: center;
         }
         
+        .hero-text {
+            animation: fadeInLeft 0.8s ease-out;
+        }
+        
         .hero-text h1 {
             font-size: 3.5rem;
             font-weight: 700;
-            color: #2d3436;
+            color: var(--dark-text);
             margin-bottom: 20px;
             line-height: 1.2;
+        }
+        
+        .hero-text .subtitle {
+            font-size: 1.4rem;
+            color: var(--primary-green);
+            font-weight: 300;
         }
         
         .hero-phones {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: -10px;
+            animation: fadeInRight 0.8s ease-out;
+            position: relative;
         }
         
         .hero-phones img {
-            width: 250px;
+            width: 240px;
             height: auto;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));
+        }
+        
+        .hero-phones img:first-child {
+            transform: rotate(-5deg) translateY(-10px);
+        }
+        
+        .hero-phones img:last-child {
+            transform: rotate(5deg) translateY(10px);
+            margin-left: -30px;
         }
         
         /* Services Section */
         .services {
             padding: 100px 0;
-            background: #fff;
+            background: var(--white);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-header h2 {
+            font-size: 2.8rem;
+            color: var(--dark-text);
+            margin-bottom: 10px;
         }
         
         .services-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 80px;
+            gap: 60px;
             align-items: start;
         }
         
-        .service-card h2 {
-            font-size: 2.5rem;
+        .service-card {
+            padding: 40px;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
+        }
+        
+        .service-card h3 {
+            font-size: 2rem;
             margin-bottom: 20px;
-            color: #2d3436;
+            color: var(--dark-text);
         }
         
         .service-card p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             line-height: 1.8;
-            color: #636e72;
-            margin-bottom: 30px;
+            color: var(--light-text);
+            margin-bottom: 25px;
         }
         
         .btn-learn {
             background: #000;
-            color: white;
-            padding: 15px 40px;
+            color: var(--white);
+            padding: 12px 35px;
             border-radius: 30px;
             text-decoration: none;
             display: inline-block;
             font-weight: 500;
-            transition: transform 0.3s;
+            font-size: 14px;
+            transition: all 0.3s;
         }
         
         .btn-learn:hover {
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
         /* App Preview Section */
         .app-preview {
             padding: 100px 0;
-            background: #f8f9fa;
+            background: var(--light-bg);
+            position: relative;
         }
         
         .app-preview-content {
@@ -185,54 +253,67 @@
         .app-images {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 20px;
+            position: relative;
         }
         
         .app-images img {
-            width: 300px;
+            width: 280px;
             height: auto;
+            border-radius: 10px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+        
+        .app-images img:first-child {
+            transform: perspective(1000px) rotateY(15deg);
         }
         
         /* Why Different Section */
         .why-different {
             padding: 100px 0;
-            background: #fff;
+            background: var(--white);
         }
         
         .why-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 80px;
             align-items: center;
         }
         
-        .why-text h2 {
-            font-size: 3rem;
-            margin-bottom: 30px;
-            color: #2d3436;
-        }
-        
-        .why-text p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #636e72;
-            margin-bottom: 20px;
-        }
-        
-        .why-text strong {
-            color: #2d3436;
-            font-weight: 600;
+        .why-image {
+            position: relative;
         }
         
         .why-image img {
             width: 100%;
-            border-radius: 10px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        
+        .why-text h2 {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            color: var(--dark-text);
+        }
+        
+        .why-text p {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--light-text);
+            margin-bottom: 20px;
+        }
+        
+        .why-text strong {
+            color: var(--primary-green);
+            font-weight: 600;
         }
         
         /* Contact Section */
         .contact {
             padding: 100px 0;
-            background: #f8f9fa;
+            background: var(--light-bg);
         }
         
         .contact-wrapper {
@@ -242,28 +323,33 @@
         }
         
         .contact-info h2 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             margin-bottom: 30px;
-            color: #2d3436;
+            color: var(--dark-text);
         }
         
         .contact-info p {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             line-height: 1.8;
-            color: #636e72;
+            color: var(--light-text);
             margin-bottom: 20px;
         }
         
         .contact-info a {
-            color: #74b9a7;
+            color: var(--primary-green);
             text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .contact-info a:hover {
+            text-decoration: underline;
         }
         
         .contact-form {
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+            background: var(--white);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
         }
         
         .form-row {
@@ -280,27 +366,35 @@
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            color: #636e72;
+            color: var(--dark-text);
             font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .form-group label .required {
+            color: #e74c3c;
+            margin-left: 2px;
         }
         
         .form-group input,
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #e1e8ed;
+            padding: 12px 20px;
+            border: 1px solid var(--border-color);
             border-radius: 25px;
             font-family: inherit;
-            font-size: 15px;
-            transition: border-color 0.3s;
+            font-size: 14px;
+            transition: all 0.3s;
+            background: var(--white);
         }
         
         .form-group input:focus,
         .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #74b9a7;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(116, 185, 167, 0.1);
         }
         
         .form-group textarea {
@@ -311,64 +405,75 @@
         
         .submit-btn {
             background: #000;
-            color: white;
-            padding: 15px 40px;
+            color: var(--white);
+            padding: 14px 40px;
             border: none;
             border-radius: 30px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 500;
-            transition: transform 0.3s;
+            transition: all 0.3s;
+            width: 100%;
         }
         
         .submit-btn:hover {
             transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
         }
         
         /* Footer */
         footer {
-            background: #2d3436;
-            color: white;
-            padding: 50px 0 30px;
+            background: var(--dark-text);
+            color: var(--white);
+            padding: 60px 0 30px;
         }
         
         .footer-content {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 40px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
         
         .footer-section h4 {
             margin-bottom: 20px;
             font-size: 18px;
             font-weight: 600;
+            color: var(--white);
         }
         
-        .footer-section p {
+        .footer-section p,
+        .footer-section a {
             color: #b2bec3;
             line-height: 1.8;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .footer-section a:hover {
+            color: var(--primary-green);
         }
         
         .social-links {
             display: flex;
             gap: 15px;
-            margin-top: 10px;
+            margin-top: 15px;
         }
         
         .social-links a {
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
             background: rgba(255,255,255,0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s;
+            transition: all 0.3s;
         }
         
         .social-links a:hover {
-            background: #74b9a7;
+            background: var(--primary-green);
+            transform: translateY(-3px);
         }
         
         .social-links img {
@@ -382,6 +487,30 @@
             padding-top: 30px;
             border-top: 1px solid rgba(255,255,255,0.1);
             color: #b2bec3;
+            font-size: 14px;
+        }
+        
+        /* Animations */
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
         
         /* Mobile Responsive */
@@ -396,11 +525,25 @@
             }
             
             .hero-text h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
             
-            .why-text h2 {
+            .hero-text .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .section-header h2,
+            .why-text h2,
+            .contact-info h2 {
                 font-size: 2rem;
+            }
+            
+            .hero-phones {
+                margin-top: 40px;
+            }
+            
+            .hero-phones img {
+                width: 180px;
             }
             
             nav {
@@ -411,6 +554,10 @@
                 grid-template-columns: 1fr;
             }
             
+            .contact-form {
+                padding: 30px 20px;
+            }
+            
             .footer-content {
                 grid-template-columns: 1fr;
                 text-align: center;
@@ -419,6 +566,34 @@
             .social-links {
                 justify-content: center;
             }
+            
+            .app-images img {
+                width: 200px;
+            }
+        }
+        
+        /* Mobile Menu Button (for future implementation) */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .mobile-menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--dark-text);
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
         }
     </style>
 </head>
@@ -426,9 +601,9 @@
     <!-- Header -->
     <header>
         <div class="header-inner">
-                            <div class="logo">
+            <div class="logo">
                 <a href="/">
-                    <img src="/assets/images/noresume_logo-color-orange.png" alt="noresume">
+                    <img src="/public/assets/images/noresume_logo-color-orange.png" alt="NoResume">
                 </a>
             </div>
             <nav>
@@ -437,6 +612,11 @@
                 <a href="#contact">Contact</a>
                 <a href="#contact" class="btn-demo">Book a Demo</a>
             </nav>
+            <button class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
 
@@ -446,10 +626,11 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h1>No Resume, No Problem!</h1>
+                    <p class="subtitle">Revolutionizing recruitment with smart matching</p>
                 </div>
                 <div class="hero-phones">
-                    <img src="/assets/images/Candidates+App+Job+Profile+Insight.png" alt="Job Profile Screen">
-                    <img src="/assets/images/candidateeAppMatchScore.png" alt="Match Score Screen">
+                    <img src="/public/assets/images/Candidates+App+Job+Profile+Insight.png" alt="Job Profile Insights">
+                    <img src="/public/assets/images/candidateAppMatchScore.png" alt="Match Score Screen">
                 </div>
             </div>
         </div>
@@ -458,17 +639,20 @@
     <!-- Services Section -->
     <section id="services" class="services">
         <div class="container">
+            <div class="section-header">
+                <h2>No Resume, No Problem!</h2>
+            </div>
             <div class="services-grid">
                 <div class="service-card">
-                    <h2>Employers</h2>
+                    <h3>Employers</h3>
                     <p>All your recruitment needs in a single, easy-to-use platform.</p>
-                    <p>A Job Board, Application Tracking System, Salary Comparison tool, and AI Assistant - all in one</p>
+                    <p>A Job Board, Application Tracking System, Salary Comparison tool, and AI Assistant - all in one.</p>
                     <a href="/employers" class="btn-learn">Learn more</a>
                 </div>
                 <div class="service-card">
-                    <h2>Job Seekers</h2>
+                    <h3>Job Seekers</h3>
                     <p>Want to maximise your earning potential and automate your job seeking tasks? Look no further.</p>
-                    <br>
+                    <p>Smart matching, automated applications, and career insights tailored just for you.</p>
                     <a href="/candidates" class="btn-learn">Learn more</a>
                 </div>
             </div>
@@ -480,11 +664,11 @@
         <div class="container">
             <div class="app-preview-content">
                 <div class="app-images">
-                    <img src="/assets/images/PC+App+Candidatre+Profile+v4.png" alt="Employer Dashboard">
+                    <img src="/assets/images/PC+App+Candidates+Profile+v4.png" alt="Employer Dashboard">
                     <img src="/assets/images/Candidates+App+Job+Market+Insight.png" alt="Market Insights">
                 </div>
-                <div>
-                    <!-- Content can go here -->
+                <div class="app-text">
+                    <!-- Additional content can be added here -->
                 </div>
             </div>
         </div>
@@ -495,7 +679,7 @@
         <div class="container">
             <div class="why-content">
                 <div class="why-image">
-                    <img src="/assets/images/unsplash-image-YSA1IRkGAsg.jpg" alt="Why we're different">
+                    <img src="/public/assets/images/unsplash-image-YSA1IRkGAsg.jpg" alt="Why we're different">
                 </div>
                 <div class="why-text">
                     <h2>Why are we different?</h2>
@@ -514,7 +698,7 @@
                 <div class="contact-info">
                     <h2>Contact Us</h2>
                     <p>We'd love to hear from you! Book a Demo, Sign up to use, or anything else - our team is here to help!</p>
-                    <p>Connect with us using the form below or email us at</p>
+                    <p>Connect with us using the form below or email us at:</p>
                     <p><a href="mailto:info@nresume.com">info@nresume.com</a></p>
                 </div>
                 <div class="contact-form">
@@ -530,23 +714,25 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email (required)</label>
+                            <label for="email">Email <span class="required">*</span></label>
                             <input type="email" id="email" name="email" required>
                         </div>
                         <div class="form-group">
-                            <label for="dropdown">Dropdown (required)</label>
+                            <label for="dropdown">Enquiry Type <span class="required">*</span></label>
                             <select id="dropdown" name="dropdown" required>
                                 <option value="">Select an option</option>
                                 <option value="demo">Book a Demo</option>
-                                <option value="signup">Sign Up to Use</option>
+                                <option value="employer">Employer Enquiry</option>
+                                <option value="jobseeker">Job Seeker Enquiry</option>
+                                <option value="partnership">Partnership</option>
                                 <option value="other">Other</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" name="message" placeholder="Add your message (not required)"></textarea>
+                            <textarea id="message" name="message" placeholder="Tell us more about how we can help you..."></textarea>
                         </div>
-                        <button type="submit" class="submit-btn">Send</button>
+                        <button type="submit" class="submit-btn">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -560,27 +746,30 @@
                 <div class="footer-section">
                     <h4>Social Media</h4>
                     <div class="social-links">
-                        <a href="https://www.linkedin.com/company/noresume" target="_blank">
-                            <img src="/assets/images/vecteezy_linkedin-logo-png-linkedin-logo-transparent-png-linkedin_23986970.png" alt="LinkedIn">
+                        <a href="https://www.linkedin.com/company/noresume" target="_blank" rel="noopener">
+                            <img src="/public/assets/images/vecteezy_linkedin-logo-png-linkedin-logo-transparent-png-linkedin_23986970.png" alt="LinkedIn">
                         </a>
-                        <a href="https://www.tiktok.com/@thenoresume" target="_blank">
-                            <img src="/assets/images/tiktok_logo_social+media_icon.png" alt="TikTok">
+                        <a href="https://www.tiktok.com/@thenoresume" target="_blank" rel="noopener">
+                            <img src="/public/assets/images/tiktok_logo_social+media_icon.png" alt="TikTok">
                         </a>
-                        <a href="https://www.youtube.com/@thenoresume" target="_blank">
-                            <img src="/assets/images/Youtube_logo_icon.png" alt="YouTube">
+                        <a href="https://www.youtube.com/@thenoresume" target="_blank" rel="noopener">
+                            <img src="/public/assets/images/Youtube_logo_icon.png" alt="YouTube">
                         </a>
-                        <a href="https://www.facebook.com/profile.php?id=61566370331980" target="_blank">
-                            <img src="/assets/images/facebook+logo_icon_2.png" alt="Facebook">
+                        <a href="https://www.facebook.com/profile.php?id=61566370331980" target="_blank" rel="noopener">
+                            <img src="/public/assets/images/facebook+logo_icon_2.png" alt="Facebook">
                         </a>
                     </div>
                 </div>
                 <div class="footer-section">
                     <h4>Location</h4>
-                    <p>noresume, 71-75 Shelton Street, Covent Garden, London WC2H 9JQ</p>
+                    <p>noresume<br>
+                    71-75 Shelton Street<br>
+                    Covent Garden<br>
+                    London WC2H 9JQ</p>
                 </div>
                 <div class="footer-section">
                     <h4>Contact</h4>
-                    <p>info@nresume.com</p>
+                    <p><a href="mailto:info@nresume.com">info@nresume.com</a></p>
                 </div>
             </div>
             <div class="footer-bottom">
