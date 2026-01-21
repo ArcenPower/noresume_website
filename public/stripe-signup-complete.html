@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Setup - NoResume</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #ffedda 0%, #f8cf9f 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        .celebration-img {
+            width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .refresh-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #ff9a56 0%, #ff6b35 100%);
+            color: white;
+        }
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+            margin-top: 15px;
+        }
+        .logo {
+            width: 120px;
+            margin-bottom: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Success State -->
+        <div id="success-state" class="hidden">
+            <img src="assets/images/celebration.png" alt="Celebration" class="celebration-img">
+            <h1>Payment Setup Complete!</h1>
+            <p class="subtitle">Your account is ready to receive payments. Return to the app to continue.</p>
+            <a href="noresume://stripe-return?status=complete" class="btn btn-primary">Return to App</a>
+        </div>
+
+        <!-- Refresh State -->
+        <div id="refresh-state" class="hidden">
+            <div class="refresh-icon">🔄</div>
+            <h1>Setup Incomplete</h1>
+            <p class="subtitle">Your payment setup wasn't completed. Please return to the app and try again.</p>
+            <a href="noresume://stripe-return?status=refresh" class="btn btn-primary">Return to App</a>
+        </div>
+
+        <!-- Default/Error State -->
+        <div id="default-state" class="hidden">
+            <div class="refresh-icon">🏦</div>
+            <h1>Payment Setup</h1>
+            <p class="subtitle">Return to the NoResume app to manage your payment settings.</p>
+            <a href="noresume://stripe-return" class="btn btn-primary">Return to App</a>
+        </div>
+    </div>
+
+    <script>
+        // Get status from URL
+        const params = new URLSearchParams(window.location.search);
+        const status = params.get('status');
+
+        // Show appropriate state
+        if (status === 'complete') {
+            document.getElementById('success-state').classList.remove('hidden');
+            document.title = 'Setup Complete - NoResume';
+        } else if (status === 'refresh') {
+            document.getElementById('refresh-state').classList.remove('hidden');
+            document.title = 'Setup Incomplete - NoResume';
+        } else {
+            document.getElementById('default-state').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
