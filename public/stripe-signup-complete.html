@@ -24,13 +24,7 @@
             text-align: center;
             box-shadow: 0 20px 60px rgba(0,0,0,0.15);
         }
-        .celebration-img {
-            width: 200px;
-            height: auto;
-            margin-bottom: 20px;
-            border-radius: 20px;
-        }
-        .refresh-icon {
+        .icon {
             font-size: 80px;
             margin-bottom: 20px;
         }
@@ -55,71 +49,34 @@
             cursor: pointer;
             border: none;
             transition: transform 0.2s, box-shadow 0.2s;
+            background: linear-gradient(135deg, #ff9a56 0%, #ff6b35 100%);
+            color: white;
         }
         .btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-        .btn-primary {
-            background: linear-gradient(135deg, #ff9a56 0%, #ff6b35 100%);
-            color: white;
+        .fallback {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #999;
         }
-        .btn-secondary {
-            background: #f0f0f0;
-            color: #333;
-            margin-top: 15px;
-        }
-        .logo {
-            width: 120px;
-            margin-bottom: 20px;
-        }
-        .hidden {
-            display: none;
+        .fallback a {
+            color: #ff6b35;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Success State -->
-        <div id="success-state" class="hidden">
-            <img src="/assets/images/celebration.jpg" alt="Celebration" class="celebration-img">
-            <h1>Payment Setup Complete!</h1>
-            <p class="subtitle">Your account is ready to receive payments. Return to the app to continue.</p>
-            <a href="noresume://noresume.com/invoiceBillingSetupTalent?status=complete" class="btn btn-primary">Return to App</a>
-        </div>
-        
-        <!-- Refresh State -->
-        <div id="refresh-state" class="hidden">
-            <div class="refresh-icon">🔄</div>
-            <h1>Setup Incomplete</h1>
-            <p class="subtitle">Your payment setup wasn't completed. Please return to the app and try again.</p>
-            <a href="noresume://noresume.com/invoiceBillingSetupTalent?status=refresh" class="btn btn-primary">Return to App</a>
-        </div>
-        
-        <!-- Default/Error State -->
-        <div id="default-state" class="hidden">
-            <div class="refresh-icon">🏦</div>
-            <h1>Payment Setup</h1>
-            <p class="subtitle">Return to the NoResume app to manage your payment settings.</p>
-            <a href="noresume://noresume.com/invoiceBillingSetupTalent" class="btn btn-primary">Return to App</a>
-        </div>
+        <div class="icon">🏦</div>
+        <h1>Let's Get You Back</h1>
+        <p class="subtitle">Tap below to return to the app and check your payment setup status.</p>
+        <a href="noresume://noresume.com/invoiceBillingSetupTalent" class="btn">Open NoResume</a>
+        <p class="fallback">
+            Don't have the app? Download it from the 
+            <a href="https://apps.apple.com/app/noresume" target="_blank">App Store</a> or 
+            <a href="https://play.google.com/store/apps/details?id=com.noresume" target="_blank">Google Play</a>
+        </p>
     </div>
-
-    <script>
-        // Get status from URL
-        const params = new URLSearchParams(window.location.search);
-        const status = params.get('status');
-
-        // Show appropriate state
-        if (status === 'complete') {
-            document.getElementById('success-state').classList.remove('hidden');
-            document.title = 'Setup Complete - NoResume';
-        } else if (status === 'refresh') {
-            document.getElementById('refresh-state').classList.remove('hidden');
-            document.title = 'Setup Incomplete - NoResume';
-        } else {
-            document.getElementById('default-state').classList.remove('hidden');
-        }
-    </script>
 </body>
 </html>
