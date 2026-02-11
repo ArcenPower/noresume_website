@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Terms and Conditions - No Resume</title>
+    
+    <meta name="description" content="NoResume Terms and Conditions - The rules and agreements for using our platform">
+    <meta property="og:title" content="Terms and Conditions - No Resume">
+    <meta property="og:url" content="https://noresume.co/terms-of-service">
+    <meta property="og:type" content="website">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #2d3436;
+            background: #fff;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo img {
+            height: 50px;
+        }
+        
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #636e72;
+            font-weight: 400;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: #74b9a7;
+        }
+        
+        .btn-demo {
+            background: #000;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+        
+        .btn-demo:hover {
+            transform: translateY(-2px);
+            color: white !important;
+        }
+        
+        /* Legal Content */
+        .legal-hero {
+            margin-top: 80px;
+            padding: 60px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .legal-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d3436;
+        }
+        
+        .legal-hero .last-updated {
+            font-size: 1rem;
+            color: #636e72;
+            margin-top: 10px;
+        }
+        
+        .legal-content {
+            padding: 60px 0;
+        }
+        
+        .legal-content .container {
+            max-width: 900px;
+        }
+        
+        .legal-content h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2d3436;
+            margin-top: 50px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #74b9a7;
+        }
+        
+        .legal-content h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2d3436;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+        
+        .legal-content p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #636e72;
+            margin-bottom: 15px;
+        }
+        
+        .legal-content strong {
+            color: #2d3436;
+            font-weight: 600;
+        }
+        
+        .legal-content ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 15px;
+        }
+        
+        .legal-content ul li {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #636e72;
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 5px;
+        }
+        
+        .legal-content ul li::before {
+            content: "•";
+            color: #74b9a7;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .legal-content a {
+            color: #74b9a7;
+            text-decoration: none;
+        }
+        
+        .legal-content a:hover {
+            text-decoration: underline;
+        }
+        
+        .details-box {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+        
+        .details-box p {
+            margin-bottom: 5px;
+        }
+        
+        .highlight-box {
+            background: #fff8f0;
+            border-left: 4px solid #f0a500;
+            border-radius: 0 10px 10px 0;
+            padding: 20px 25px;
+            margin: 20px 0;
+        }
+        
+        .highlight-box p {
+            margin-bottom: 5px;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2d3436;
+            color: white;
+            padding: 50px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h4 {
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .footer-section p {
+            color: #b2bec3;
+            line-height: 1.8;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: #74b9a7;
+        }
+        
+        .social-links img {
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) invert(1);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #b2bec3;
+        }
+        
+        @media (max-width: 768px) {
+            nav { display: none; }
+            .legal-hero h1 { font-size: 1.8rem; }
+            .legal-content h2 { font-size: 1.4rem; }
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .social-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <a href="/">
+                    <img src="assets/images/noresume_logo-color-orange.png" alt="noresume">
+                </a>
+            </div>
+            <nav>
+                <a href="employers.html">Employers</a>
+                <a href="candidates.html">Candidates</a>
+                <a href="/#contact">Contact</a>
+                <a href="/#contact" class="btn-demo">Book a Demo</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="legal-hero">
+        <div class="container">
+            <h1>Terms and Conditions</h1>
+            <p class="last-updated">Last Updated: 01 June 2025</p>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="legal-content">
+        <div class="container">
+
+            <h2>1. Introduction</h2>
+
+            <h3>1.1 About This Agreement</h3>
+            <p>When you use Noresume, you agree to these Terms and Conditions. By creating an account or using our Services, you are entering into a legally binding contract with NORESUME LTD, a company registered in England and Wales.</p>
+            <p><strong>If you do not agree to these terms, please do not create an account or use our Services.</strong></p>
+
+            <div class="details-box">
+                <p><strong>Legal Name:</strong> NORESUME LTD</p>
+                <p><strong>Registered Address:</strong> 71-75 Shelton Street, Covent Garden, London, United Kingdom, WC2H 9JQ</p>
+                <p><strong>Contact:</strong> <a href="mailto:info@nresume.com">info@nresume.com</a></p>
+            </div>
+
+            <h3>1.2 What We Provide</h3>
+            <p>Noresume is a B2B services marketplace that connects Businesses offering professional services with Clients who need them. Our Services include:</p>
+            <ul>
+                <li>Services marketplace and matching platform</li>
+                <li>Project management system</li>
+                <li>Messaging system between clients and businesses</li>
+                <li>Profile hosting and management</li>
+                <li>Service listing creation and management</li>
+                <li>Business matching system</li>
+                <li>Meeting and consultation scheduling tools</li>
+                <li>Payment processing for platform fees</li>
+            </ul>
+
+            <h3>1.3 Who Can Use Noresume</h3>
+            <p><strong>Minimum Age:</strong> You must be at least 18 years old to use our Services.</p>
+            <p><strong>User Types:</strong></p>
+            <ul>
+                <li><strong>Businesses:</strong> Self-employed individuals, sole traders, partnerships, and limited companies offering professional services</li>
+                <li><strong>Clients:</strong> Companies and organizations purchasing professional services</li>
+            </ul>
+
+            <h3>1.4 Changes to These Terms</h3>
+            <p>We may update these Terms from time to time. If we make material changes, we will notify you through our platform or by email. Your continued use after changes means you accept the updated terms.</p>
+
+            <h2>2. Your Obligations</h2>
+
+            <h3>2.1 Account Requirements</h3>
+            <p>You agree to:</p>
+            <ul>
+                <li>Provide accurate and truthful information</li>
+                <li>Use your real name or legitimate business name</li>
+                <li>Maintain only one account per user type</li>
+                <li>Keep your password secure and confidential</li>
+                <li>Not share your account with others</li>
+                <li>Notify us immediately of any unauthorized access</li>
+            </ul>
+
+            <h3>2.2 Identity and Tax Verification</h3>
+            <p><strong>For Businesses:</strong> If you are self-employed, operating as a sole trader, partnership, or through a limited company, you may be required to verify your business and tax registration status.</p>
+
+            <p><strong>VAT Registration Verification:</strong></p>
+            <ul>
+                <li>Businesses who claim VAT-registered status consent to verification of their VAT number with HMRC's VAT registration database</li>
+                <li>We will verify your VAT number matches your declared business name and address</li>
+                <li>We may perform periodic re-verification to maintain accurate records</li>
+                <li>Providing false VAT information is a breach of these Terms</li>
+            </ul>
+
+            <h3>2.3 Payment Obligations</h3>
+            <p><strong>For Clients:</strong></p>
+            <ul>
+                <li>You agree to pay all applicable fees for Services used</li>
+                <li>Payment methods may be charged automatically for subscriptions</li>
+                <li>All fees are stated in GBP (British Pounds)</li>
+                <li>Fees are exclusive of VAT, which will be added where applicable</li>
+                <li>Refunds are subject to our refund policy</li>
+            </ul>
+
+            <div class="highlight-box">
+                <p><strong>Platform Fees:</strong> When you successfully engage a Business through Noresume, you agree to pay our platform fee calculated as:</p>
+                <p><strong>Formula:</strong> Maximum of (£199, Project Value × 1%)</p>
+                <p><strong>Examples:</strong> £30,000 project = £300 fee; £80,000 project = £800 fee</p>
+                <p><strong>When Due:</strong> Upon acceptance of service agreement</p>
+            </div>
+
+            <p><strong>For Businesses:</strong></p>
+            <ul>
+                <li>Businesses do not pay to create profiles or submit proposals</li>
+                <li>Payments are processed according to our payment schedule</li>
+                <li>You are responsible for your own tax obligations</li>
+            </ul>
+
+            <h3>2.4 Professional Conduct</h3>
+            <p>All users must treat others with respect and professionalism, provide accurate information in profiles and service listings, comply with all applicable laws and regulations, not engage in discrimination, harassment, or fraudulent activity, and use the platform only for legitimate business purposes.</p>
+
+            <h2>3. Rights and Responsibilities</h2>
+
+            <h3>3.1 Your Content and Our License</h3>
+            <p><strong>You Own Your Content:</strong> You retain ownership of content you submit (profiles, service descriptions, messages).</p>
+            <p><strong>License You Grant Us:</strong> You grant Noresume a non-exclusive license to use your content to provide and improve our Services, match Businesses with relevant opportunities, show your profile to potential clients, display service listings, and develop and improve our matching system.</p>
+            <p><strong>Our Commitments:</strong> We will not use your content in third-party advertisements without your consent. We will honor your privacy settings. We may use anonymized and aggregated data for platform improvements. You can remove content by deleting it or closing your account.</p>
+
+            <h3>3.2 Automated Matching System</h3>
+            <p>We use algorithms to match Businesses with suitable opportunities, recommend service providers to Clients based on requirements, analyze market data, and improve platform performance.</p>
+            <p><strong>Important:</strong> Automated matching may not always be perfect. Both Businesses and Clients should review all matches and recommendations carefully.</p>
+
+            <h3>3.3 Platform Responsibilities and Limitations</h3>
+            <p><strong>What We Do:</strong> Provide a platform for business connections, process payments between parties, facilitate communication, and verify certain information (such as VAT registration).</p>
+            <p><strong>What We Don't Do:</strong></p>
+            <ul>
+                <li>We do NOT make business decisions for users</li>
+                <li>We do NOT employ service providers</li>
+                <li>We do NOT guarantee successful engagements or service quality</li>
+                <li>We do NOT participate in business relationships between users</li>
+            </ul>
+
+            <h3>3.4 Intellectual Property</h3>
+            <p>Noresume and our logos, trademarks, and platform design are owned by NORESUME LTD. You may not use our intellectual property without written permission.</p>
+
+            <h3>3.5 Platform Limitations</h3>
+            <p>We reserve the right to limit the number of proposals, messages, or service listings; suspend or terminate accounts that violate these Terms; remove content that violates our policies; change or discontinue any Service features; and restrict access for quality or security reasons.</p>
+
+            <h2>4. Data and Privacy</h2>
+
+            <h3>4.1 Data Processing</h3>
+            <p><strong>What Data We Collect:</strong> Account information, professional profiles and portfolios, company information and service listings, messages and communications, platform usage data, and for VAT-registered businesses: VAT number, company name, and registered address.</p>
+            <p><strong>Data Storage:</strong> Our servers are located in West Europe (London), United Kingdom.</p>
+            <p>For complete details, see our <a href="privacy-policy.html">Privacy Policy</a>.</p>
+
+            <h3>4.2 Third-Party Services</h3>
+            <p>We use third-party services for payment processing (Stripe), authentication (Firebase), VAT verification (HMRC VAT API), video interviews (Daily.co), and infrastructure (AWS, Supabase). These third parties process data according to their own privacy policies.</p>
+
+            <h2>5. Payments and Fees</h2>
+
+            <h3>5.1 Client Fees</h3>
+            <p><strong>Service Listings:</strong> Fees for service listings are displayed before purchase and may vary based on features selected.</p>
+            <p><strong>Platform Fees:</strong> Charged when a service provider is successfully engaged through our platform. Calculated as the maximum of £199 or Project Value × 1%. Payable within 14 days of invoice. Non-refundable once work commences.</p>
+            <p><strong>Subscriptions:</strong> Billed automatically at start of each period. Cancel before renewal date to avoid future charges. No refunds for partial periods.</p>
+
+            <h3>5.2 VAT and Taxes</h3>
+            <p>VAT will be added to fees where applicable under UK law. VAT-registered businesses are responsible for charging VAT on their services. We will verify VAT registration status for businesses who claim it.</p>
+            <p><strong>Tax Responsibility:</strong> You are responsible for all applicable taxes. We may provide transaction records but are not tax advisors. Consult a tax professional for your specific situation.</p>
+
+            <h2>6. Acceptable Use</h2>
+
+            <h3>6.1 What You Must Do</h3>
+            <ul>
+                <li>Comply with all applicable laws</li>
+                <li>Provide accurate information</li>
+                <li>Respect intellectual property rights</li>
+                <li>Maintain account security</li>
+                <li>Report violations to us</li>
+                <li>Use the platform professionally</li>
+            </ul>
+
+            <h3>6.2 What You Must NOT Do</h3>
+            <ul>
+                <li>Create false identities or misrepresent yourself</li>
+                <li>Post discriminatory service listings</li>
+                <li>Use bots or automated tools (except official APIs)</li>
+                <li>Spam or harass other users</li>
+                <li>Share others' contact information without permission</li>
+                <li>Post fake service listings or engage in scams</li>
+                <li>Manipulate our matching system</li>
+                <li>Create multiple accounts to bypass restrictions</li>
+                <li>Use the platform for illegal purposes</li>
+                <li>Reverse engineer our Services</li>
+                <li>Collect user data for competing services</li>
+                <li>Charge service providers fees to submit proposals (Clients)</li>
+            </ul>
+
+            <h2>7. Disclaimers and Liability</h2>
+
+            <h3>7.1 Service "As Is"</h3>
+            <p><strong>NO WARRANTY:</strong> Noresume is provided "AS IS" and "AS AVAILABLE". We make no warranties about uninterrupted or error-free service, accuracy of service listings or business information, quality of matches or recommendations, successful engagements, or user conduct or performance.</p>
+
+            <h3>7.2 Limitation of Liability</h3>
+            <p><strong>TO THE MAXIMUM EXTENT PERMITTED BY LAW:</strong></p>
+            <p>We are NOT liable for indirect, incidental, or consequential damages; lost profits or business opportunities; loss of data or information; poor service performance or unsuccessful business relationships; disputes between users; or third-party actions.</p>
+
+            <div class="highlight-box">
+                <p><strong>Maximum Liability:</strong> Our total liability to you shall not exceed the greater of:</p>
+                <p>(A) Fees you paid to Noresume in the past 12 months, or</p>
+                <p>(B) £1,000</p>
+            </div>
+
+            <p><strong>Exceptions:</strong> These limitations do NOT apply to death or personal injury caused by our negligence, fraud or fraudulent misrepresentation, or any liability that cannot be excluded by law.</p>
+
+            <h2>8. Termination</h2>
+
+            <h3>8.1 Termination Rights</h3>
+            <p><strong>You Can:</strong> Close your account at any time and stop using our Services.</p>
+            <p><strong>We Can:</strong> Suspend or terminate accounts that violate these Terms, remove content that violates our policies, and terminate for any reason with notice.</p>
+
+            <h3>8.2 Effect of Termination</h3>
+            <p>Upon termination: you lose access to the Services, outstanding payments remain due, certain obligations survive (payment obligations, liability disclaimers), and we may retain data as required by law.</p>
+
+            <h2>9. General Terms</h2>
+
+            <h3>9.1 Governing Law</h3>
+            <p>These Terms are governed by the laws of England and Wales. Any disputes must be brought in the courts of England and Wales.</p>
+            <p><strong>For EU Consumers:</strong> If you are a consumer resident in the EU, you also have the protection of mandatory consumer laws in your country of residence.</p>
+
+            <h3>9.2 Entire Agreement</h3>
+            <p>These Terms, together with our <a href="privacy-policy.html">Privacy Policy</a>, constitute the entire agreement between you and Noresume.</p>
+
+            <h3>9.3 Changes and Waivers</h3>
+            <p>If any provision is found unenforceable, the rest remains in effect. Our failure to enforce a provision does not waive our right to enforce it later. You cannot transfer these Terms without our consent. We may assign these Terms to affiliates or in connection with a business sale.</p>
+
+            <h3>9.4 Notices</h3>
+            <p>We will send notices through the platform, email to your registered address, or physical mail to your provided address. Keep your contact information current to receive important notices.</p>
+
+            <h2>10. Complaints and Disputes</h2>
+
+            <h3>10.1 Reporting Issues</h3>
+            <p>If you believe content or conduct violates these Terms, contact us at <a href="mailto:support@nresume.com">support@nresume.com</a>.</p>
+
+            <h3>10.2 Dispute Resolution</h3>
+            <p><strong>For disputes between users:</strong> Try to resolve directly first. Contact our support team for assistance. We may facilitate but are not obligated to resolve user disputes.</p>
+            <p><strong>For disputes with Noresume:</strong> Contact us to try to resolve informally. If unresolved, follow dispute resolution procedures under English law.</p>
+
+            <h2>11. Contact Information</h2>
+            <div class="details-box">
+                <p><strong>NORESUME LTD</strong></p>
+                <p><strong>Registered Address:</strong> 71-75 Shelton Street, Covent Garden, London, United Kingdom, WC2H 9JQ</p>
+                <p><strong>Email:</strong> <a href="mailto:support@nresume.com">support@nresume.com</a></p>
+                <p><strong>Website:</strong> <a href="https://noresume.co">www.noresume.co</a></p>
+            </div>
+            <p>For legal notices or service of process, write to the registered address above.</p>
+
+            <h2>12. Acknowledgment</h2>
+            <p>By using Noresume, you acknowledge that you have read and understood these Terms, you have read our <a href="privacy-policy.html">Privacy Policy</a>, you agree to be bound by these Terms, and you are eligible to enter into this agreement.</p>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Social Media</h4>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/noresume" target="_blank">
+                            <img src="assets/images/vecteezy_linkedin-logo-png-linkedin-logo-transparent-png-linkedin_23986970.png" alt="LinkedIn">
+                        </a>
+                        <a href="https://www.tiktok.com/@thenoresume" target="_blank">
+                            <img src="assets/images/tiktok_logo_social+media_icon.png" alt="TikTok">
+                        </a>
+                        <a href="https://www.youtube.com/@thenoresume" target="_blank">
+                            <img src="assets/images/Youtube_logo_icon.png" alt="YouTube">
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61566370331980" target="_blank">
+                            <img src="assets/images/facebook+logo_icon_2.png" alt="Facebook">
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Location</h4>
+                    <p>noresume<br>
+                    71-75 Shelton Street<br>
+                    Covent Garden<br>
+                    London WC2H 9JQ</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>info@nresume.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NoResume. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
