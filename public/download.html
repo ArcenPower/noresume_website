@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download NoResume - No Resume, No Problem</title>
+    <meta name="description" content="Download the NoResume app. Find work and hire talent without traditional resumes. Available on iOS and Android.">
+    <meta property="og:title" content="Download NoResume">
+    <meta property="og:description" content="No Resume, No Problem. Download the app to find work and hire talent.">
+    <meta property="og:image" content="assets/images/noresume_logo-color-orange.png">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #ffedda 0%, #f8cf9f 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 24px;
+            padding: 50px 40px;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        .logo {
+            max-width: 220px;
+            margin: 0 auto 30px;
+        }
+
+        .logo img {
+            width: 100%;
+            height: auto;
+        }
+
+        .tagline {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2d2d2d;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .coming-soon {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff9a56 0%, #ff6b35 100%);
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 8px 24px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            letter-spacing: 0.5px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+
+        .store-badges {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .store-badge {
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            opacity: 0.45;
+            pointer-events: none;
+        }
+
+        .store-badge img {
+            height: 52px;
+            width: auto;
+        }
+
+        .store-badge.active {
+            opacity: 1;
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        .store-badge.active:hover {
+            transform: translateY(-2px);
+        }
+
+        .notify-text {
+            margin-top: 30px;
+            font-size: 13px;
+            color: #999;
+        }
+
+        .notify-text a {
+            color: #ff6b35;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .notify-text a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 40px 24px;
+                border-radius: 20px;
+            }
+
+            .tagline {
+                font-size: 24px;
+            }
+
+            .store-badge img {
+                height: 46px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="assets/images/noresume_logo-color-orange.png" alt="NoResume">
+        </div>
+
+        <h1 class="tagline">No Resume, No Problem</h1>
+
+        <div class="coming-soon">Coming March 2026</div>
+
+        <p class="subtitle">Find work and hire talent — without the traditional CV. Download the app to get started.</p>
+
+        <div class="store-badges">
+            <!-- Apple App Store Badge -->
+            <a id="apple-badge" class="store-badge" href="#" target="_blank" rel="noopener noreferrer" aria-label="Download on the App Store">
+                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+            </a>
+
+            <!-- Google Play Badge -->
+            <a id="google-badge" class="store-badge" href="#" target="_blank" rel="noopener noreferrer" aria-label="Get it on Google Play">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
+            </a>
+        </div>
+
+        <p class="notify-text">
+            Want to learn more? Visit <a href="https://www.nresume.com">noresume.com</a>
+        </p>
+    </div>
+
+    <script>
+        // ── Store URLs ──────────────────────────────────────
+        // Replace these with actual store URLs once published
+        const APPLE_STORE_URL  = '';  // e.g. https://apps.apple.com/app/noresume/id123456789
+        const GOOGLE_STORE_URL = '';  // e.g. https://play.google.com/store/apps/details?id=com.noresume.app
+
+        // ── Device detection & badge activation ─────────────
+        const appleBadge  = document.getElementById('apple-badge');
+        const googleBadge = document.getElementById('google-badge');
+        const ua = navigator.userAgent || '';
+        const isIOS     = /iPhone|iPad|iPod/i.test(ua);
+        const isAndroid  = /Android/i.test(ua);
+
+        // If store URLs are set, activate the badges
+        if (APPLE_STORE_URL) {
+            appleBadge.href = APPLE_STORE_URL;
+            appleBadge.classList.add('active');
+        }
+
+        if (GOOGLE_STORE_URL) {
+            googleBadge.href = GOOGLE_STORE_URL;
+            googleBadge.classList.add('active');
+        }
+
+        // If both URLs are set, auto-highlight the user's platform
+        if (APPLE_STORE_URL && GOOGLE_STORE_URL) {
+            if (isIOS) {
+                googleBadge.style.opacity = '0.5';
+            } else if (isAndroid) {
+                appleBadge.style.opacity = '0.5';
+            }
+        }
+    </script>
+</body>
+</html>
