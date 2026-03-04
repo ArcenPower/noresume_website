@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reset Password — NoResume</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: linear-gradient(135deg, #ffedda 0%, #f8cf9f 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .logo-wrap {
+      margin-bottom: 24px;
+      animation: fadeDown 0.5s ease both;
+    }
+
+    .logo-wrap img {
+      height: 40px;
+      display: block;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 40px 32px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 8px 40px rgba(200, 120, 60, 0.15);
+      animation: fadeUp 0.5s ease 0.1s both;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #888;
+      text-align: center;
+      margin-bottom: 28px;
+      line-height: 1.5;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: #444;
+      margin-bottom: 6px;
+    }
+
+    .field { margin-bottom: 16px; }
+
+    input[type="password"] {
+      width: 100%;
+      border: 1.5px solid #e8e0d8;
+      border-radius: 12px;
+      padding: 13px 16px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 15px;
+      color: #1a1a1a;
+      background: #fafafa;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input[type="password"]:focus {
+      border-color: #1abb77;
+      box-shadow: 0 0 0 3px rgba(26, 187, 119, 0.12);
+      background: #fff;
+    }
+
+    .password-rules {
+      font-size: 12px;
+      color: #aaa;
+      margin-top: 5px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 15px;
+      background: #1abb77;
+      color: #fff;
+      font-family: 'Nunito', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      display: block;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: #17a86a;
+      box-shadow: 0 4px 18px rgba(26, 187, 119, 0.3);
+    }
+
+    .btn:active { transform: scale(0.98); }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .msg-error {
+      background: #fff2f2;
+      border: 1px solid #ffcccc;
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #d94f4f;
+      margin-top: 12px;
+      display: none;
+      font-weight: 600;
+    }
+
+    .msg-error.show { display: block; }
+
+    #state-form { display: block; }
+    #state-loading { display: none; text-align: center; padding: 16px 0; }
+    #state-success { display: none; text-align: center; }
+    #state-error { display: none; text-align: center; }
+
+    .spinner {
+      width: 44px; height: 44px;
+      border: 3px solid #f0ebe5;
+      border-top-color: #1abb77;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    .loading-text {
+      font-size: 14px;
+      color: #888;
+      font-weight: 600;
+    }
+
+    .icon-circle {
+      width: 72px; height: 72px;
+      border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 32px;
+      color: #fff;
+    }
+
+    .icon-circle.success { background: #1abb77; }
+    .icon-circle.error-icon { background: #ffb082; }
+
+    .state-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+    }
+
+    .state-msg {
+      color: #888;
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 28px;
+      font-weight: 500;
+    }
+
+    .btn-secondary {
+      width: 100%;
+      padding: 15px;
+      background: transparent;
+      color: #1abb77;
+      font-family: 'Nunito', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      border: 2px solid #1abb77;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+    }
+
+    .btn-secondary:hover { background: rgba(26, 187, 119, 0.08); }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+  <div class="logo-wrap">
+    <img src="https://fbiaqgiccgkstsewihxz.supabase.co/storage/v1/object/public/App%20Images/logo/noresume_logo-color-orange.png" alt="NoResume" />
+  </div>
+
+  <div class="card">
+
+    <div id="state-form">
+      <h1>Set new password</h1>
+      <p class="subtitle">Choose a strong password for your NoResume account.</p>
+
+      <div class="field">
+        <label for="newPassword">New password</label>
+        <input type="password" id="newPassword" placeholder="Enter new password" autocomplete="new-password" />
+        <p class="password-rules">Minimum 8 characters</p>
+      </div>
+
+      <div class="field">
+        <label for="confirmPassword">Confirm password</label>
+        <input type="password" id="confirmPassword" placeholder="Confirm new password" autocomplete="new-password" />
+      </div>
+
+      <div class="msg-error" id="errorMsg"></div>
+
+      <button class="btn" id="submitBtn" onclick="handleSubmit()">Update Password</button>
+    </div>
+
+    <div id="state-loading">
+      <div class="spinner"></div>
+      <p class="loading-text">Updating your password…</p>
+    </div>
+
+    <div id="state-success">
+      <div class="icon-circle success">✓</div>
+      <p class="state-title">Password updated!</p>
+      <p class="state-msg">Your password has been changed successfully. You can now log in to the NoResume app with your new password.</p>
+      <a href="noresume://noresume.com/login" class="btn">Open the App</a>
+    </div>
+
+    <div id="state-error">
+      <div class="icon-circle error-icon">✕</div>
+      <p class="state-title" id="errorStateTitle">Link expired</p>
+      <p class="state-msg" id="errorStateMsg">This password reset link has expired or already been used. Please request a new one from the app.</p>
+      <a href="noresume://noresume.com/forgotPassword" class="btn-secondary">Request New Link</a>
+    </div>
+
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, confirmPasswordReset, verifyPasswordResetCode } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDA6QMKLJPm_seyzmcHnLveDBGy0za0uj4",
+      authDomain: "noresume-61178.firebaseapp.com",
+      projectId: "noresume-61178",
+      storageBucket: "noresume-61178.firebasestorage.app",
+      messagingSenderId: "481178097116",
+      appId: "1:481178097116:web:78babdffa67402ce192b19",
+      measurementId: "G-8LTEBD2QF"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const params = new URLSearchParams(window.location.search);
+    const mode = params.get('mode');
+    const oobCode = params.get('oobCode');
+
+    function showState(state) {
+      ['form', 'loading', 'success', 'error'].forEach(s => {
+        document.getElementById('state-' + s).style.display = s === state ? 'block' : 'none';
+      });
+    }
+
+    if (mode === 'resetPassword' && oobCode) {
+      verifyPasswordResetCode(auth, oobCode).catch(() => {
+        showState('error');
+      });
+    } else {
+      document.getElementById('errorStateTitle').textContent = 'Invalid link';
+      document.getElementById('errorStateMsg').textContent = 'This link is invalid. Please request a new password reset from the app.';
+      showState('error');
+    }
+
+    window.handleSubmit = async function() {
+      const newPass = document.getElementById('newPassword').value;
+      const confirmPass = document.getElementById('confirmPassword').value;
+      const errorMsg = document.getElementById('errorMsg');
+
+      errorMsg.classList.remove('show');
+
+      if (newPass.length < 8) {
+        errorMsg.textContent = 'Password must be at least 8 characters.';
+        errorMsg.classList.add('show');
+        return;
+      }
+
+      if (newPass !== confirmPass) {
+        errorMsg.textContent = 'Passwords do not match.';
+        errorMsg.classList.add('show');
+        return;
+      }
+
+      showState('loading');
+
+      try {
+        await confirmPasswordReset(auth, oobCode, newPass);
+        showState('success');
+      } catch (err) {
+        let msg = 'Something went wrong. Please try again.';
+        if (err.code === 'auth/expired-action-code') msg = 'This reset link has expired. Please request a new one.';
+        if (err.code === 'auth/invalid-action-code') msg = 'This link has already been used or is invalid.';
+        if (err.code === 'auth/weak-password') msg = 'Password is too weak. Please choose a stronger password.';
+        document.getElementById('errorStateTitle').textContent = 'Reset failed';
+        document.getElementById('errorStateMsg').textContent = msg;
+        showState('error');
+      }
+    };
+  </script>
+</body>
+</html>
