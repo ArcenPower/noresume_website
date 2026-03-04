@@ -226,7 +226,7 @@
       <div class="field">
         <label for="newPassword">New password</label>
         <input type="password" id="newPassword" placeholder="Enter new password" autocomplete="new-password" />
-        <p class="password-rules">Minimum 8 characters</p>
+        <p class="password-rules">Minimum 6 characters</p>
       </div>
 
       <div class="field">
@@ -304,8 +304,8 @@
 
       errorMsg.classList.remove('show');
 
-      if (newPass.length < 8) {
-        errorMsg.textContent = 'Password must be at least 8 characters.';
+      if (newPass.length < 6) {
+        errorMsg.textContent = 'Password must be at least 6 characters.';
         errorMsg.classList.add('show');
         return;
       }
