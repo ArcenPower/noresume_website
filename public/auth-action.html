@@ -277,19 +277,29 @@
       <div class="icon-circle success">✓</div>
       <p class="state-title">Password updated!</p>
       <p class="state-msg">Your password has been changed successfully. You can now log in to the NoResume app with your new password.</p>
-      <a href="noresume://noresume.com/login" class="btn">Open the App</a>
+      <a href="noresume://noresume.com/loginPage" class="btn">Open the App</a>
     </div>
 
     <div id="state-error">
       <div class="icon-circle error-icon">✕</div>
       <p class="state-title" id="errorStateTitle">Link expired</p>
-      <p class="state-msg" id="errorStateMsg">This password reset link has expired or already been used. Please request a new one from the app.</p>
-      <a href="noresume://noresume.com/forgotPassword" class="btn-secondary">Request New Link</a>
+      <p class="state-msg" id="errorStateMsg">This password reset link has expired or already been used. Please request a new one in the NoResume app.</p>
+      <button class="btn-secondary" onclick="requestNewLink()">Request New Link in App</button>
+      <p class="password-rules" id="deepLinkFallback" style="display:none;margin-top:12px;color:#e05c5c;">Please open the NoResume app and request a new password reset.</p>
     </div>
 
   </div>
 
   <script>
+    function requestNewLink() {
+      var fallback = document.getElementById('deepLinkFallback');
+      var timeout = setTimeout(function() {
+        fallback.style.display = 'block';
+      }, 1500);
+      window.location = 'noresume://noresume.com/resetPassword';
+      window.addEventListener('blur', function() { clearTimeout(timeout); }, { once: true });
+    }
+
     function togglePw(fieldId, btn) {
       const input = document.getElementById(fieldId);
       const isHidden = input.type === 'password';
