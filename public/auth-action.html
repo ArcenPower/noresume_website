@@ -65,24 +65,43 @@
 
     .field { margin-bottom: 16px; }
 
-    input[type="password"] {
+    .password-wrap { position: relative; }
+
+    .password-wrap input {
       width: 100%;
       border: 1.5px solid #e8e0d8;
       border-radius: 12px;
-      padding: 13px 16px;
+      padding: 13px 44px 13px 16px;
       font-family: 'Poppins', sans-serif;
       font-size: 15px;
       color: #1a1a1a;
       background: #fafafa;
       outline: none;
       transition: border-color 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
     }
 
-    input[type="password"]:focus {
+    .password-wrap input:focus {
       border-color: #1abb77;
       box-shadow: 0 0 0 3px rgba(26, 187, 119, 0.12);
       background: #fff;
     }
+
+    .toggle-pw {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      color: #aaa;
+      display: flex;
+      align-items: center;
+    }
+
+    .toggle-pw:hover { color: #555; }
 
     .password-rules {
       font-size: 12px;
@@ -225,13 +244,23 @@
 
       <div class="field">
         <label for="newPassword">New password</label>
-        <input type="password" id="newPassword" placeholder="Enter new password" autocomplete="new-password" />
+        <div class="password-wrap">
+          <input type="password" id="newPassword" placeholder="Enter new password" autocomplete="new-password" />
+          <button class="toggle-pw" type="button" onclick="togglePw('newPassword', this)" aria-label="Show password">
+            <svg id="eye-new" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
         <p class="password-rules">Minimum 6 characters</p>
       </div>
 
       <div class="field">
         <label for="confirmPassword">Confirm password</label>
-        <input type="password" id="confirmPassword" placeholder="Confirm new password" autocomplete="new-password" />
+        <div class="password-wrap">
+          <input type="password" id="confirmPassword" placeholder="Confirm new password" autocomplete="new-password" />
+          <button class="toggle-pw" type="button" onclick="togglePw('confirmPassword', this)" aria-label="Show password">
+            <svg id="eye-confirm" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
       </div>
 
       <div class="msg-error" id="errorMsg"></div>
