@@ -486,7 +486,7 @@
 
                 <div class="message-box error" id="errorMsg">
                     <h3>Something went wrong</h3>
-                    <p id="errorText">Please try again or contact us at <a href="mailto:privacy@nresume.com" style="color:#74b9a7;">privacy@nresume.com</a></p>
+                    <p id="errorText">Please try again or contact us at <a href="/cdn-cgi/l/email-protection#eb9b99829d8a8892ab85998e989e868ec5888486" style="color:#74b9a7;"><span class="__cf_email__" data-cfemail="bcccced5cadddfc5fcd2ced9cfc9d1d992dfd3d1">[email&#160;protected]</span></a></p>
                 </div>
             </div>
 
@@ -529,7 +529,7 @@
                 </div>
                 <div class="footer-section">
                     <h4>Contact</h4>
-                    <p>info@nresume.com</p>
+                    <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="80e9eee6efc0eef2e5f3f5ede5aee3efed">[email&#160;protected]</a></p>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -538,7 +538,7 @@
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         async function submitRequest() {
             const email = document.getElementById('email').value.trim();
             const reason = document.getElementById('reason').value.trim();
@@ -569,7 +569,7 @@
             btn.textContent = 'Submitting...';
 
             try {
-                const response = await fetch('https://delete-account.noresume.co', {
+                const response = await fetch('https://api.noresume.co', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, reason })
@@ -587,17 +587,3 @@
                 }
             } catch (err) {
                 showError('Unable to submit request. Please email privacy@nresume.com directly.');
-                btn.disabled = false;
-                btn.textContent = 'Submit Deletion Request';
-            }
-        }
-
-        function showError(msg) {
-            const box = document.getElementById('errorMsg');
-            document.getElementById('errorText').textContent = msg;
-            box.style.display = 'block';
-        }
-    </script>
-
-</body>
-</html>
