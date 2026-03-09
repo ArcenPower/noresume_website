@@ -283,7 +283,7 @@
     <section class="legal-hero">
         <div class="container">
             <h1>Privacy Policy</h1>
-            <p class="last-updated">Last Updated: 01 June 2025</p>
+            <p class="last-updated">Last Updated: 09 March 2026</p>
         </div>
     </section>
 
@@ -294,7 +294,7 @@
             <h2>1. Introduction</h2>
 
             <h3>1.1 About This Privacy Policy</h3>
-            <p>NORESUME LTD ("we," "us," "our," or "Noresume") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, share, and protect your personal information when you use our B2B services marketplace.</p>
+            <p>NORESUME LTD ("we," "us," "our," or "Noresume") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, share, and protect your personal information when you use our employment infrastructure platform, which connects talent and businesses through blind matching, combining gig work and permanent recruitment.</p>
 
             <div class="details-box">
                 <p><strong>Legal Name:</strong> NORESUME LTD</p>
@@ -306,8 +306,8 @@
             <h3>1.2 Who This Policy Applies To</h3>
             <p>This Privacy Policy applies to:</p>
             <ul>
-                <li><strong>Businesses:</strong> Self-employed individuals, sole traders, partnerships, and limited companies offering professional services on our platform</li>
-                <li><strong>Clients:</strong> Companies and organizations purchasing professional services through our platform</li>
+                <li><strong>Talent:</strong> Self-employed individuals, sole traders, partnerships, and limited companies offering professional services or seeking gig work on our platform</li>
+                <li><strong>Companies:</strong> Businesses and organisations sourcing talent or making permanent hires through our platform</li>
                 <li><strong>Visitors:</strong> Anyone browsing our website or platform</li>
             </ul>
 
@@ -321,7 +321,7 @@
             <p><strong>Our legal bases for processing:</strong></p>
             <ul>
                 <li><strong>Contract:</strong> To provide our Services to you</li>
-                <li><strong>Legal Obligation:</strong> To comply with tax, VAT, and other legal requirements</li>
+                <li><strong>Legal Obligation:</strong> To comply with tax, VAT, HMRC, and other legal requirements</li>
                 <li><strong>Legitimate Interests:</strong> To operate, improve, and secure our platform</li>
                 <li><strong>Consent:</strong> Where we have specifically asked for your permission</li>
             </ul>
@@ -337,24 +337,24 @@
                 <li>Communication preferences</li>
             </ul>
 
-            <p><strong>For Businesses (Service Providers):</strong></p>
+            <p><strong>For Talent:</strong></p>
             <ul>
                 <li>Professional background and experience</li>
                 <li>Skills and qualifications</li>
-                <li>Portfolio and work samples</li>
-                <li>Availability and rates</li>
-                <li>Bank account details (for payments)</li>
+                <li>Work availability and schedules</li>
+                <li>Pay rates</li>
+                <li>Bank account details (for Stripe payouts)</li>
                 <li>Business name and trading name</li>
                 <li>Business address</li>
                 <li>VAT registration number (if VAT-registered)</li>
                 <li>Company registration number (if limited company)</li>
             </ul>
 
-            <p><strong>For Clients:</strong></p>
+            <p><strong>For Companies:</strong></p>
             <ul>
                 <li>Company name and details</li>
-                <li>Business address</li>
-                <li>Service requirements and project descriptions</li>
+                <li>Business address and work locations</li>
+                <li>Staffing requirements and job descriptions</li>
                 <li>Billing information</li>
                 <li>Payment method details</li>
             </ul>
@@ -369,11 +369,14 @@
                 <li>Click patterns and interactions</li>
             </ul>
 
+            <p><strong>Search Session Data:</strong></p>
+            <p>We log search activity performed within the app, including search terms, filters applied, results viewed, and time of search. This data is linked to your user account and used to improve the platform's matching and search functionality, and to develop our market intelligence features.</p>
+
             <p><strong>Technical Data:</strong></p>
             <ul>
                 <li>Cookies and similar technologies (see Section 8)</li>
                 <li>Log files and error reports</li>
-                <li>Performance and analytics data</li>
+                <li>Performance and analytics data via Firebase Analytics</li>
             </ul>
 
             <h3>2.3 Device Permissions</h3>
@@ -382,11 +385,22 @@
                 <li><strong>Camera:</strong> Used for video interviews, uploading profile photos, and scanning documents. Video and images captured are processed and stored securely on our platform and by our video provider (Daily.co).</li>
                 <li><strong>Microphone:</strong> Used for audio during video interviews. Audio may be recorded and stored as part of the interview process.</li>
                 <li><strong>Photo Library:</strong> Used to upload profile photos and documents from your device.</li>
-                <li><strong>Notifications:</strong> Used to send you alerts about messages, interview invitations, and platform updates.</li>
+                <li><strong>Notifications:</strong> Used to send you alerts about messages, interview invitations, job offers, payment confirmations, and platform updates.</li>
             </ul>
+            <p><strong>Video Interview Recording:</strong> Video interviews conducted through the NoResume platform may be recorded. By using video interviews, you agree to recording, and that NoResume and third parties can store, access, and analyse recordings. If you do not consent to recording, you must exit the interview.</p>
             <p>You can manage these permissions through your device settings at any time. Disabling certain permissions may affect the functionality of the app.</p>
 
-            <h3>2.4 Information from Third Parties</h3>
+            <h3>2.4 Referral Programme Data</h3>
+            <p>When you participate in the NoResume referral programme, we collect:</p>
+            <ul>
+                <li>Your referral code or link identifier &mdash; a randomly generated username (such as &ldquo;pigfish888&rdquo;) which you may customise to any name of your choosing</li>
+                <li>Records of who referred whom, including both the referrer's and the referred user's account identifiers, in order to operate the reward system</li>
+                <li>Referral earnings and reward milestones associated with your account</li>
+                <li>Badges and achievement data earned through referral activity</li>
+            </ul>
+            <p>Your public referral page displays only your chosen referral code or username alongside any badges you have earned. Your real name, contact details, and financial information are never displayed publicly through the referral system.</p>
+
+            <h3>2.5 Information from Third Parties</h3>
             <p><strong>VAT Verification:</strong></p>
             <ul>
                 <li>We verify VAT registration details with HMRC's VAT registration database</li>
@@ -411,12 +425,13 @@
             <p>We use your information to:</p>
             <ul>
                 <li>Create and manage your account</li>
-                <li>Match Businesses with suitable opportunities</li>
-                <li>Recommend service providers to Clients</li>
-                <li>Facilitate messaging and communication</li>
-                <li>Process payments and transactions</li>
+                <li>Match talent with suitable opportunities through our blind matching system</li>
+                <li>Enable companies to source and engage talent</li>
+                <li>Facilitate messaging and communication between users</li>
+                <li>Process payments, manage escrow, and release funds</li>
                 <li>Provide customer support</li>
                 <li>Send service-related notifications</li>
+                <li>Operate the referral and rewards programme</li>
             </ul>
 
             <h3>3.2 For Business Verification and Compliance</h3>
@@ -426,7 +441,7 @@
                 <li>Confirm business name matches VAT registration</li>
                 <li>Validate registered business address</li>
                 <li>Perform periodic re-verification to maintain accurate records</li>
-                <li>Generate compliant invoices and payment records</li>
+                <li>Generate compliant self-billing invoices and payment records</li>
             </ul>
 
             <p><strong>Why We Verify VAT Registration:</strong></p>
@@ -436,6 +451,9 @@
                 <li>Meet our legal obligations as a payment facilitator</li>
                 <li>Provide accurate invoicing for both parties</li>
             </ul>
+
+            <p><strong>IR35 and Employment Status:</strong></p>
+            <p>NoResume provides the infrastructure for talent and companies to engage. We collect information relevant to employment status and working arrangements but do not make IR35 determinations on behalf of either party. It is the responsibility of the relevant parties to assess their own employment status in accordance with HMRC guidance.</p>
 
             <p><strong>Other Compliance Uses:</strong></p>
             <ul>
@@ -450,9 +468,9 @@
             <ul>
                 <li>Improve our matching algorithms</li>
                 <li>Analyze platform performance</li>
-                <li>Understand user behavior and preferences</li>
+                <li>Understand user behaviour and preferences</li>
                 <li>Develop new features and services</li>
-                <li>Conduct market research</li>
+                <li>Conduct market research and provide market intelligence</li>
             </ul>
 
             <h3>3.4 For Marketing (With Your Consent)</h3>
@@ -462,21 +480,22 @@
                 <li>Provide updates about new features</li>
                 <li>Share relevant content and resources</li>
             </ul>
-            <p><strong>You can opt-out at any time</strong> by clicking "unsubscribe" in any marketing email, adjusting preferences in your account settings, or contacting us at <a href="mailto:privacy@nresume.com">privacy@nresume.com</a>.</p>
+            <p><strong>You can opt-out at any time</strong> by clicking &ldquo;unsubscribe&rdquo; in any marketing email, adjusting preferences in your account settings, or contacting us at <a href="mailto:privacy@nresume.com">privacy@nresume.com</a>.</p>
 
             <h2>4. How We Share Your Information</h2>
 
             <h3>4.1 With Other Platform Users</h3>
-            <p><strong>Businesses (Service Providers):</strong> Your profile, skills, experience, and portfolio are visible to Clients when you submit a proposal, Clients search for service providers, or our matching system recommends you.</p>
-            <p><strong>Clients:</strong> Your company name, project descriptions, and requirements are visible to Businesses when you post a service listing or Businesses search for opportunities.</p>
-            <p><strong>Control Your Visibility:</strong> You can adjust privacy settings to control what information is publicly displayed.</p>
+            <p><strong>Blind Matching:</strong> NoResume operates a blind matching model. Companies approach talent rather than talent applying directly. Your profile information is surfaced to companies through our matching system without your full identity being disclosed until both parties have engaged.</p>
+            <p><strong>Talent:</strong> Your skills, experience, availability, and rates are visible to companies through the matching process.</p>
+            <p><strong>Companies:</strong> Your company name, location, and job requirements are visible to talent when an engagement is initiated.</p>
+            <p><strong>Control Your Visibility:</strong> You can adjust privacy settings to control what information is displayed on your profile.</p>
 
             <h3>4.2 With Service Providers and Partners</h3>
             <p>We share your information with trusted third parties who help us operate our platform:</p>
 
             <p><strong>Payment Processing:</strong></p>
             <ul>
-                <li><strong>Stripe:</strong> Processes payments and manages bank account information</li>
+                <li><strong>Stripe:</strong> Processes payments, manages escrow, and handles bank account information via Stripe Connect</li>
             </ul>
 
             <p><strong>Infrastructure and Hosting:</strong></p>
@@ -487,12 +506,17 @@
 
             <p><strong>Authentication:</strong></p>
             <ul>
-                <li><strong>Firebase Authentication:</strong> Manages account security</li>
+                <li><strong>Firebase Authentication:</strong> Manages account security and device identifiers</li>
             </ul>
 
             <p><strong>Video Interviews:</strong></p>
             <ul>
                 <li><strong>Daily.co:</strong> Provides video calling infrastructure. Interview recordings may be stored and processed by Daily.co on our behalf.</li>
+            </ul>
+
+            <p><strong>Email Communications:</strong></p>
+            <ul>
+                <li><strong>Resend:</strong> Delivers transactional and notification emails on our behalf</li>
             </ul>
 
             <p><strong>VAT Verification:</strong></p>
@@ -501,7 +525,7 @@
             </ul>
 
             <h3>4.3 For Legal Reasons</h3>
-            <p>We may disclose your information when required to comply with legal obligations, court orders, or government requests; enforce our Terms and Conditions; protect our rights, property, or safety; investigate fraud or security incidents; or respond to tax or VAT inquiries from HMRC.</p>
+            <p>We may disclose your information when required to comply with legal obligations, court orders, or government requests; enforce our Terms and Conditions; protect our rights, property, or safety; investigate fraud or security incidents; or respond to tax or VAT enquiries from HMRC.</p>
 
             <h3>4.4 Business Transfers</h3>
             <p>If Noresume is acquired, merged, or sells assets, your information may be transferred to the new owner. We will notify you before your information is transferred and becomes subject to a different privacy policy.</p>
@@ -512,7 +536,7 @@
             <h2>5. Data Retention</h2>
 
             <h3>5.1 How Long We Keep Your Data</h3>
-            <p><strong>Active Accounts:</strong> We retain your information for as long as your account is active. You can delete your account at any time.</p>
+            <p><strong>Active Accounts:</strong> We retain your information for as long as your account is active. You can delete your account at any time from within the app.</p>
             <p><strong>Closed Accounts:</strong> After account closure, we retain certain information for legal and compliance purposes:</p>
             <ul>
                 <li><strong>Financial records:</strong> 6 years (UK tax law requirement)</li>
@@ -523,7 +547,7 @@
             <p><strong>Aggregated Data:</strong> Anonymized and aggregated data may be retained indefinitely for analytics and platform improvement.</p>
 
             <h3>5.2 Deletion Requests</h3>
-            <p>You can request deletion of your personal data by contacting <a href="mailto:privacy@nresume.com">privacy@nresume.com</a>. Some data must be retained for legal compliance. Deletion may not be immediate due to backup systems. We will confirm deletion within 30 days where legally permissible.</p>
+            <p>You can initiate deletion of your account and personal data from within the app. You may also contact us at <a href="mailto:privacy@nresume.com">privacy@nresume.com</a>. Some data must be retained for legal compliance. Deletion may not be immediate due to backup systems. We will confirm deletion within 30 days where legally permissible.</p>
 
             <h2>6. Your Rights</h2>
             <p>Under UK GDPR, you have the following rights:</p>
@@ -574,7 +598,7 @@
             <ul>
                 <li><strong>Essential Cookies:</strong> Required for the platform to function. Cannot be disabled.</li>
                 <li><strong>Functional Cookies:</strong> Remember your preferences and settings. Can be disabled in your browser.</li>
-                <li><strong>Analytics Cookies:</strong> Help us understand how users interact with our platform. Data is typically anonymized. Can be disabled in your browser.</li>
+                <li><strong>Analytics Cookies:</strong> Help us understand how users interact with our platform via Firebase Analytics. Data is typically anonymized. Can be disabled in your browser.</li>
             </ul>
 
             <h3>8.3 Managing Cookies</h3>
@@ -590,16 +614,17 @@
             <ul>
                 <li><strong>Stripe:</strong> May process payment data in multiple regions with appropriate safeguards</li>
                 <li><strong>AWS:</strong> Data stored in EU region but AWS is a US company</li>
-                <li><strong>Firebase:</strong> Google service, data may be processed in US with appropriate safeguards</li>
+                <li><strong>Firebase:</strong> Google service, data may be processed in the US with appropriate safeguards</li>
                 <li><strong>Daily.co:</strong> Video interview data may be processed in the US with appropriate safeguards</li>
+                <li><strong>Resend:</strong> Email delivery service, data may be processed in the US with appropriate safeguards</li>
             </ul>
             <p><strong>Safeguards in Place:</strong> Standard Contractual Clauses (SCCs), EU-US Data Privacy Framework participation (where applicable), and UK GDPR-compliant data processing agreements.</p>
 
             <h2>10. Children's Privacy</h2>
-            <p>Our Services are not directed at individuals under 18 years of age. We do not knowingly collect personal information from children. If we become aware that a child has provided us with personal data, we will delete it immediately. If you believe a child has provided us with personal information, please contact us at <a href="mailto:privacy@nresume.com">privacy@nresume.com</a>.</p>
+            <p>Our Services are intended for users aged 18 and over. We do not knowingly collect personal information from individuals under 18 years of age. If we become aware that a minor has provided us with personal data, we will delete it immediately. If you believe a minor has provided us with personal information, please contact us at <a href="mailto:privacy@nresume.com">privacy@nresume.com</a>.</p>
 
             <h2>11. Changes to This Privacy Policy</h2>
-            <p>We may update this Privacy Policy from time to time to reflect changes in laws or regulations, changes to our Services, or changes in our data practices. If we make material changes, we will notify you by email to your registered address, by prominent notice on our platform, and by updating the "Last Updated" date at the top of this policy.</p>
+            <p>We may update this Privacy Policy from time to time to reflect changes in laws or regulations, changes to our Services, or changes in our data practices. If we make material changes, we will notify you by email to your registered address, by prominent notice on our platform, and by updating the &ldquo;Last Updated&rdquo; date at the top of this policy.</p>
             <p><strong>Your continued use of our Services after changes constitutes acceptance</strong> of the updated Privacy Policy.</p>
 
             <h2>12. Contact Us</h2>
@@ -661,7 +686,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 NoResume. All rights reserved.</p>
+                <p>&copy; 2026 NoResume. All rights reserved.</p>
             </div>
         </div>
     </footer>
