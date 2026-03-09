@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Delete Account - NoResume</title>
+    <meta name="description" content="Request deletion of your NoResume account and associated data">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #2d3436;
+            background: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #636e72;
+            font-weight: 400;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #74b9a7;
+        }
+
+        .btn-demo {
+            background: #000;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+
+        .btn-demo:hover {
+            transform: translateY(-2px);
+            color: white !important;
+        }
+
+        /* Hero */
+        .legal-hero {
+            margin-top: 80px;
+            padding: 60px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .legal-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d3436;
+        }
+
+        .legal-hero p {
+            font-size: 1rem;
+            color: #636e72;
+            margin-top: 10px;
+        }
+
+        /* Content */
+        .content {
+            padding: 60px 0;
+        }
+
+        .content .container {
+            max-width: 700px;
+        }
+
+        .info-box {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px 30px;
+            margin-bottom: 30px;
+            border-left: 4px solid #74b9a7;
+        }
+
+        .info-box h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2d3436;
+            margin-bottom: 10px;
+        }
+
+        .info-box p {
+            font-size: 0.95rem;
+            color: #636e72;
+            line-height: 1.7;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        .info-box ul li {
+            font-size: 0.95rem;
+            color: #636e72;
+            padding-left: 18px;
+            position: relative;
+            margin-bottom: 4px;
+        }
+
+        .info-box ul li::before {
+            content: "•";
+            color: #74b9a7;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .preferred-box {
+            background: #e8f5f2;
+            border-radius: 10px;
+            padding: 25px 30px;
+            margin-bottom: 30px;
+            border-left: 4px solid #74b9a7;
+        }
+
+        .preferred-box h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2d3436;
+            margin-bottom: 8px;
+        }
+
+        .preferred-box p {
+            font-size: 0.95rem;
+            color: #636e72;
+            line-height: 1.7;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 35px 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 15px;
+            color: #b2bec3;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .form-section h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2d3436;
+            margin-bottom: 8px;
+        }
+
+        .form-section p {
+            font-size: 0.95rem;
+            color: #636e72;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #2d3436;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            color: #2d3436;
+            transition: border-color 0.3s;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #74b9a7;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            accent-color: #74b9a7;
+            flex-shrink: 0;
+        }
+
+        .checkbox-group label {
+            font-size: 0.9rem;
+            color: #636e72;
+            line-height: 1.5;
+        }
+
+        .checkbox-group label a {
+            color: #74b9a7;
+            text-decoration: none;
+        }
+
+        .submit-btn {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            border-radius: 30px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            background: #2d3436;
+        }
+
+        .submit-btn:disabled {
+            background: #b2bec3;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Success / Error states */
+        .message-box {
+            display: none;
+            border-radius: 10px;
+            padding: 25px 30px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .message-box.success {
+            background: #e8f5f2;
+            border: 1px solid #74b9a7;
+        }
+
+        .message-box.error {
+            background: #ffeaea;
+            border: 1px solid #e17055;
+        }
+
+        .message-box h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .message-box.success h3 { color: #2d8a6e; }
+        .message-box.error h3 { color: #c0392b; }
+
+        .message-box p {
+            font-size: 0.9rem;
+            color: #636e72;
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3436;
+            color: white;
+            padding: 50px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .footer-section p {
+            color: #b2bec3;
+            line-height: 1.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #74b9a7;
+        }
+
+        .social-links img {
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #b2bec3;
+        }
+
+        @media (max-width: 768px) {
+            nav { display: none; }
+            .legal-hero h1 { font-size: 1.8rem; }
+            .footer-content { grid-template-columns: 1fr; text-align: center; }
+            .social-links { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <a href="/">
+                    <img src="assets/images/noresume_logo-color-orange.png" alt="noresume">
+                </a>
+            </div>
+            <nav>
+                <a href="employers.html">Employers</a>
+                <a href="candidates.html">Candidates</a>
+                <a href="/#contact">Contact</a>
+                <a href="/#contact" class="btn-demo">Book a Demo</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="legal-hero">
+        <div class="container">
+            <h1>Delete Your Account</h1>
+            <p>Request deletion of your NoResume account and associated personal data</p>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="content">
+        <div class="container">
+
+            <div class="preferred-box">
+                <h3>⚡ Quickest way: delete from within the app</h3>
+                <p>If you still have access to your account, go to <strong>Settings &rarr; Account &rarr; Delete Account</strong> inside the NoResume app. This is instant and fully automated. Use the form below only if you no longer have access to your account.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>What happens when your account is deleted</h3>
+                <ul>
+                    <li>Your profile, availability, and personal data will be removed</li>
+                    <li>Active assignments will be closed with 48 hours notice to your employer</li>
+                    <li>Pending job applications will be withdrawn</li>
+                    <li>Financial and VAT records are retained for 6 years as required by UK law (HMRC)</li>
+                    <li>You have a 30-day grace period during which you can cancel your request by logging back in</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h3>Processing time</h3>
+                <p>Requests submitted via this form are processed manually within <strong>30 days</strong>. You will receive a confirmation email once your account has been deleted. For immediate deletion, use the in-app option above.</p>
+            </div>
+
+            <div class="divider">
+                <span>Submit a deletion request</span>
+            </div>
+
+            <div class="form-section">
+                <h2>Request account deletion</h2>
+                <p>Enter the email address associated with your NoResume account. We will send you a confirmation once your account has been deleted.</p>
+
+                <div class="form-group">
+                    <label for="email">Email address on your NoResume account *</label>
+                    <input type="email" id="email" placeholder="you@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="reason">Reason for deletion (optional)</label>
+                    <textarea id="reason" placeholder="Help us improve by telling us why you're leaving..."></textarea>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="confirm" required>
+                    <label for="confirm">
+                        I understand that deleting my account is permanent. Financial and VAT records will be retained for 6 years as required by HMRC. I have read the <a href="privacy-policy.html">Privacy Policy</a>.
+                    </label>
+                </div>
+
+                <button class="submit-btn" id="submitBtn" onclick="submitRequest()">Submit Deletion Request</button>
+
+                <div class="message-box success" id="successMsg">
+                    <h3>✓ Request received</h3>
+                    <p>We've sent a confirmation to your email address. Your account deletion request will be processed within 30 days. If you change your mind, log back into the app before then to cancel.</p>
+                </div>
+
+                <div class="message-box error" id="errorMsg">
+                    <h3>Something went wrong</h3>
+                    <p id="errorText">Please try again or contact us at <a href="mailto:privacy@nresume.com" style="color:#74b9a7;">privacy@nresume.com</a></p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Social Media</h4>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/noresume" target="_blank">
+                            <img src="assets/images/vecteezy_linkedin-logo-png-linkedin-logo-transparent-png-linkedin_23986970.png" alt="LinkedIn">
+                        </a>
+                        <a href="https://www.tiktok.com/@thenoresume" target="_blank">
+                            <img src="assets/images/tiktok_logo_social+media_icon.png" alt="TikTok">
+                        </a>
+                        <a href="https://www.youtube.com/@thenoresume" target="_blank">
+                            <img src="assets/images/Youtube_logo_icon.png" alt="YouTube">
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61566370331980" target="_blank">
+                            <img src="assets/images/facebook+logo_icon_2.png" alt="Facebook">
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Location</h4>
+                    <p>noresume<br>
+                    71-75 Shelton Street<br>
+                    Covent Garden<br>
+                    London WC2H 9JQ</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <p><a href="privacy-policy.html" style="color:#b2bec3;text-decoration:none;">Privacy Policy</a></p>
+                    <p><a href="terms-of-service.html" style="color:#b2bec3;text-decoration:none;">Terms of Service</a></p>
+                    <p><a href="delete-account.html" style="color:#b2bec3;text-decoration:none;">Delete Account</a></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>info@nresume.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NoResume. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        async function submitRequest() {
+            const email = document.getElementById('email').value.trim();
+            const reason = document.getElementById('reason').value.trim();
+            const confirm = document.getElementById('confirm').checked;
+            const btn = document.getElementById('submitBtn');
+
+            // Reset messages
+            document.getElementById('successMsg').style.display = 'none';
+            document.getElementById('errorMsg').style.display = 'none';
+
+            // Validate
+            if (!email) {
+                showError('Please enter your email address.');
+                return;
+            }
+
+            if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                showError('Please enter a valid email address.');
+                return;
+            }
+
+            if (!confirm) {
+                showError('Please confirm you understand that account deletion is permanent.');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = 'Submitting...';
+
+            try {
+                const response = await fetch('https://delete-account.noresume.co', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, reason })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    document.getElementById('successMsg').style.display = 'block';
+                    btn.style.display = 'none';
+                } else {
+                    showError(data.message || 'Please try again or contact privacy@nresume.com');
+                    btn.disabled = false;
+                    btn.textContent = 'Submit Deletion Request';
+                }
+            } catch (err) {
+                showError('Unable to submit request. Please email privacy@nresume.com directly.');
+                btn.disabled = false;
+                btn.textContent = 'Submit Deletion Request';
+            }
+        }
+
+        function showError(msg) {
+            const box = document.getElementById('errorMsg');
+            document.getElementById('errorText').textContent = msg;
+            box.style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
