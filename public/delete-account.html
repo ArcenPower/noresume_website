@@ -587,3 +587,17 @@
                 }
             } catch (err) {
                 showError('Unable to submit request. Please email privacy@nresume.com directly.');
+                       btn.disabled = false;
+                btn.textContent = 'Submit Deletion Request';
+            }
+        }
+
+        function showError(msg) {
+            const box = document.getElementById('errorMsg');
+            document.getElementById('errorText').textContent = msg;
+            box.style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
