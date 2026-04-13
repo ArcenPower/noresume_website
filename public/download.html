@@ -163,33 +163,33 @@
         </p>
     </div>
 
-    <script>
-        const APPLE_STORE_URL  = '';
-        const GOOGLE_STORE_URL = '';
+   <script>
+    const APPLE_STORE_URL  = 'https://apps.apple.com/app/noresume/id6759061302';
+    const GOOGLE_STORE_URL = 'https://play.google.com/store/apps/details?id=noresume.app';
 
-        const appleBadge  = document.getElementById('apple-badge');
-        const googleBadge = document.getElementById('google-badge');
-        const ua = navigator.userAgent || '';
-        const isIOS     = /iPhone|iPad|iPod/i.test(ua);
-        const isAndroid  = /Android/i.test(ua);
+    const appleBadge  = document.getElementById('apple-badge');
+    const googleBadge = document.getElementById('google-badge');
+    const ua = navigator.userAgent || '';
+    const isIOS     = /iPhone|iPad|iPod/i.test(ua);
+    const isAndroid  = /Android/i.test(ua);
 
-        if (APPLE_STORE_URL) {
-            appleBadge.href = APPLE_STORE_URL;
-            appleBadge.classList.add('active');
+    if (APPLE_STORE_URL) {
+        appleBadge.href = APPLE_STORE_URL;
+        appleBadge.classList.add('active');
+    }
+
+    if (GOOGLE_STORE_URL) {
+        googleBadge.href = GOOGLE_STORE_URL;
+        googleBadge.classList.add('active');
+    }
+
+    if (APPLE_STORE_URL && GOOGLE_STORE_URL) {
+        if (isIOS) {
+            googleBadge.style.opacity = '0.5';
+        } else if (isAndroid) {
+            appleBadge.style.opacity = '0.5';
         }
-
-        if (GOOGLE_STORE_URL) {
-            googleBadge.href = GOOGLE_STORE_URL;
-            googleBadge.classList.add('active');
-        }
-
-        if (APPLE_STORE_URL && GOOGLE_STORE_URL) {
-            if (isIOS) {
-                googleBadge.style.opacity = '0.5';
-            } else if (isAndroid) {
-                appleBadge.style.opacity = '0.5';
-            }
-        }
-    </script>
+    }
+</script>
 </body>
 </html>
