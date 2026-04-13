@@ -7,14 +7,14 @@
     <meta name="description" content="Download the NoResume app. Find work and hire talent without traditional resumes. Available on iOS and Android.">
     <meta property="og:title" content="Download NoResume">
     <meta property="og:description" content="No Resume, No Problem. Download the app to find work and hire talent.">
-    <meta property="og:image" content="assets/images/feature_white4_teal.png">
+    <meta property="og:image" content="https://www.noresume.co/assets/images/noresume_logo-color-orange.png">
     <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
+        
         body {
             font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #ffedda 0%, #f8cf9f 100%);
@@ -26,7 +26,7 @@
         }
 
         .container {
-            background: white;
+            background: linear-gradient(135deg, #C2F2E2 0%, #E3FFF6 42%);
             border-radius: 24px;
             padding: 50px 40px;
             max-width: 480px;
@@ -53,14 +53,15 @@
             line-height: 1.3;
         }
 
-        .badge {
+        /* GREEN GRADIENT button - replaces orange */
+        .coming-soon {
             display: inline-block;
-            background: linear-gradient(135deg, #ff9a56 0%, #ff6b35 100%);
+            background: linear-gradient(135deg, #1A5F5F 0%, #36C5C5 100%);
             color: white;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 600;
             padding: 8px 24px;
-            border-radius: 20px;
+            border-radius: 16px;
             margin-bottom: 30px;
             letter-spacing: 0.5px;
         }
@@ -80,8 +81,9 @@
         }
 
         .store-badge {
-            transition: transform 0.2s ease;
-            cursor: pointer;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            opacity: 0.45;
+            pointer-events: none;
         }
 
         .store-badge img {
@@ -89,7 +91,13 @@
             width: auto;
         }
 
-        .store-badge:hover {
+        .store-badge.active {
+            opacity: 1;
+            pointer-events: auto;
+            cursor: pointer;
+        }
+
+        .store-badge.active:hover {
             transform: translateY(-2px);
         }
 
@@ -99,10 +107,14 @@
             color: #999;
         }
 
+        /* GREEN GRADIENT text link */
         .notify-text a {
-            color: #ff6b35;
+            background: linear-gradient(135deg, #1A5F5F 0%, #36C5C5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .notify-text a:hover {
@@ -128,30 +140,56 @@
 <body>
     <div class="container">
         <div class="logo">
-            <img src="assets/images/feature_white4_teal.png" alt="NoResume">
+            <img src="assets/images/noresume_logo-color-orange.png" alt="NoResume">
         </div>
 
-        <h1 class="tagline">No Resume, No Problem</h1>
+        <h1 class="tagline">Hiring is broken.<br>We Fixed it!</h1>
 
-        <div class="badge">The Future of Talent Exchange</div>
+        <div class="coming-soon">Available Now</div>
 
-        <p class="subtitle">Real companies. Real conversations. No applications. Work or hire on your terms — gig, perm, or both.</p>
+        <p class="subtitle">Real companies. Real conversations. No applications. Work or hire on your terms — occasional gig, perm, or both.</p>
 
         <div class="store-badges">
-            <!-- Apple App Store Badge -->
-            <a class="store-badge" href="https://apps.apple.com/app/noresume/id6759061302" target="_blank" rel="noopener noreferrer" aria-label="Download on the App Store">
-                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+            <a id="apple-badge" class="store-badge" href="#" target="_blank" rel="noopener noreferrer" aria-label="Download on the App Store">
+                <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store">
             </a>
-
-            <!-- Google Play Badge -->
-            <a class="store-badge" href="https://play.google.com/store/apps/details?id=noresume.app" target="_blank" rel="noopener noreferrer" aria-label="Get it on Google Play">
+            <a id="google-badge" class="store-badge" href="#" target="_blank" rel="noopener noreferrer" aria-label="Get it on Google Play">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
             </a>
         </div>
 
         <p class="notify-text">
-            Want to learn more? Visit <a href="https://www.nresume.com">noresume.com</a>
+            Want to learn more? Visit <a href="https://www.noresume.co">noresume.com</a>
         </p>
     </div>
+
+    <script>
+        const APPLE_STORE_URL  = '';
+        const GOOGLE_STORE_URL = '';
+
+        const appleBadge  = document.getElementById('apple-badge');
+        const googleBadge = document.getElementById('google-badge');
+        const ua = navigator.userAgent || '';
+        const isIOS     = /iPhone|iPad|iPod/i.test(ua);
+        const isAndroid  = /Android/i.test(ua);
+
+        if (APPLE_STORE_URL) {
+            appleBadge.href = APPLE_STORE_URL;
+            appleBadge.classList.add('active');
+        }
+
+        if (GOOGLE_STORE_URL) {
+            googleBadge.href = GOOGLE_STORE_URL;
+            googleBadge.classList.add('active');
+        }
+
+        if (APPLE_STORE_URL && GOOGLE_STORE_URL) {
+            if (isIOS) {
+                googleBadge.style.opacity = '0.5';
+            } else if (isAndroid) {
+                appleBadge.style.opacity = '0.5';
+            }
+        }
+    </script>
 </body>
 </html>
