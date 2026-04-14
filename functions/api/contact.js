@@ -1,7 +1,6 @@
 export async function onRequestPost(context) {
   const { request, env } = context;
-  
-  // CORS headers
+
   const headers = {
     'Access-Control-Allow-Origin': 'https://noresume.co',
     'Content-Type': 'application/json',
@@ -9,7 +8,7 @@ export async function onRequestPost(context) {
 
   try {
     const formData = await request.formData();
-    
+
     const firstName = formData.get('firstName')?.trim();
     const lastName = formData.get('lastName')?.trim();
     const email = formData.get('email')?.trim();
@@ -17,7 +16,6 @@ export async function onRequestPost(context) {
     const message = formData.get('message')?.trim() || '(No message provided)';
     const turnstileToken = formData.get('cf-turnstile-response');
 
-    // Validate required fields
     if (!firstName || !lastName || !email || !subject) {
       return new Response(
         JSON.stringify({ success: false, error: 'Missing required fields' }),
@@ -25,7 +23,6 @@ export async function onRequestPost(context) {
       );
     }
 
-    // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return new Response(
@@ -35,11 +32,12 @@ export async function onRequestPost(context) {
     }
 
     // Validate Turnstile token
+    const secret = env.TURNSTILE_SECRET_KEY;
     const turnstileResponse = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({
-        secret: env.TURNSTILE_SECRET_KEY,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        secret: secret,
         response: turnstileToken,
         remoteip: request.headers.get('CF-Connecting-IP'),
       }),
@@ -49,7 +47,13 @@ export async function onRequestPost(context) {
 
     if (!turnstileResult.success) {
       return new Response(
-        JSON.stringify({ success: false, error: 'Security check failed.', debug: turnstileResult }),
+        JSON.stringify({
+          success: false,
+          error: 'Security check failed.',
+          debug: turnstileResult,
+          secretExists: !!secret,
+          secretLength: secret ? secret.length : 0
+        }),
         { status: 400, headers }
       );
     }
@@ -85,8 +89,7 @@ export async function onRequestPost(context) {
 
     if (!supportEmailResponse.ok) {
       const errorText = await supportEmailResponse.text();
-      console.error('Resend error (support):', errorText);
-      throw new Error('Failed to send email');
+      throw new Error('Failed to send email: ' + errorText);
     }
 
     // Send confirmation email to submitter
@@ -113,18 +116,12 @@ export async function onRequestPost(context) {
       }),
     });
 
-    if (!confirmationResponse.ok) {
-      // Don't fail the whole request if confirmation email fails
-      console.error('Resend error (confirmation):', await confirmationResponse.text());
-    }
-
     return new Response(
       JSON.stringify({ success: true }),
       { status: 200, headers }
     );
 
   } catch (error) {
-    console.error('Contact form error:', error);
     return new Response(
       JSON.stringify({ success: false, error: 'Something went wrong. Please try again.' }),
       { status: 500, headers }
@@ -132,7 +129,6 @@ export async function onRequestPost(context) {
   }
 }
 
-// Handle CORS preflight
 export async function onRequestOptions() {
   return new Response(null, {
     headers: {
