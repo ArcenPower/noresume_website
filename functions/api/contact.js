@@ -49,7 +49,7 @@ export async function onRequestPost(context) {
 
     if (!turnstileResult.success) {
       return new Response(
-        JSON.stringify({ success: false, error: 'Security check failed. Please try again.' }),
+        JSON.stringify({ success: false, error: 'Security check failed.', debug: turnstileResult }),
         { status: 400, headers }
       );
     }
