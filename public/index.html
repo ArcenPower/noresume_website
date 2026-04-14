@@ -2348,13 +2348,18 @@
         const video   = document.getElementById('nrHeroVideo');
         const fade    = document.getElementById('nrHeroFade');
 
-        video.addEventListener('ended', function() {
+        function skipIntro() {
+            if (overlay.classList.contains('hidden')) return;
+            video.pause();
             fade.classList.add('fading');
             setTimeout(function() {
                 overlay.classList.add('hidden');
                 window.scrollTo(0, 0);
             }, 850);
-        });
+        }
+
+        video.addEventListener('ended', skipIntro);
+        overlay.addEventListener('click', skipIntro);
 
         // Fallback if video fails
         setTimeout(function() {
