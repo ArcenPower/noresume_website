@@ -273,7 +273,7 @@
         <div class="nr-wl-form-state">
           <h2 class="nr-wl-heading">Coming soon to <span>your country</span></h2>
           <p class="nr-wl-subtext">
-            NoResume is currently UK-only. Drop your email and we'll let you know the moment we launch in your region.
+                        We're UK-only right now, but expanding fast. Drop your email and we'll let you know the moment NoResume launches in your country.
           </p>
 
           <form id="nr-waitlist-form">
