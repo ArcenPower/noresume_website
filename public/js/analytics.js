@@ -7,6 +7,6 @@ posthog.init('phc_CHFKrJKnxzyhbVXoSN5uzPYhVVHUHJNSStDzVgRL6ebm', {
     autocapture: true,
     capture_pageview: true,
     capture_pageleave: true,
-    disable_session_recording: false
+    disable_session_recording: false,
     capture_exceptions: true
 });
