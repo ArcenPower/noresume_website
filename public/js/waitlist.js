@@ -72,6 +72,15 @@
     { code: 'ZM', name: 'Zambia' },{ code: 'ZW', name: 'Zimbabwe' }
   ];
 
+  // -------------------------------------------------------------
+  // POSTHOG EVENT HELPER
+  // -------------------------------------------------------------
+  function trackEvent(name, props) {
+    if (window.posthog && typeof window.posthog.capture === 'function') {
+      window.posthog.capture(name, props || {});
+    }
+  }
+  
   let detectedCountry = null;
   let pendingHref = null;
 
@@ -354,15 +363,27 @@
     });
   }
 
-  function handleDownloadClick(e) {
+    function handleDownloadClick(e) {
+    const href = this.getAttribute('href') || '';
+    const store = href.includes('apps.apple.com') ? 'ios'
+                : href.includes('play.google.com') ? 'android'
+                : 'other';
+    const isUk = !!(detectedCountry && UK_CODES.includes(detectedCountry));
+
+    trackEvent('download_clicked', {
+      store: store,
+      detected_country: detectedCountry || 'unknown',
+      is_uk: isUk,
+      destination: isUk ? 'app_store' : 'waitlist_modal'
+    });
+
     // UK or a UK-adjacent region → let the normal click proceed
-    if (detectedCountry && UK_CODES.includes(detectedCountry)) {
+    if (isUk) {
       return;
     }
 
     // Non-UK or unknown → intercept and show modal
     e.preventDefault();
-    const href = this.getAttribute('href');
     openModal(href);
   }
 
@@ -405,6 +426,9 @@
   }
 
   function openModal(originalHref) {
+    trackEvent('waitlist_modal_shown', {
+      detected_country: detectedCountry || 'unknown'
+    });
     pendingHref = originalHref;
     const backdrop = document.getElementById('nr-waitlist-backdrop');
     const countrySelect = backdrop.querySelector('#nr-wl-country');
@@ -462,9 +486,19 @@
 
       const data = await resp.json();
 
-      if (data.success) {
+           if (data.success) {
+        trackEvent('waitlist_submitted', {
+          country_code: countryCode,
+          country_name: countryName,
+          detected_country: detectedCountry || 'unknown',
+          already_registered: !!data.already_registered
+        });
         showSuccess();
       } else {
+        trackEvent('waitlist_submit_failed', {
+          error: data.error || 'unknown',
+          country_code: countryCode
+        });
         errorEl.textContent = data.message || data.error || 'Something went wrong. Please try again.';
         errorEl.classList.add('nr-show');
         submitBtn.disabled = false;
