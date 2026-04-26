@@ -3,7 +3,7 @@
 
 posthog.init('phc_CHFKrJKnxzyhbVXoSN5uzPYhVVHUHJNSStDzVgRL6ebm', {
     api_host: 'https://eu.i.posthog.com',
-    persistence: 'memory',
+    persistence: 'localStorage',
     autocapture: true,
     capture_pageview: true,
     capture_pageleave: true,
