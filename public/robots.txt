@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+Disallow: /auth-action
+Disallow: /auth-action.html
+Disallow: /warmup
+Disallow: /warmup.html
+Disallow: /stripe-payment-success
+Disallow: /stripe-payment-success.html
+Disallow: /stripe-payment-cancelled
+Disallow: /stripe-payment-cancelled.html
+Disallow: /stripe-signup-complete
+Disallow: /stripe-signup-complete.html
+
+Sitemap: https://noresume.co/sitemap.xml
