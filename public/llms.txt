@@ -1,0 +1,25 @@
+# NoResume
+
+> NoResume is a UK hiring platform where companies discover and pay talent directly — no resumes, no recruiters, no job postings. Candidates stay "open to work" via a mobile app; employers match on real skills and personality, then hire and pay through the platform.
+
+## How it works
+
+- [Home](https://noresume.co/): Overview of the platform — direct hiring, integrated payments, mobile-first, UK-focused.
+- [For candidates](https://noresume.co/candidates): Get hired without applying. Show your skills and personality, stay open to work, let employers come to you.
+- [For employers and hiring managers](https://noresume.co/employers): Hire talent without recruiters or job postings. Direct matching by skills and culture fit, with built-in payments and compliance.
+- [Download the NoResume app](https://noresume.co/download): NoResume is mobile-only — available on iOS and Android.
+
+## Contact and policies
+
+- [Contact](https://noresume.co/contact): Support and enquiries.
+- [Privacy Policy](https://noresume.co/privacy-policy)
+- [Terms of Service](https://noresume.co/terms-of-service)
+- [Delete your account](https://noresume.co/delete-account)
+
+## Key facts
+
+- Operating region: United Kingdom
+- Platform: mobile app (iOS and Android)
+- Model: candidate-led; no public job listings; no recruiter intermediary
+- Payments: integrated direct-hire payments and contractor escrow, compliant with UK IR35 rules
+- Headquartered: United Kingdom (registered with Companies House and the ICO)
