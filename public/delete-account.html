@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Delete Account - NoResume</title>
     <link rel="canonical" href="https://noresume.co/delete-account">
+    <link rel="alternate" hreflang="en-GB" href="https://noresume.co.uk/delete-account">
+    <link rel="alternate" hreflang="en" href="https://noresume.co/delete-account">
+    <link rel="alternate" hreflang="x-default" href="https://noresume.co/delete-account">
     <meta name="description" content="Request deletion of your NoResume account and associated data">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
@@ -583,12 +586,12 @@
                     document.getElementById('successMsg').style.display = 'block';
                     btn.style.display = 'none';
                 } else {
-                    showError(data.message || 'Please try again or contact privacy@nresume.com');
+                    showError(data.message || 'Please try again or contact privacy@noresume.co');
                     btn.disabled = false;
                     btn.textContent = 'Submit Deletion Request';
                 }
             } catch (err) {
-                showError('Unable to submit request. Please email privacy@nresume.com directly.');
+                showError('Unable to submit request. Please email privacy@noresume.co directly.');
                        btn.disabled = false;
                 btn.textContent = 'Submit Deletion Request';
             }
