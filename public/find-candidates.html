@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find Candidates — NoResume</title>
+  <meta name="description" content="Paste your job or enter the details and see candidates from our pool who are open to work.">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    window.NORESUME_API_BASE = window.NORESUME_API_BASE || "http://localhost:8077";
+    window.NORESUME_TURNSTILE_SITEKEY = window.NORESUME_TURNSTILE_SITEKEY || "";
+  </script>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a class="logo" href="https://noresume.co.uk/"><img src="https://noresume.co.uk/assets/images/noresume_logo-color-orange.png" alt="NoResume"></a>
+      <nav class="nav-buttons">
+        <a href="/candidates" class="btn-nav">Open to Work</a>
+        <a href="#" class="btn-nav active">Looking to Hire</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-statement">
+      <div class="container">
+        <h1>See who&rsquo;s already available for your role.</h1>
+        <p>Enter your job and location. We&rsquo;ll match it against our pool and show you the top candidates in seconds.</p>
+
+        <form id="search-form" class="search-card" autocomplete="off" novalidate>
+          <div class="mode-tabs" role="tablist" aria-label="Search input mode">
+            <button type="button" role="tab" id="tab-manual" class="active" aria-selected="true">Enter details</button>
+            <button type="button" role="tab" id="tab-url" aria-selected="false">Paste URL</button>
+          </div>
+
+          <div id="fields-manual" class="mode-fields">
+            <label for="job-title">Job title</label>
+            <input id="job-title" name="title" type="text" placeholder="e.g. Sous Chef" maxlength="150">
+            <label for="job-location">Location</label>
+            <input id="job-location" name="location" type="text" placeholder="e.g. London, Manchester, or SE1 9SG" maxlength="100">
+            <label for="job-salary">Salary <span class="optional">(optional)</span></label>
+            <input id="job-salary" name="salary" type="text" placeholder="e.g. £35,000 or £30k–£35k" maxlength="50">
+          </div>
+
+          <div id="fields-url" class="mode-fields" hidden>
+            <label for="job-url">Job URL</label>
+            <input id="job-url" name="job_url" type="url" placeholder="https://www.indeed.co.uk/viewjob?jk=...">
+            <p class="hint">Supported boards: Indeed, Reed, LinkedIn, TotalJobs, Gumtree, Caterer, CV-Library.</p>
+          </div>
+
+          <div id="captcha-slot"></div>
+          <button id="submit-btn" type="submit" class="btn-primary">Find candidates</button>
+          <p class="form-error" id="form-error" role="alert"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="results-area">
+      <div class="container">
+
+        <div class="loading" id="loading-state" hidden>
+          <div class="loading-card">
+            <div class="spinner" aria-hidden="true"></div>
+            <ul class="load-steps" id="load-steps"></ul>
+          </div>
+        </div>
+
+        <div class="results" id="results-state" hidden>
+          <h2 class="results-title" id="parsed-summary"></h2>
+          <p class="results-sub" id="results-sub"></p>
+          <div class="candidate-grid" id="candidate-grid"></div>
+          <p class="empty-note" id="empty-note" hidden>No matches yet for that role and area — try a broader job title or a nearby town.</p>
+
+          <div class="cta-unlock">
+            <h3>Sign up free to unlock the full shortlist.</h3>
+            <p>See full profiles, contact details, and add these candidates to your pipeline.</p>
+            <a class="btn-unlock" href="#" id="signup-cta">Sign up to unlock</a>
+          </div>
+        </div>
+
+        <div class="error-box" id="error-state" hidden>
+          <h2>We couldn&rsquo;t run that search</h2>
+          <p id="error-message"></p>
+          <button type="button" id="try-again-btn" class="btn-primary">Try again</button>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> NoResume. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
