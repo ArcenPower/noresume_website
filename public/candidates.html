@@ -71,11 +71,11 @@
         .btn-nav {
             background: linear-gradient(135deg, #1A5F5F 0%, #36C5C5 100%);
             color: white;
-            padding: clamp(6px, 1.4vw, 10px) clamp(6px, 1.85vw, 24px);
+            padding: clamp(6px, 1.4vw, 10px) clamp(5px, 1.5vw, 24px);
             border-radius: 16px;
             text-decoration: none;
             font-weight: 500;
-            font-size: clamp(10.5px, 2.7vw, 14px);
+            font-size: clamp(10px, 2.55vw, 14px);
             transition: opacity 0.2s, transform 0.2s;
             white-space: nowrap;
         }
@@ -84,39 +84,6 @@
             opacity: 0.9;
             transform: translateY(-2px);
         }
-
-        .btn-login {
-            background: transparent;
-            color: #1A5F5F;
-            border: 2px solid #1A5F5F;
-            padding: clamp(6px, 1.4vw, 8px) clamp(6px, 1.85vw, 22px);
-            border-radius: 16px;
-            font-family: inherit;
-            font-weight: 600;
-            font-size: clamp(10.5px, 2.7vw, 14px);
-            cursor: pointer;
-            white-space: nowrap;
-            transition: background 0.2s, color 0.2s, transform 0.2s;
-        }
-        .btn-login:hover { background: #1A5F5F; color: #fff; transform: translateY(-2px); }
-
-        /* ── LOGIN MODAL ────────────────────────────── */
-        .login-overlay { position: fixed; inset: 0; background: rgba(6, 27, 64, 0.45); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 2000; padding: 20px; }
-        .login-overlay.open { display: flex; }
-        .login-modal { background: #F8F6E6; border-radius: 24px; max-width: 380px; width: 100%; padding: 34px 28px 30px; box-shadow: 0 20px 60px rgba(6, 27, 64, 0.28); text-align: center; position: relative; }
-        .login-modal h3 { margin: 0 0 6px; font-size: 22px; color: #061B40; }
-        .login-modal .login-sub { margin: 0 0 22px; color: #4a5568; font-size: 14px; }
-        .login-close { position: absolute; top: 12px; right: 16px; background: none; border: none; font-size: 26px; line-height: 1; color: #94a3b8; cursor: pointer; }
-        .login-close:hover { color: #061B40; }
-        .login-web { display: block; background: linear-gradient(135deg, #1A5F5F 0%, #36C5C5 100%); color: #fff; padding: 14px; border-radius: 16px; text-decoration: none; font-weight: 600; font-size: 16px; transition: opacity 0.2s, transform 0.2s; }
-        .login-web:hover { opacity: 0.92; transform: translateY(-2px); }
-        .login-divider { display: flex; align-items: center; gap: 12px; margin: 20px 0 16px; color: #94a3b8; font-size: 13px; }
-        .login-divider::before, .login-divider::after { content: ""; flex: 1; height: 1px; background: #d6d3c0; }
-        .login-badges { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; }
-        .login-badges a { display: inline-block; transition: transform 0.2s ease; }
-        .login-badges img { height: 52px; width: auto; display: block; }
-        .login-badges a:hover { transform: translateY(-2px); }
-        @media (max-width: 480px) { .login-badges img { height: 46px; } }
 
         .btn-nav.active,
         .btn-nav.secondary {
@@ -588,6 +555,9 @@
             .footer-content { grid-template-columns: 1fr; }
         }
 
+        /* Drop the "Try it now" arrow on phones where the 3 buttons get tight */
+        @media (max-width: 430px) { .nav-arrow { display: none; } }
+
         @media (max-width: 389px) {
             .header-inner { flex-wrap: wrap; justify-content: center; row-gap: 8px; }
             .logo { width: 100%; text-align: center; }
@@ -617,9 +587,9 @@
                 </a>
             </div>
             <nav class="nav-buttons">
-                <a href="/employers" class="btn-nav secondary">Looking to Hire</a>
-                <a href="https://talent.noresume.co" class="btn-nav btn-try-now">Try it now →</a>
-                <button type="button" class="btn-login" id="loginBtn">Log in</button>
+                <a href="/employers" class="btn-nav">Looking to Hire</a>
+                <a href="/candidates" class="btn-nav">Open to Work</a>
+                <a href="https://talent.noresume.co" class="btn-nav btn-try-now">Try it now<span class="nav-arrow"> →</span></a>
             </nav>
         </div>
     </header>
@@ -859,37 +829,5 @@
         });
     </script>
 
-    <!-- ── LOGIN MODAL ─────────────────────────────── -->
-    <div class="login-overlay" id="loginOverlay">
-        <div class="login-modal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
-            <button type="button" class="login-close" id="loginClose" aria-label="Close">&times;</button>
-            <h3 id="loginTitle">Log in</h3>
-            <p class="login-sub">Pick up where you left off.</p>
-            <a href="https://app.noresume.co" class="login-web">Log in on the web →</a>
-            <div class="login-divider">or get the app</div>
-            <div class="login-badges">
-                <a href="https://apps.apple.com/gb/app/noresume/id6759061302" target="_blank" rel="noopener">
-                    <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store">
-                </a>
-                <a href="https://play.google.com/store/apps/details?id=noresume.app&gl=gb" target="_blank" rel="noopener">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
-                </a>
-            </div>
-        </div>
-    </div>
-    <script>
-        (function () {
-            var overlay = document.getElementById('loginOverlay');
-            var openBtn = document.getElementById('loginBtn');
-            var closeBtn = document.getElementById('loginClose');
-            if (!overlay || !openBtn) return;
-            function open() { overlay.classList.add('open'); }
-            function close() { overlay.classList.remove('open'); }
-            openBtn.addEventListener('click', open);
-            closeBtn.addEventListener('click', close);
-            overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
-            document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && overlay.classList.contains('open')) close(); });
-        })();
-    </script>
 </body>
 </html>
