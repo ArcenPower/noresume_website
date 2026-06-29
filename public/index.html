@@ -97,27 +97,28 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: clamp(10px, 3vw, 20px);
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 clamp(10px, 3vw, 20px);
         }
 
-        .logo img { height: 45px; }
+        .logo img { height: clamp(29px, 6.6vw, 45px); }
 
         .nav-buttons {
             display: flex;
-            gap: 12px;
+            gap: clamp(5px, 1.4vw, 12px);
             align-items: center;
         }
 
         .btn-nav {
             background: linear-gradient(135deg, #1A5F5F 0%, #36C5C5 100%);
             color: white;
-            padding: 10px 24px;
+            padding: clamp(6px, 1.4vw, 10px) clamp(6px, 1.85vw, 24px);
             border-radius: 16px;
             text-decoration: none;
             font-weight: 500;
-            font-size: 14px;
+            font-size: clamp(10.5px, 2.7vw, 14px);
             transition: opacity 0.2s, transform 0.2s;
             white-space: nowrap;
         }
@@ -131,11 +132,11 @@
             background: transparent;
             color: #1A5F5F;
             border: 2px solid #1A5F5F;
-            padding: 8px 22px;
+            padding: clamp(6px, 1.4vw, 8px) clamp(6px, 1.85vw, 22px);
             border-radius: 16px;
             font-family: inherit;
             font-weight: 600;
-            font-size: 14px;
+            font-size: clamp(10.5px, 2.7vw, 14px);
             cursor: pointer;
             white-space: nowrap;
             transition: background 0.2s, color 0.2s, transform 0.2s;
@@ -147,45 +148,16 @@
             transform: translateY(-2px);
         }
 
-        @media (max-width: 768px) {
-            .logo img { height: 38px; }
-            .nav-buttons { gap: 8px; }
-            .btn-nav {
-                padding: 8px 14px;
-                font-size: 12px;
-                border-radius: 12px;
-            }
-            .btn-login {
-                padding: 7px 14px;
-                font-size: 12px;
-                border-radius: 12px;
-            }
-        }
+        /* Header sizing (logo, buttons, gaps, padding) scales fluidly via the
+           clamp() values on the base rules above — no per-breakpoint steps. */
 
-        @media (max-width: 400px) {
-            .header-inner { padding: 0 12px; }
-            .logo img { height: 32px; }
-            .nav-buttons { gap: 6px; }
-            .btn-nav {
-                padding: 7px 10px;
-                font-size: 11px;
-            }
-            .btn-login {
-                padding: 6px 10px;
-                font-size: 11px;
-                border-width: 1.5px;
-            }
-        }
-
-        /* Three nav buttons won't fit one row on phones — stack logo over a
-           centred button row and give the taller header room to clear. */
-        @media (max-width: 600px) {
-            .header-inner { flex-wrap: wrap; justify-content: center; row-gap: 10px; }
+        /* Smaller phones (below iPhone 15): stack logo over a centred button row. */
+        @media (max-width: 389px) {
+            .header-inner { flex-wrap: wrap; justify-content: center; row-gap: 8px; }
             .logo { width: 100%; text-align: center; }
             .nav-buttons { width: 100%; justify-content: center; }
-            /* higher specificity than the base `main{padding-top:80px}` (line ~259,
-               which sits later in source) so this clears the taller stacked header */
-            body main { padding-top: 136px; }
+            /* higher specificity than the base `main{padding-top:80px}` so this clears the stacked header */
+            body main { padding-top: 118px; }
         }
 
         /* ── LOGIN MODAL ────────────────────────────── */
