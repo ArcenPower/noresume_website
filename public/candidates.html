@@ -85,9 +85,13 @@
             transform: translateY(-2px);
         }
 
-        .btn-nav.active,
-        .btn-nav.secondary {
-            background: linear-gradient(135deg, #C2F2E2 0%, #E3FFF6 42%);
+        /* current page = "you are here": light-green fill + thin dark-green gradient border */
+        .btn-nav.active {
+            padding: calc(clamp(6px, 1.4vw, 10px) - 1.5px) calc(clamp(5px, 1.5vw, 24px) - 1.5px);
+            border: 1.5px solid transparent;
+            background:
+                linear-gradient(135deg, #C2F2E2 0%, #E3FFF6 42%) padding-box,
+                linear-gradient(135deg, #0a3d2e 0%, #1A5F5F 100%) border-box;
             color: #1A5F5F;
         }
 
@@ -588,7 +592,7 @@
             </div>
             <nav class="nav-buttons">
                 <a href="/employers" class="btn-nav">Looking to Hire</a>
-                <a href="/candidates" class="btn-nav">Open to Work</a>
+                <a href="/candidates" class="btn-nav active">Open to Work</a>
                 <a href="https://talent.noresume.co" class="btn-nav btn-try-now">Try it now<span class="nav-arrow"> →</span></a>
             </nav>
         </div>
