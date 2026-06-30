@@ -129,22 +129,23 @@
         }
 
         .btn-login {
-            background: transparent;
-            color: #1A5F5F;
-            border: 2px solid #1A5F5F;
-            padding: clamp(6px, 1.4vw, 8px) clamp(6px, 1.85vw, 22px);
+            padding: calc(clamp(6px, 1.4vw, 10px) - 1.5px) calc(clamp(6px, 1.85vw, 24px) - 1.5px);
+            border: 1.5px solid transparent;
+            background:
+                linear-gradient(135deg, #C2F2E2 0%, #E3FFF6 42%) padding-box,
+                linear-gradient(135deg, #0a3d2e 0%, #1A5F5F 100%) border-box;
             border-radius: 16px;
             font-family: inherit;
             font-weight: 600;
             font-size: clamp(10.5px, 2.7vw, 14px);
+            line-height: 1.6;
+            color: #1A5F5F;
             cursor: pointer;
             white-space: nowrap;
-            transition: background 0.2s, color 0.2s, transform 0.2s;
+            transition: transform 0.2s;
         }
 
         .btn-login:hover {
-            background: #1A5F5F;
-            color: #fff;
             transform: translateY(-2px);
         }
 
