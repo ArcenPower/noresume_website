@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Open to Work - NoResume</title>
-    <link rel="canonical" href="https://noresume.co/candidates">
+    <link rel="canonical" href="https://noresume.co.uk/candidates">
     <link rel="alternate" hreflang="en-GB" href="https://noresume.co.uk/candidates">
     <link rel="alternate" hreflang="en" href="https://noresume.co/candidates">
     <link rel="alternate" hreflang="x-default" href="https://noresume.co/candidates">
     <meta name="description" content="Applications are dead. Your Unique Profile is the new currency. Your Identity. Your Terms. Your Market.">
     <meta property="og:title" content="Open to Work - NoResume">
-    <meta property="og:url" content="https://noresume.co/candidates">
+    <meta property="og:url" content="https://noresume.co.uk/candidates">
     <meta property="og:type" content="website">
 
     <!-- Fonts -->
@@ -217,6 +217,57 @@
             width: 100% !important;
             height: auto !important;
             display: block;
+        }
+
+        /* Click-to-play video (replaces the old steps scene) */
+        .nr-video {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 12px 32px rgba(26, 95, 95, 0.22);
+        }
+        .nr-video img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        /* hover darken — pointer-events:none so it can never block the player controls */
+        .nr-video::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0);
+            transition: background 0.2s ease;
+            pointer-events: none;
+        }
+        .nr-video:hover::after { background: rgba(0, 0, 0, 0.12); }
+        .nr-video.playing { cursor: default; }
+        .nr-video.playing::after { display: none; }
+        .nr-video-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 0;
+            background: none;
+            padding: 0;
+            cursor: pointer;
+            filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.4));
+            transition: transform 0.2s ease;
+        }
+        .nr-video:hover .nr-video-play { transform: translate(-50%, -50%) scale(1.08); }
+        /* !important needed: .falcon-col svg above forces width:100% !important */
+        .nr-video-play svg { width: 84px !important; height: 59px !important; display: block; }
+        .nr-video-iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
         }
 
         .steps-heading {
@@ -534,9 +585,9 @@
                 gap: 30px;
             }
 
-            /* Heading/text always before image on mobile */
-            .falcon-col { order: 2; }
-            .steps-col { order: 1; }
+            /* Video before heading/text on mobile */
+            .falcon-col { order: 1; }
+            .steps-col { order: 2; }
 
             .insights-text { order: 1; }
             .insights-image { order: 2; }
@@ -618,9 +669,14 @@
             <div class="container">
                 <div class="how-grid">
                     <div class="falcon-col" id="nr-falcon-section">
-                        <div id="nr-scene-wrapper">
-                    <div id="svg-how-it-works"></div>
-
+                        <div class="nr-video" data-video-id="mHwi-vd7-yk">
+                            <img src="assets/images/talent-video-thumb.jpg" alt="Watch how NoResume works for candidates" loading="lazy" decoding="async">
+                            <button class="nr-video-play" aria-label="Play video">
+                                <svg viewBox="0 0 68 48" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#f00"/>
+                                    <path d="M45 24 27 14v20" fill="#fff"/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                     <div class="steps-col">
@@ -750,7 +806,6 @@
     <!-- ── LOAD EXTERNAL SVGs INLINE (for GSAP access) ── -->
     <script>
         window._svgsReady = Promise.all([
-            { url: 'assets/images/candidates-how-it-works.svg', target: '#svg-how-it-works' },
             { url: 'assets/images/candidates-share-revolution.svg', target: '#svg-share-revolution' }
         ].map(function(item) {
             return fetch(item.url)
@@ -778,30 +833,6 @@
         gsap.registerPlugin(ScrollTrigger);
 
         window._svgsReady.then(function() {
-            // ── CANDIDATE STEPS ANIMATION ──
-            var stepsSequence = [
-                "Girl-phone", "Step1-Text-box", "Girl-dashboard",
-                "Step2-Text-box", "Chat-box", "Step3-Text-box",
-                "Falcon", "Step4-Text-box", "Friends",
-                "Step5-Text-box", "Connect-Step6"
-            ];
-            var triggered = false;
-            ScrollTrigger.create({
-                trigger: '#nr-falcon-section',
-                start: 'top 70%',
-                once: true,
-                onEnter: function() {
-                    if (triggered) return;
-                    triggered = true;
-                    stepsSequence.forEach(function(id, index) {
-                        setTimeout(function() {
-                            var el = document.getElementById(id);
-                            if (el) el.style.opacity = '1';
-                        }, index * 350);
-                    });
-                }
-            });
-
             // ── QR SCENE ANIMATION ──
             var svg = document.querySelector('#referral-falcon svg');
             if (!svg) return;
@@ -830,6 +861,21 @@
               .to(phone, { scale: 1.03, duration: 2.2, ease: 'sine.inOut', yoyo: true, repeat: -1, transformOrigin: '50% 50%' })
               .to(phoneScreen, { scale: 1.03, duration: 2.2, ease: 'sine.inOut', yoyo: true, repeat: -1, transformOrigin: '50% 50%' }, '<')
               .to(giftBox, { scale: 1.12, duration: 0.2, ease: 'power2.out', yoyo: true, repeat: -1, repeatDelay: 0.8, transformOrigin: '50% 50%' }, '<');
+        });
+    </script>
+
+    <!-- ── HOW-IT-WORKS VIDEO (click-to-play YouTube) ── -->
+    <script>
+        document.querySelectorAll('.nr-video').forEach(function (box) {
+            box.addEventListener('click', function () {
+                if (box.classList.contains('playing')) return;
+                var id = box.getAttribute('data-video-id');
+                box.classList.add('playing');
+                box.innerHTML =
+                    '<iframe class="nr-video-iframe" src="https://www.youtube-nocookie.com/embed/' + id +
+                    '?autoplay=1&rel=0" title="NoResume — how it works" ' +
+                    'allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+            });
         });
     </script>
 
