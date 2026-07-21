@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Looking to Hire - NoResume</title>
-    <link rel="canonical" href="https://noresume.co/employers">
+    <link rel="canonical" href="https://noresume.co.uk/employers">
     <link rel="alternate" hreflang="en-GB" href="https://noresume.co.uk/employers">
     <link rel="alternate" hreflang="en" href="https://noresume.co/employers">
     <link rel="alternate" hreflang="x-default" href="https://noresume.co/employers">
     <meta name="description" content="Job Posts are dead. Stop Posting. Start Striking. High-velocity matching with the expertise and personality that elevates your Team.">
     <meta property="og:title" content="Looking to Hire - NoResume">
-    <meta property="og:url" content="https://noresume.co/employers">
+    <meta property="og:url" content="https://noresume.co.uk/employers">
     <meta property="og:type" content="website">
 
     <!-- Fonts -->
@@ -18,8 +18,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
 
     <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -188,19 +186,55 @@
             display: block;
         }
 
-        .reveal-panel {
-            position: absolute;
-            top: 0;
-            left: 0;
+        /* Click-to-play video (replaces the old masked reveal scene) */
+        .nr-video {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 12px 32px rgba(26, 95, 95, 0.22);
+        }
+        .nr-video img {
             width: 100%;
             height: 100%;
-            background: linear-gradient(180deg, #F8F6E6 0%, #FABE9B 100%);
-            background-attachment: fixed;
+            object-fit: cover;
+            display: block;
+        }
+        /* hover darken — pointer-events:none so it can never block the player controls */
+        .nr-video::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0);
+            transition: background 0.2s ease;
             pointer-events: none;
-            -webkit-mask-size: 100% 100%;
-            mask-size: 100% 100%;
-            -webkit-mask-repeat: no-repeat;
-            mask-repeat: no-repeat;
+        }
+        .nr-video:hover::after { background: rgba(0, 0, 0, 0.12); }
+        .nr-video.playing { cursor: default; }
+        .nr-video.playing::after { display: none; }
+        .nr-video-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 0;
+            background: none;
+            padding: 0;
+            cursor: pointer;
+            filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.4));
+            transition: transform 0.2s ease;
+        }
+        .nr-video:hover .nr-video-play { transform: translate(-50%, -50%) scale(1.08); }
+        /* !important needed: .falcon-col svg above forces width:100% !important */
+        .nr-video-play svg { width: 84px !important; height: 59px !important; display: block; }
+        .nr-video-iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
         }
 
         .steps-col .steps-heading {
@@ -430,8 +464,9 @@
                 gap: 30px;
             }
 
-            .falcon-col { order: 2; }
-            .steps-col { order: 1; }
+            /* Video before heading/text on mobile */
+            .falcon-col { order: 1; }
+            .steps-col { order: 2; }
 
             .pricing-grid {
                 grid-template-columns: 1fr;
@@ -752,16 +787,14 @@
             <div class="container">
                 <div class="how-grid">
                     <div class="falcon-col" id="nr-falcon-section">
-                        <div id="nr-scene-wrapper">
-      <div style="position:relative; width:100%;">
-        <object data="assets/images/employers-falcon-scene.svg" type="image/svg+xml" style="width:100%;aspect-ratio:2184/1101;display:block">Company steps</object>
-        <div id="mask-1" class="reveal-panel" style="-webkit-mask-image:url(assets/images/mask-section-1.png);mask-image:url(assets/images/mask-section-1.png)"></div>
-        <div id="mask-2" class="reveal-panel" style="-webkit-mask-image:url(assets/images/mask-section-2.png);mask-image:url(assets/images/mask-section-2.png)"></div>
-        <div id="mask-3" class="reveal-panel" style="-webkit-mask-image:url(assets/images/mask-section-3.png);mask-image:url(assets/images/mask-section-3.png)"></div>
-        <div id="mask-4" class="reveal-panel" style="-webkit-mask-image:url(assets/images/mask-section-4.png);mask-image:url(assets/images/mask-section-4.png)"></div>
-        <div id="mask-5" class="reveal-panel" style="-webkit-mask-image:url(assets/images/mask-section-5.png);mask-image:url(assets/images/mask-section-5.png)"></div>
-      </div>
-
+                        <div class="nr-video" data-video-id="mBJjWElKZw0">
+                            <img src="assets/images/employer-video-thumb.jpg" alt="Watch how NoResume works for employers" loading="lazy" decoding="async">
+                            <button class="nr-video-play" aria-label="Play video">
+                                <svg viewBox="0 0 68 48" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#f00"/>
+                                    <path d="M45 24 27 14v20" fill="#fff"/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                     <div class="steps-col">
@@ -905,30 +938,17 @@
         </div>
     </footer>
 
-    <!-- ── SCROLL FADE-IN ANIMATIONS ───────────────── -->
+    <!-- ── HOW-IT-WORKS VIDEO (click-to-play YouTube) ── -->
     <script>
-        gsap.registerPlugin(ScrollTrigger);
-
-        window.addEventListener('load', function() {
-            var masks = ['#mask-1', '#mask-2', '#mask-3', '#mask-4', '#mask-5'];
-            var triggered = false;
-
-            ScrollTrigger.create({
-                trigger: '#nr-falcon-section',
-                start: 'top 70%',
-                once: true,
-                onEnter: function() {
-                    if (triggered) return;
-                    triggered = true;
-                    masks.forEach(function(id, index) {
-                        gsap.to(id, {
-                            opacity: 0,
-                            duration: 0.6,
-                            delay: index * 0.4,
-                            ease: 'power2.out'
-                        });
-                    });
-                }
+        document.querySelectorAll('.nr-video').forEach(function (box) {
+            box.addEventListener('click', function () {
+                if (box.classList.contains('playing')) return;
+                var id = box.getAttribute('data-video-id');
+                box.classList.add('playing');
+                box.innerHTML =
+                    '<iframe class="nr-video-iframe" src="https://www.youtube-nocookie.com/embed/' + id +
+                    '?autoplay=1&rel=0" title="NoResume — how it works" ' +
+                    'allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
             });
         });
     </script>
