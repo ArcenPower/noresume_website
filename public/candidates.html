@@ -864,19 +864,59 @@
         });
     </script>
 
-    <!-- ── HOW-IT-WORKS VIDEO (click-to-play YouTube) ── -->
+    <!-- ── HOW-IT-WORKS VIDEO (click-to-play YouTube; thumbnail returns when the video ends) ── -->
     <script>
-        document.querySelectorAll('.nr-video').forEach(function (box) {
-            box.addEventListener('click', function () {
-                if (box.classList.contains('playing')) return;
-                var id = box.getAttribute('data-video-id');
-                box.classList.add('playing');
-                box.innerHTML =
-                    '<iframe class="nr-video-iframe" src="https://www.youtube-nocookie.com/embed/' + id +
-                    '?autoplay=1&rel=0" title="NoResume — how it works" ' +
-                    'allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+        (function () {
+            var apiPromise = null;
+            function loadYouTubeApi() {
+                if (apiPromise) return apiPromise;
+                apiPromise = new Promise(function (resolve) {
+                    if (window.YT && window.YT.Player) { resolve(); return; }
+                    var prev = window.onYouTubeIframeAPIReady;
+                    window.onYouTubeIframeAPIReady = function () {
+                        if (prev) prev();
+                        resolve();
+                    };
+                    var tag = document.createElement('script');
+                    tag.src = 'https://www.youtube.com/iframe_api';
+                    tag.onerror = function () { resolve(); };
+                    document.head.appendChild(tag);
+                });
+                return apiPromise;
+            }
+            document.querySelectorAll('.nr-video').forEach(function (box, i) {
+                var facade = box.innerHTML;
+                box.addEventListener('click', function () {
+                    if (box.classList.contains('playing')) return;
+                    var id = box.getAttribute('data-video-id');
+                    box.classList.add('playing');
+                    box.innerHTML =
+                        '<iframe class="nr-video-iframe" src="https://www.youtube-nocookie.com/embed/' + id +
+                        '?autoplay=1&rel=0&enablejsapi=1&origin=' + encodeURIComponent(window.location.origin) +
+                        '" title="NoResume - how it works" ' +
+                        'allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+                    var iframe = box.querySelector('iframe');
+                    /* The IFrame API needs the iframe to have an id to route events */
+                    iframe.id = 'nr-yt-player-' + i;
+                    /* When the video ends, swap the thumbnail + play button back in so
+                       YouTube's end screen never sits on the page. If the API script is
+                       blocked, playback still works exactly as before - just no swap-back. */
+                    loadYouTubeApi().then(function () {
+                        if (!(window.YT && window.YT.Player)) return;
+                        new YT.Player(iframe, {
+                            events: {
+                                onStateChange: function (e) {
+                                    if (e.data === YT.PlayerState.ENDED) {
+                                        box.innerHTML = facade;
+                                        box.classList.remove('playing');
+                                    }
+                                }
+                            }
+                        });
+                    });
+                });
             });
-        });
+        })();
     </script>
 
 </body>
