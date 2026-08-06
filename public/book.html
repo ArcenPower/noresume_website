@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Book a Call - NoResume</title>
+    <link rel="canonical" href="https://noresume.co/book">
+    <link rel="alternate" hreflang="en-GB" href="https://noresume.co.uk/book">
+    <link rel="alternate" hreflang="en" href="https://noresume.co/book">
+    <link rel="alternate" hreflang="x-default" href="https://noresume.co/book">
+    <meta name="description" content="Book a call with NoResume. Pick a time that suits you and see how NoResume finds you staff, without job ads or CV piles.">
+    <meta property="og:title" content="Book a Call - NoResume">
+    <meta property="og:url" content="https://noresume.co/book">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #000000;
+            background: linear-gradient(180deg, #F8F6E6 0%, #FABE9B 100%);
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ── NAVIGATION ─────────────────────────────── */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(248, 246, 230, 0.95);
+            backdrop-filter: blur(8px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo img { height: 45px; }
+
+        .nav-buttons {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn-nav {
+            background: linear-gradient(135deg, #1A5F5F 0%, #36C5C5 100%);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 16px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: opacity 0.2s, transform 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-nav:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* ── MAIN ───────────────────────────────────── */
+        main {
+            padding-top: 80px;
+            min-height: 100vh;
+        }
+
+        /* ── BOOKING SECTION ────────────────────────── */
+        .booking-section {
+            padding: 50px 0 80px 0;
+        }
+
+        .booking-intro {
+            text-align: center;
+            max-width: 640px;
+            margin: 0 auto 36px auto;
+        }
+
+        .booking-intro h1 {
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .booking-intro p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .booking-embed-wrapper {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            padding: 16px;
+            max-width: 1080px;
+            margin: 0 auto;
+            min-height: 620px;
+            overflow: hidden;
+        }
+
+        #cal-booking {
+            width: 100%;
+            min-height: 588px;
+        }
+
+        .booking-fallback {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .booking-fallback a {
+            color: #1A5F5F;
+            font-weight: 500;
+        }
+
+        /* ── FOOTER ─────────────────────────────────── */
+        footer {
+            background: linear-gradient(135deg, #1A5F5F 0%, #36C5C5 100%);
+            color: white;
+            padding: 50px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 16px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255,255,255,0.9);
+            font-size: 13px;
+            line-height: 2;
+            text-decoration: none;
+            display: block;
+        }
+
+        .footer-section a:hover { color: white; }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .social-links a {
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .social-links a:hover { background: rgba(255,255,255,0.3); }
+
+        .social-links img {
+            width: 18px;
+            height: 18px;
+            filter: brightness(0) invert(1);
+        }
+
+        .btn-contact-footer {
+            display: table;
+            margin-top: 12px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 16px;
+            font-size: 13px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background 0.2s;
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+
+        .btn-contact-footer:hover { background: rgba(255,255,255,0.3); color: white; }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.6);
+            font-size: 12px;
+        }
+
+        /* ── MOBILE ─────────────────────────────────── */
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+
+            .logo img { height: 38px; }
+            .nav-buttons { gap: 8px; }
+            .nav-buttons .btn-nav {
+                padding: 8px 14px;
+                font-size: 12px;
+                border-radius: 12px;
+            }
+
+            .booking-embed-wrapper {
+                padding: 8px;
+                border-radius: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-content { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 400px) {
+            .header-inner { padding: 0 12px; }
+            .logo img { height: 32px; }
+            .nav-buttons { gap: 6px; }
+            .btn-nav {
+                padding: 7px 10px;
+                font-size: 11px;
+            }
+        }
+    </style>
+    <script src="/js/analytics.js?v=2"></script>
+</head>
+<body>
+
+    <!-- ── NAVIGATION ─────────────────────────────── -->
+    <header>
+        <div class="header-inner">
+            <div class="logo">
+                <a href="/">
+                    <img src="assets/images/noresume_logo-color-orange.png" alt="NoResume">
+                </a>
+            </div>
+            <nav class="nav-buttons">
+                <a href="/employers" class="btn-nav">Looking to Hire</a>
+                <a href="/candidates" class="btn-nav">Open to Work</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="booking-section">
+            <div class="container">
+                <div class="booking-intro">
+                    <h1>Book a call with NoResume</h1>
+                    <p>Pick a time that suits you. A short call to see how NoResume finds you staff, get your questions answered and get set up.</p>
+                </div>
+
+                <div class="booking-embed-wrapper">
+                    <div id="cal-booking"></div>
+                </div>
+
+                <p class="booking-fallback">Trouble with the calendar? Email us at <a href="mailto:info@noresume.co">info@noresume.co</a> or use the <a href="/contact">contact form</a>.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- ── FOOTER ─────────────────────────────────── -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Social Media</h4>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/noresume" target="_blank" rel="noopener">
+                            <img src="assets/images/vecteezy_linkedin-logo-png-linkedin-logo-transparent-png-linkedin_23986970.png" alt="LinkedIn">
+                        </a>
+                        <a href="https://www.tiktok.com/@thenoresume" target="_blank" rel="noopener">
+                            <img src="assets/images/tiktok_logo_social+media_icon.png" alt="TikTok">
+                        </a>
+                        <a href="https://www.youtube.com/@thenoresume" target="_blank" rel="noopener">
+                            <img src="assets/images/Youtube_logo_icon.png" alt="YouTube">
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61566370331980" target="_blank" rel="noopener">
+                            <img src="assets/images/facebook+logo_icon_2.png" alt="Facebook">
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Location</h4>
+                    <p>NoResume</p>
+                    <p>71-75 Shelton Street</p>
+                    <p>Covent Garden</p>
+                    <p>London WC2H 9JQ</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <a href="/privacy-policy">Privacy Policy</a>
+                    <a href="/terms-of-service">Terms of Service</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <a href="mailto:info@noresume.co">info@noresume.co</a>
+                    <a href="/contact" class="btn-contact-footer">Contact Us</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NoResume. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ── CAL.COM EMBED ──────────────────────────── -->
+    <script type="text/javascript">
+        // Single place to update once the Cal.com account exists:
+        // "<username>/<event-slug>" from the event's share link.
+        var CAL_LINK = "erikaziranunoresumeuk/noresume-demo";
+
+        (function (C, A, L) {
+            let p = function (a, ar) { a.q.push(ar); };
+            let d = C.document;
+            C.Cal = C.Cal || function () {
+                let cal = C.Cal;
+                let ar = arguments;
+                if (!cal.loaded) {
+                    cal.ns = {};
+                    cal.q = cal.q || [];
+                    d.head.appendChild(d.createElement("script")).src = A;
+                    cal.loaded = true;
+                }
+                if (ar[0] === L) {
+                    const api = function () { p(api, arguments); };
+                    const namespace = ar[1];
+                    api.q = api.q || [];
+                    if (typeof namespace === "string") {
+                        cal.ns[namespace] = cal.ns[namespace] || api;
+                        p(cal.ns[namespace], ar);
+                        p(cal, ["initNamespace", namespace]);
+                    } else p(cal, ar);
+                    return;
+                }
+                p(cal, ar);
+            };
+        })(window, "https://app.cal.com/embed/embed.js", "init");
+
+        Cal("init", { origin: "https://cal.com" });
+
+        Cal("inline", {
+            elementOrSelector: "#cal-booking",
+            calLink: CAL_LINK,
+            layout: "month_view"
+        });
+
+        Cal("ui", {
+            theme: "light",
+            styles: { branding: { brandColor: "#20BFA9" } },
+            hideEventTypeDetails: false
+        });
+    </script>
+</body>
+</html>
