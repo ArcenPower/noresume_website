@@ -24,6 +24,21 @@
       disable_session_recording: false,
       capture_exceptions: true
     });
+    startHubSpot();
+  }
+
+  // HubSpot tracking code (EU portal 148329240). Sets __hstc / hubspotutk /
+  // __hssc / __hssrc — all non-essential, so it loads ONLY on consent.
+  // HubSpot's own cookie banner must stay disabled in Settings > Privacy & Consent.
+  function startHubSpot() {
+    if (document.getElementById('hs-script-loader')) return;
+    var s = document.createElement('script');
+    s.id = 'hs-script-loader';
+    s.type = 'text/javascript';
+    s.async = true;
+    s.defer = true;
+    s.src = 'https://js-eu1.hs-scripts.com/148329240.js';
+    document.head.appendChild(s);
   }
 
   function showBanner() {
@@ -58,9 +73,24 @@
       set('granted'); bar.remove(); startAnalytics();
     });
     bar.querySelector('#nr-consent-decline').addEventListener('click', function () {
-      set('denied'); bar.remove();
+      set('denied'); bar.remove(); stopAnalytics();
     });
   }
+
+  // Revoke on a change of mind. Anything already loaded this pageload is told
+  // to stop and drop its cookies; nothing reloads on the next visit.
+  function stopAnalytics() {
+    try { if (window.posthog && window.posthog.__loaded) posthog.opt_out_capturing(); } catch (e) {}
+    try { (window._hsq = window._hsq || []).push(['doNotTrack']); } catch (e) {}
+    try { (window._hsp = window._hsp || []).push(['revokeCookieConsent']); } catch (e) {}
+  }
+
+  // UK GDPR: withdrawing consent must be as easy as giving it. Linked from the
+  // Cookies section of the privacy policy.
+  window.nrCookieSettings = function () {
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    if (!document.getElementById('nr-consent')) showBanner();
+  };
 
   function init() {
     var c = get();
