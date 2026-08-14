@@ -597,17 +597,29 @@
             <h2>8. Cookies and Tracking</h2>
 
             <h3>8.1 What Are Cookies</h3>
-            <p>Cookies are small text files stored on your device when you visit our website. We use cookies to keep you logged in, remember your preferences, analyze how you use our platform, and improve user experience.</p>
+            <p>Cookies are small text files stored on your device when you visit our website. Similar technologies, such as browser local storage, work in the same way and are covered by this section. We use them to keep you signed in, keep the site secure, remember your preferences, and understand how the site is used.</p>
 
-            <h3>8.2 Types of Cookies We Use</h3>
+            <h3>8.2 Cookies We Set Without Asking</h3>
+            <p>These are strictly necessary for the site to work, so we do not need your consent for them.</p>
             <ul>
-                <li><strong>Essential Cookies:</strong> Required for the platform to function. Cannot be disabled.</li>
-                <li><strong>Functional Cookies:</strong> Remember your preferences and settings. Can be disabled in your browser.</li>
-                <li><strong>Analytics Cookies:</strong> Help us understand how users interact with our platform via Firebase Analytics. Data is typically anonymized. Can be disabled in your browser.</li>
+                <li><strong>Authentication and security:</strong> keep you signed in and protect your account and our infrastructure. Set by us, by Firebase (Google) and by Cloudflare.</li>
+                <li><strong>Your cookie choice:</strong> we store your answer to the consent banner in your browser's local storage under <code>nr_analytics_consent</code>, so we do not ask you again on every page.</li>
             </ul>
 
-            <h3>8.3 Managing Cookies</h3>
-            <p>You can control cookies through your browser settings. Most browsers allow you to refuse or delete cookies. Disabling essential cookies may affect platform functionality.</p>
+            <h3>8.3 Cookies We Set Only If You Agree</h3>
+            <p>None of the following run until you select <strong>Accept</strong> on our cookie banner. If you select <strong>Decline</strong>, they are never loaded and no analytics or marketing cookies are placed on your device.</p>
+            <ul>
+                <li><strong>PostHog</strong> (product analytics, hosted in the EU). Records page views, clicks and error reports so we can see which parts of the site work and which do not. Stored in your browser's local storage rather than as cookies, and retained for up to 12 months.</li>
+                <li><strong>HubSpot</strong> (analytics and customer relationship management, hosted in the EU). Recognises returning visitors and links website activity to your record if you later contact us or complete a HubSpot form. Sets <code>__hstc</code> and <code>hubspotutk</code> (expire after 6 months), <code>__hssc</code> (expires after 30 minutes of inactivity) and <code>__hssrc</code> (expires when you close your browser).</li>
+                <li><strong>Firebase Analytics</strong> (Google). Usage analytics within the NoResume mobile apps and signed-in areas. Data is aggregated and, where possible, anonymised.</li>
+            </ul>
+            <p>We do not use cookies to serve advertising, and we do not sell the data these cookies collect.</p>
+
+            <h3>8.4 Changing Your Mind</h3>
+            <p>You can withdraw your consent at any time, and it is as easy as giving it. <a href="#" onclick="if(window.nrCookieSettings){window.nrCookieSettings();}return false;">Reopen your cookie choices</a> and select Decline. Any analytics already running in that page will stop and clear its cookies, and nothing will load on your next visit.</p>
+
+            <h3>8.5 Managing Cookies In Your Browser</h3>
+            <p>You can also control cookies through your browser settings. Most browsers allow you to refuse or delete cookies. Blocking essential cookies may stop parts of the platform working.</p>
 
             <h2>9. International Data Transfers</h2>
 
@@ -622,6 +634,8 @@
                 <li><strong>Firebase:</strong> Google service, data may be processed in the US with appropriate safeguards</li>
                 <li><strong>Daily.co:</strong> Video interview data may be processed in the US with appropriate safeguards</li>
                 <li><strong>Resend:</strong> Email delivery service, data may be processed in the US with appropriate safeguards</li>
+                <li><strong>HubSpot:</strong> Website analytics and customer relationship management. Your data is held in the EU region, but HubSpot is a US company</li>
+                <li><strong>PostHog:</strong> Website and product analytics. Your data is held in the EU region, but PostHog is a US company</li>
             </ul>
             <p><strong>Safeguards in Place:</strong> Standard Contractual Clauses (SCCs), EU-US Data Privacy Framework participation (where applicable), and UK GDPR-compliant data processing agreements.</p>
 
