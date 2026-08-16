@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Book a Demo - NoResume</title>
+    <title>Book a Call - NoResume</title>
     <link rel="canonical" href="https://noresume.co/book">
     <link rel="alternate" hreflang="en-GB" href="https://noresume.co.uk/book">
     <link rel="alternate" hreflang="en" href="https://noresume.co/book">
     <link rel="alternate" hreflang="x-default" href="https://noresume.co/book">
-    <meta name="description" content="Book a demo with NoResume. Pick a time that suits you and see how NoResume finds you staff, without job ads or CV piles.">
-    <meta property="og:title" content="Book a Demo - NoResume">
+    <meta name="description" content="Book a call with NoResume. Pick a time that suits you to discover how the open job market works and get your questions answered.">
+    <meta property="og:title" content="Book a Call - NoResume">
     <meta property="og:url" content="https://noresume.co/book">
     <meta property="og:type" content="website">
 
@@ -121,9 +121,15 @@
             overflow: hidden;
         }
 
-        #cal-booking {
+        .meetings-iframe-container {
             width: 100%;
             min-height: 588px;
+        }
+
+        .meetings-iframe-container iframe {
+            width: 100%;
+            min-height: 588px;
+            border: 0;
         }
 
         .booking-fallback {
@@ -279,12 +285,12 @@
         <section class="booking-section">
             <div class="container">
                 <div class="booking-intro">
-                    <h1>Book a demo with NoResume</h1>
-                    <p>Pick a time that suits you. A short call to see how NoResume finds you staff, get your questions answered and get set up.</p>
+                    <h1>Book a call with NoResume</h1>
+                    <p>Pick a time that suits you to discover how the open job market works and get your questions answered.</p>
                 </div>
 
                 <div class="booking-embed-wrapper">
-                    <div id="cal-booking"></div>
+                    <div class="meetings-iframe-container" data-src="https://meetings-eu1.hubspot.com/erika-ziranu?embed=true"></div>
                 </div>
 
                 <p class="booking-fallback">Trouble with the calendar? Email us at <a href="mailto:info@noresume.co">info@noresume.co</a> or use the <a href="/contact">contact form</a>.</p>
@@ -337,53 +343,8 @@
         </div>
     </footer>
 
-    <!-- ── CAL.COM EMBED ──────────────────────────── -->
-    <script type="text/javascript">
-        // Single place to update once the Cal.com account exists:
-        // "<username>/<event-slug>" from the event's share link.
-        var CAL_LINK = "erikaziranunoresumeuk/noresume-demo";
-
-        (function (C, A, L) {
-            let p = function (a, ar) { a.q.push(ar); };
-            let d = C.document;
-            C.Cal = C.Cal || function () {
-                let cal = C.Cal;
-                let ar = arguments;
-                if (!cal.loaded) {
-                    cal.ns = {};
-                    cal.q = cal.q || [];
-                    d.head.appendChild(d.createElement("script")).src = A;
-                    cal.loaded = true;
-                }
-                if (ar[0] === L) {
-                    const api = function () { p(api, arguments); };
-                    const namespace = ar[1];
-                    api.q = api.q || [];
-                    if (typeof namespace === "string") {
-                        cal.ns[namespace] = cal.ns[namespace] || api;
-                        p(cal.ns[namespace], ar);
-                        p(cal, ["initNamespace", namespace]);
-                    } else p(cal, ar);
-                    return;
-                }
-                p(cal, ar);
-            };
-        })(window, "https://app.cal.com/embed/embed.js", "init");
-
-        Cal("init", { origin: "https://cal.com" });
-
-        Cal("inline", {
-            elementOrSelector: "#cal-booking",
-            calLink: CAL_LINK,
-            layout: "month_view",
-            config: { theme: "light" }
-        });
-
-        Cal("ui", {
-            theme: "light",
-            styles: { branding: { brandColor: "#20BFA9" } },
-            hideEventTypeDetails: false
-        });
-    </script>
+    <!-- ── HUBSPOT MEETINGS EMBED ─────────────────── -->
+    <!-- Scheduling page slug lives in the data-src above: meetings-eu1 = EU portal 148329240 -->
+    <script type="text/javascript" src="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js"></script>
 </body>
 </html>
