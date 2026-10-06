@@ -94,6 +94,10 @@ html, body { height: 100%; margin: 0px; }
 </head>
 <body>
 <div id="dc-root"><div class="sc-host" data-sc-name="index"><div data-b-style="[[ themeVars ]]" style="--teal: #17726B; --coral: #F7A98A; --hdrY: 0px; --hdrBg: transparent; --hdrBlur: none; --hdrInk: #fff; --hdrShadow: 0 1px 12px rgba(0,0,0,.55); --tiltA: -2.5deg; --tiltC: 2.5deg;">
+  
+  <div data-intro="true" aria-hidden="true" style="position: fixed; inset: 0px; z-index: 9999; background: rgb(6, 40, 44); overflow: hidden; cursor: pointer; transition: opacity 0.8s ease-in-out;">
+    <video src="assets/video/intro-clip.mp4" poster="assets/video/posters/intro-clip.jpg?v=b2435b05" preload="auto" autoplay="" playsinline="" muted="" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; display: block;"></video>
+  </div>
   <div style="font-family: Poppins, sans-serif; color: rgb(17, 17, 17); line-height: 1.6; background: linear-gradient(rgb(248, 246, 230) 0%, rgb(250, 190, 155) 100%) fixed; overflow-x: hidden;">
 
     
@@ -366,6 +370,30 @@ class Component extends DCLogic {
   }
 
   componentDidMount() {
+    // opening clip (as on the old homepage): fades away when it ends, when clicked, or after 8 s at most;
+    // skipped at once if the browser won't autoplay it (e.g. iPhone Low Power Mode) or Reduce Motion is on
+    {
+      const intro = document.querySelector('[data-intro]');
+      if (intro) {
+        const v = intro.querySelector('video');
+        let done = false;
+        const finish = (fast) => {
+          if (done) return;
+          done = true;
+          try { v.pause(); } catch (e) {}
+          intro.style.pointerEvents = 'none';
+          if (fast === true) { intro.style.display = 'none'; return; }
+          intro.style.opacity = '0';
+          setTimeout(() => { intro.style.display = 'none'; window.scrollTo(0, 0); }, 850);
+        };
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) finish(true);
+        v.addEventListener('ended', () => finish());
+        intro.addEventListener('click', () => finish());
+        setTimeout(() => finish(), 8000);
+        const p = !done && v.play ? v.play() : null;
+        if (p && p.catch) p.catch(() => finish(true));
+      }
+    }
     this._lastY = window.scrollY || 0;
     this._onScroll = () => {
       const y = window.scrollY || 0;
