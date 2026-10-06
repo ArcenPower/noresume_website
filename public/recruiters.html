@@ -2,18 +2,15 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
-<link rel="preconnect" href="https://meetings-eu1.hubspot.com" crossorigin>
-<link rel="preconnect" href="https://static.hsappstatic.net" crossorigin>
-<link rel="preload" as="script" href="https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Book a Call - NoResume</title>
-<link rel="canonical" href="https://noresume.co/book">
-<link rel="alternate" hreflang="en-GB" href="https://noresume.co.uk/book">
-<link rel="alternate" hreflang="en" href="https://noresume.co/book">
-<link rel="alternate" hreflang="x-default" href="https://noresume.co/book">
-<meta name="description" content="Book a call with NoResume. Pick a time that suits you to discover how the open job market works and get your questions answered.">
-<meta property="og:title" content="Book a Call - NoResume">
-<meta property="og:url" content="https://noresume.co/book">
+<title>For Recruiters - NoResume</title>
+<link rel="canonical" href="https://noresume.co/recruiters">
+<link rel="alternate" hreflang="en-GB" href="https://noresume.co.uk/recruiters">
+<link rel="alternate" hreflang="en" href="https://noresume.co/recruiters">
+<link rel="alternate" hreflang="x-default" href="https://noresume.co/recruiters">
+<meta name="description" content="All-in-one recruitment engine. Find clients. Match live talent. Close placements.">
+<meta property="og:title" content="For Recruiters - NoResume">
+<meta property="og:url" content="https://noresume.co/recruiters">
 <meta property="og:type" content="website">
 <script src="/js/analytics.js?v=2"></script>
 <style>
@@ -43,20 +40,24 @@ html, body { height: 100%; margin: 0px; }
 </style>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap">
-<script src="blog-posts.js"></script>
 <style>
   body { margin: 0; }
-  /* booking calendar: HubSpot draws an iframe inside the box */
-  [data-book-box] iframe { width: 100%; min-height: 588px; border: 0; }
-  @media (max-width: 760px) { [data-book-card] { padding: 6px !important; border-radius: 16px !important; } }
   /* footer: logo + statement on the left (wider), icons under Contact; under 1000 px the statement gets its own row, phones one column */
   [data-foot-grid] { grid-template-columns: minmax(0, 1.8fr) repeat(3, minmax(204px, 1fr)) !important; }
   @media (max-width: 1000px) { [data-foot-grid] { grid-template-columns: 1fr 1fr !important; } [data-foot-brand] { grid-column: 1 / -1; } }
   @media (max-width: 560px) { [data-foot-grid] { grid-template-columns: 1fr !important; } }
+  /* top section fills the visible screen on every device (at least 560 px); headline and buttons stay together, centred */
+  [data-hero-full] { height: 100vh !important; height: 100svh !important; min-height: 560px !important; max-height: none !important;
+    display: flex !important; flex-direction: column; justify-content: center; }
+  [data-hero-full] > [data-hero-text], [data-hero-full] > [data-hero-btns] { position: relative !important; top: auto !important; bottom: auto !important; transform: none !important; }
+  [data-hero-full] > [data-hero-btns] { margin-top: 44px; }
+  @media (max-width: 760px) { [data-hero-full] > [data-hero-btns] { margin-top: 28px; } }
   /* footer social icons: the circle turns white and the logo teal on hover or keyboard focus */
   [data-social]:hover, [data-social]:focus-visible { background: #fff !important; color: #17726B !important; }
   /* desktop menu words two sizes up (17 -> 19 px) */
   [data-desk-nav] a { font-size: 19px !important; }
+  /* phones: the headline wraps and sits higher, so the spotlight follows it */
+  @media (max-width: 760px) { [data-hero-spot] { background: radial-gradient(ellipse 62% 28% at 50% 45%, rgba(5,24,30,.78) 0%, rgba(5,24,30,.5) 45%, rgba(5,24,30,0) 100%) !important; } }
   /* pulling past the top or bottom of the page shows this instead of white */
   html { background: #06282C; }
   a { color: #17726B; text-decoration: none; }
@@ -67,15 +68,13 @@ html, body { height: 100%; margin: 0px; }
 </style>
 </head>
 <body>
-<div id="dc-root"><div class="sc-host" data-sc-name="book"><div data-b-style="[[ themeVars ]]" style="--teal: #17726B; --hdrY: 0px; --hdrBlur: none; --hdrInk: #fff; --hdrShadow: 0 1px 12px rgba(0,0,0,.55);">
+<div id="dc-root"><div class="sc-host" data-sc-name="recruiters"><div data-b-style="[[ themeVars ]]" style="--teal: #17726B; --coral: #F7A98A; --hdrY: 0px; --hdrBlur: none; --hdrInk: #fff; --hdrShadow: 0 1px 12px rgba(0,0,0,.55);">
   <div style="font-family: Poppins, sans-serif; color: rgb(17, 17, 17); line-height: 1.6; background: linear-gradient(rgb(248, 246, 230) 0%, rgb(250, 190, 155) 100%) fixed; overflow-x: hidden;">
 
     
-    <section data-hdr-dark="true" data-ref="heroRef" style="position: relative; overflow: hidden; background: rgb(6, 42, 42);">
-      <img data-hero-img="true" src="assets/images/contact-bg.jpg" alt="" aria-hidden="true" data-ref="heroImgRef" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; display: block; transform-origin: 52% 50%; animation: 34s ease-in-out 0s infinite alternate none running nrHeroDrift;">
-      <canvas data-hero-img="true" aria-hidden="true" data-ref="sparkRef2" style="display: none; position: absolute; inset: 0px; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: screen; transform-origin: 52% 50%; animation: 34s ease-in-out 0s infinite alternate none running nrHeroDrift;"></canvas>
-      <canvas data-hero-img="true" aria-hidden="true" data-ref="sparkRef" style="position: absolute; inset: 0px; width: 100%; height: 100%; display: block; pointer-events: none; mix-blend-mode: screen; transform-origin: 52% 50%; animation: 34s ease-in-out 0s infinite alternate none running nrHeroDrift;"></canvas>
-      <div style="position: absolute; inset: 0px; background: linear-gradient(rgba(4, 30, 30, 0.55) 0%, rgba(4, 30, 30, 0) 22%);"></div>
+    <section data-hdr-dark="true" data-hero-full="true" data-ref="heroRef" style="position: relative; min-height: 600px; height: 74vh; max-height: 800px; overflow: hidden; background: rgb(6, 40, 44);">
+      <video src="assets/video/recruiter-leads-loop-v4.mp4#t=0.1" poster="assets/video/posters/recruiter-leads-loop-v4.jpg?v=0d0765b9" loop="" preload="auto" aria-hidden="true" autoplay="" playsinline="" muted="" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; display: block; background: rgb(6, 40, 44);"></video>
+      <div style="position: absolute; inset: 0px; background: linear-gradient(rgba(8, 40, 44, 0.5) 0%, rgba(8, 40, 44, 0) 26%, rgba(8, 40, 44, 0) 70%, rgba(8, 40, 44, 0.5) 100%);"></div>
 
       <header style="position: fixed; top: 0px; left: 0px; right: 0px; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 22px 32px; transform: translateY(var(--hdrY, 0px)); transition: transform 0.32s;">
         
@@ -99,15 +98,11 @@ html, body { height: 100%; margin: 0px; }
         </button>
       </header>
 
-      <div style="position: relative; z-index: 3; padding: 93px 32px 90px; display: flex; flex-direction: column; align-items: center; text-align: center;">
-        <h1 style="margin: 0px; font-size: clamp(2.4rem, 4.4vw, 52px); font-weight: 700; line-height: 1.1; color: rgb(20, 184, 166); text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 20px;">Book a call with NoResume</h1>
-        <p style="margin: 18px 0px 0px; max-width: 560px; font-size: 18px; line-height: 25px; color: rgb(255, 255, 255); text-wrap: pretty;">Pick a time that suits you to discover how the open job market works and get your questions answered.</p>
-
-        <div data-book-card="true" style="position: relative; width: 100%; max-width: 1080px; margin-top: 40px; box-sizing: border-box; border-radius: 20px; padding: 16px; background: rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 40px;">
-          <p data-book-wait="true" data-ref="bookWaitRef" style="position: absolute; left: 0px; right: 0px; top: 140px; margin: 0px; text-align: center; font-size: 17px; font-weight: 500; color: rgb(26, 95, 95); transition: opacity 0.4s;">Loading calendar…</p>
-          <div data-book-box="true" data-ref="bookRef" style="position: relative; width: 100%; min-height: 640px;"></div>
-        </div>
-        <p style="margin: 22px 0px 0px; font-size: 16px; line-height: 1.6; color: rgb(255, 255, 255); text-wrap: pretty;">Trouble with the calendar? Email us at <a href="mailto:hello@noresume.co" style="color: rgb(255, 255, 255); font-weight: 700; text-decoration: underline; text-underline-offset: 3px;">hello@noresume.co</a> or use the <a href="/contact" style="color: rgb(255, 255, 255); font-weight: 700; text-decoration: underline; text-underline-offset: 3px;">contact form</a>.</p>
+      
+      <div data-hero-spot="true" aria-hidden="true" style="position: absolute; inset: 0px; pointer-events: none; z-index: 2; background: radial-gradient(40% 30% at 50% 45%, rgba(5, 24, 30, 0.78) 0%, rgba(5, 24, 30, 0.5) 45%, rgba(5, 24, 30, 0) 100%);"></div>
+      <div data-hero-text="true" style="position: absolute; left: 0px; right: 0px; top: 50%; transform: translateY(-50%); z-index: 3; padding: 0px 32px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+        <h1 style="margin: 12px 0px 0px; max-width: 24ch; font-size: clamp(2.88rem, 5.52vw, 4.68rem); font-weight: 700; line-height: 1.06; letter-spacing: -0.02em; color: rgb(255, 255, 255); text-shadow: rgba(6, 30, 32, 0.75) 0px 4px 28px, rgba(6, 30, 32, 0.6) 0px 1px 4px; text-wrap: pretty;">All-in-one recruitment engine</h1>
+        <p style="margin: 16px 0px 0px; max-width: 62ch; font-size: clamp(1.25rem, 1.9vw, 1.6rem); font-weight: 600; line-height: 1.5; color: rgb(255, 255, 255); text-shadow: rgba(6, 30, 32, 0.85) 0px 2px 18px, rgba(6, 30, 32, 0.7) 0px 1px 3px; text-wrap: pretty;">Find clients. Match live talent. Close placements.</p>
       </div>
 
       <div data-if="menuOpen" data-if-on="false" data-mounted="0" style="display: contents;"><template>
@@ -120,16 +115,122 @@ html, body { height: 100%; margin: 0px; }
             <a href="/" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Home</a>
             <a href="/employers" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Hire Talent</a>
             <a href="/candidates" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">I am Talent</a>
-            <a href="/recruiters" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">For Recruiters</a>
+            <a href="/recruiters" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 700; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">For Recruiters</a>
             <a href="/blog" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Insights</a>
             <a href="/contact" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Contact Us</a>
-            <a href="/book" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 700; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Book a Call</a>
+            <a href="/book" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Book a Call</a>
           </nav>
           <a href="https://app.noresume.co" style="margin-top: 26px; text-align: center; background: linear-gradient(135deg, rgb(26, 95, 95) 0%, rgb(54, 197, 197) 100%); color: rgb(255, 255, 255); padding: 14px 24px; border-radius: 999px; font-size: 17px; font-weight: 600;">Log-In</a>
         </aside>
       </template></div>
+
+      <div data-hero-btns="true" style="position: absolute; left: 0px; right: 0px; bottom: 104px; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 0px 32px;">
+        <a href="/book" style="background: rgb(255, 255, 255); color: rgb(17, 17, 17); padding: 16px 20px; width: 236px; box-sizing: border-box; text-align: center; border-radius: 999px; font-size: 17px; font-weight: 500; box-shadow: rgba(0, 0, 0, 0.28) 0px 10px 34px;">Book a Call</a>
+      </div>
     </section>
 
+    
+    <section style="padding: 105px 0px 60px;">
+      <div style="max-width: 1240px; margin: 0px auto; padding: 0px 32px;">
+        <h2 style="margin: 0px 0px 46px; text-align: center; font-size: clamp(1.9rem, 3.4vw, 2.7rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: var(--teal, #17726B); text-wrap: pretty;">How you will use it</h2>
+
+        <div data-b-style="display: grid; grid-template-columns: repeat([[ howCols ]], minmax(0, 1fr)); gap: 20px; max-width: 1220px; margin: 0 auto;" style="display: grid; grid-template-columns: repeat(4, minmax(0px, 1fr)); gap: 20px; max-width: 1220px; margin: 0px auto;">
+          <div style="background: rgba(237, 168, 127, 0.25); border-radius: 20px; padding: 22px 22px 26px; box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 4px; display: flex; flex-direction: column; gap: 8px;">
+            <h3 style="margin: 0px; font-size: 21px; font-weight: 700; line-height: 1.2; color: rgb(26, 95, 95);">Find Clients</h3>
+            <p style="margin: 0px; font-size: 15.5px; font-weight: 500; line-height: 1.5; color: rgb(26, 95, 95);">Spot companies hiring in your sector with unfilled roles. Target employers with active demand today, not the cold market.</p>
+          </div>
+          <div style="background: rgba(237, 168, 127, 0.25); border-radius: 20px; padding: 22px 22px 26px; box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 4px; display: flex; flex-direction: column; gap: 8px;">
+            <h3 style="margin: 0px; font-size: 21px; font-weight: 700; line-height: 1.2; color: rgb(26, 95, 95);">Win the pitch</h3>
+            <p style="margin: 0px; font-size: 15.5px; font-weight: 500; line-height: 1.5; color: rgb(26, 95, 95);">Walk in knowing their active sites, target salaries, and how their live adverts compare locally.</p>
+          </div>
+          <div style="background: rgba(237, 168, 127, 0.25); border-radius: 20px; padding: 22px 22px 26px; box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 4px; display: flex; flex-direction: column; gap: 8px;">
+            <h3 style="margin: 0px; font-size: 21px; font-weight: 700; line-height: 1.2; color: rgb(26, 95, 95);">Fill the role</h3>
+            <p style="margin: 0px; font-size: 15.5px; font-weight: 500; line-height: 1.5; color: rgb(26, 95, 95);">Match on skills, distance, pay wanted and shift availability. We help you source more when options are thin.</p>
+          </div>
+          <div style="background: rgba(237, 168, 127, 0.25); border-radius: 20px; padding: 22px 22px 26px; box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 4px; display: flex; flex-direction: column; gap: 8px;">
+            <h3 style="margin: 0px; font-size: 21px; font-weight: 700; line-height: 1.2; color: rgb(26, 95, 95);">Run the placement</h3>
+            <p style="margin: 0px; font-size: 15.5px; font-weight: 500; line-height: 1.5; color: rgb(26, 95, 95);">Run your pipeline from anywhere. We handle contracts, compliance and payroll so you can focus on the placement.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <section style="padding: 45px 0px 60px;">
+      <div style="max-width: 1240px; margin: 0px auto; padding: 0px 32px;">
+        <h2 style="margin: 0px 0px 14px; text-align: center; font-size: clamp(1.9rem, 3.4vw, 2.7rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: var(--teal, #17726B); text-wrap: pretty;">Your Add-on Toolkit</h2>
+        <p style="margin: 0px auto 44px; max-width: 58ch; text-align: center; font-size: clamp(1.15rem, 1.6vw, 1.4rem); line-height: 1.6; color: rgb(46, 58, 56); text-wrap: pretty;">We are working to build the best experience for you</p>
+
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 26px; max-width: 1040px; margin: 0px auto;">
+          <article style="flex: 0 1 324px; min-width: 260px; background: rgb(255, 255, 255); border-radius: 20px; padding: 26px 24px 30px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.18) 0px 4px 4px; display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+              <div style="position: relative; flex: 0 0 auto; width: 58px; height: 58px; border-radius: 999px; background: linear-gradient(rgb(248, 246, 230) 37.98%, rgb(250, 190, 155) 100%); display: grid; place-items: center;">
+                <img src="assets/icons/layers-c-cut.png" alt="" loading="eager" style="width: 46px; height: 46px; object-fit: contain; display: block;">
+                <span style="position: absolute; top: -4px; right: -4px; width: 17px; height: 17px; border-radius: 999px; background: rgb(255, 197, 151);"></span>
+              </div>
+              <span style="flex: 0 0 auto; min-width: 150px; box-sizing: border-box; text-align: center; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 10px 16px; border-radius: 30px; background: rgb(217, 249, 238); color: rgb(26, 95, 95); box-shadow: rgba(0, 0, 0, 0.18) 0px 4px 4px;">Coming soon</span>
+            </div>
+            <h3 style="margin: 4px 0px 0px; font-size: 20px; font-weight: 700; line-height: 1.25; color: rgb(26, 95, 95);">Falcon Smart Engine for recruiters</h3>
+            <p style="margin: 0px; font-size: 15px; font-weight: 500; line-height: 1.6; color: rgb(26, 95, 95);">Employer leads with real-time insights: who is hiring, what they pay, and who to contact.</p>
+          </article>
+          <article style="flex: 0 1 324px; min-width: 260px; background: rgb(255, 255, 255); border-radius: 20px; padding: 26px 24px 30px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.18) 0px 4px 4px; display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+              <div style="position: relative; flex: 0 0 auto; width: 58px; height: 58px; border-radius: 999px; background: linear-gradient(rgb(248, 246, 230) 37.98%, rgb(250, 190, 155) 100%); display: grid; place-items: center;">
+                <img src="assets/icons/pie-c-cut.png" alt="" loading="eager" style="width: 46px; height: 46px; object-fit: contain; display: block;">
+                <span style="position: absolute; top: -4px; right: -4px; width: 17px; height: 17px; border-radius: 999px; background: rgb(255, 197, 151);"></span>
+              </div>
+              <span style="flex: 0 0 auto; min-width: 150px; box-sizing: border-box; text-align: center; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 10px 16px; border-radius: 30px; background: rgb(217, 249, 238); color: rgb(26, 95, 95); box-shadow: rgba(0, 0, 0, 0.18) 0px 4px 4px;">Live</span>
+            </div>
+            <h3 style="margin: 4px 0px 0px; font-size: 20px; font-weight: 700; line-height: 1.25; color: rgb(26, 95, 95);">Hiring insights Tool</h3>
+            <p style="margin: 0px; font-size: 15px; font-weight: 500; line-height: 1.6; color: rgb(26, 95, 95);">Advert analysis and local market benchmark. Paste your advert to assess it and compare with local market: pay, hiring nearby, how long it takes to fill.</p>
+          </article>
+          <article style="flex: 0 1 324px; min-width: 260px; background: rgb(255, 255, 255); border-radius: 20px; padding: 26px 24px 30px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.18) 0px 4px 4px; display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+              <div style="position: relative; flex: 0 0 auto; width: 58px; height: 58px; border-radius: 999px; background: linear-gradient(rgb(248, 246, 230) 37.98%, rgb(250, 190, 155) 100%); display: grid; place-items: center;">
+                <img src="assets/icons/fingerprint-c-cut.png" alt="" loading="eager" style="width: 46px; height: 46px; object-fit: contain; display: block;">
+                <span style="position: absolute; top: -4px; right: -4px; width: 17px; height: 17px; border-radius: 999px; background: rgb(255, 197, 151);"></span>
+              </div>
+              <span style="flex: 0 0 auto; min-width: 150px; box-sizing: border-box; text-align: center; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 10px 16px; border-radius: 30px; background: rgb(217, 249, 238); color: rgb(26, 95, 95); box-shadow: rgba(0, 0, 0, 0.18) 0px 4px 4px;">Live</span>
+            </div>
+            <h3 style="margin: 4px 0px 0px; font-size: 20px; font-weight: 700; line-height: 1.25; color: rgb(26, 95, 95);">Talent pool and matching</h3>
+            <p style="margin: 0px; font-size: 15px; font-weight: 500; line-height: 1.6; color: rgb(26, 95, 95);">Talent Profiles matching the role, distance, pay wanted and availability. Enhance your proposal to prospects.</p>
+          </article>
+          <article style="flex: 0 1 324px; min-width: 260px; background: rgb(255, 255, 255); border-radius: 20px; padding: 26px 24px 30px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.18) 0px 4px 4px; display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+              <div style="position: relative; flex: 0 0 auto; width: 58px; height: 58px; border-radius: 999px; background: linear-gradient(rgb(248, 246, 230) 37.98%, rgb(250, 190, 155) 100%); display: grid; place-items: center;">
+                <img src="assets/icons/bolt-c-cut.png" alt="" loading="eager" style="width: 46px; height: 46px; object-fit: contain; display: block;">
+                <span style="position: absolute; top: -4px; right: -4px; width: 17px; height: 17px; border-radius: 999px; background: rgb(255, 197, 151);"></span>
+              </div>
+              <span style="flex: 0 0 auto; min-width: 150px; box-sizing: border-box; text-align: center; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 10px 16px; border-radius: 30px; background: rgb(217, 249, 238); color: rgb(26, 95, 95); box-shadow: rgba(0, 0, 0, 0.18) 0px 4px 4px;">Live</span>
+            </div>
+            <h3 style="margin: 4px 0px 0px; font-size: 20px; font-weight: 700; line-height: 1.25; color: rgb(26, 95, 95);">Placement infrastructure</h3>
+            <p style="margin: 0px; font-size: 15px; font-weight: 500; line-height: 1.6; color: rgb(26, 95, 95);">One system to find clients, match Talent and run placements. Automated pipeline, contracts, compliance, timesheets, invoicing and payments handled.</p>
+          </article>
+          <article style="flex: 0 1 324px; min-width: 260px; background: rgb(255, 255, 255); border-radius: 20px; padding: 26px 24px 30px; box-sizing: border-box; box-shadow: rgba(0, 0, 0, 0.18) 0px 4px 4px; display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+              <div style="position: relative; flex: 0 0 auto; width: 58px; height: 58px; border-radius: 999px; background: linear-gradient(rgb(248, 246, 230) 37.98%, rgb(250, 190, 155) 100%); display: grid; place-items: center;">
+                <img src="assets/icons/shield-c-cut.png" alt="" loading="eager" style="width: 46px; height: 46px; object-fit: contain; display: block;">
+                <span style="position: absolute; top: -4px; right: -4px; width: 17px; height: 17px; border-radius: 999px; background: rgb(255, 197, 151);"></span>
+              </div>
+              <span style="flex: 0 0 auto; min-width: 150px; box-sizing: border-box; text-align: center; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 10px 16px; border-radius: 30px; background: rgb(217, 249, 238); color: rgb(26, 95, 95); box-shadow: rgba(0, 0, 0, 0.18) 0px 4px 4px;">Early access</span>
+            </div>
+            <h3 style="margin: 4px 0px 0px; font-size: 20px; font-weight: 700; line-height: 1.25; color: rgb(26, 95, 95);">Recruitment marketplace</h3>
+            <p style="margin: 0px; font-size: 15px; font-weight: 500; line-height: 1.6; color: rgb(26, 95, 95);">In the Open Job Market, employers can pick a recruiter they prefer. Get on the list early.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    
+    <section style="padding: 45px 0px 60px; text-align: center;">
+      <div style="max-width: 1240px; margin: 0px auto; padding: 0px 32px;">
+        <h2 style="margin: 0px auto 14px; max-width: 24ch; font-size: clamp(1.9rem, 3.4vw, 2.7rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: rgb(17, 17, 17); text-wrap: pretty;">Get Early Access</h2>
+        <p style="margin: 0px auto 34px; max-width: 54ch; font-size: 17px; line-height: 1.6; color: rgb(58, 58, 58); text-wrap: pretty;">Join the Open Job Market and shape the Tool to fit your needs.</p>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
+          <a href="/book" style="background: linear-gradient(135deg, rgb(26, 95, 95) 0%, rgb(54, 197, 197) 100%); color: rgb(255, 255, 255); padding: 17px 20px; width: 236px; box-sizing: border-box; border-radius: 999px; font-size: 17px; font-weight: 600; box-shadow: rgba(26, 95, 95, 0.28) 0px 12px 34px;">Book a Call</a>
+        </div>
+      </div>
+    </section>
 
     
     <footer data-hdr-dark="true" style="background: linear-gradient(135deg, rgb(26, 95, 95) 0%, rgb(54, 197, 197) 100%); color: rgb(255, 255, 255); padding: 34px 0px 20px;">
@@ -184,88 +285,19 @@ class Component extends DCLogic {
     this.heroRef = React.createRef();
     this.heroImgRef = React.createRef();
     this.sparkRef = React.createRef();
-    this.bookRef = React.createRef();
-    this.bookWaitRef = React.createRef();
-  }
-
-  // Posts to the same Cloudflare Pages Function as the current site
-  // (/forms/contact), with the Turnstile token the widget injects into the form.
-  // Both only answer on the live domain, not in this preview.
-  mountTurnstile() {
-    const el = this.turnstileRef && this.turnstileRef.current;
-    if (!el || this._tsId != null) return;
-    // the sitekey only accepts NoResume domains; elsewhere (this preview) the
-    // widget throws cross-origin "Script error" on every retry, so skip it
-    if (!/(^|\.)noresume\.co(\.uk)?$/.test(location.hostname)) return;
-    if (!window.turnstile) { this._tsT = setTimeout(() => this.mountTurnstile(), 250); return; }
-    this._tsId = window.turnstile.render(el, { sitekey: '0x4AAAAAAC9aeOFefNbPvWoB' });
-  }
-
-  async submitContact(e) {
-    e.preventDefault();
-    const form = e.currentTarget;
-    this.setState({ sent: false, errorMsg: '' });
-    const token = form.querySelector('[name="cf-turnstile-response"]');
-    if (!token || !token.value) { this.setState({ errorMsg: 'Please complete the security check.' }); return; }
-    this.setState({ sending: true });
-    const resetTs = () => { if (window.turnstile && this._tsId != null) window.turnstile.reset(this._tsId); };
-    try {
-      const fd = new FormData(form);
-      const full = String(fd.get('fullName') || '').trim();
-      const sp = full.indexOf(' ');
-      fd.set('firstName', sp > 0 ? full.slice(0, sp) : full);
-      fd.set('lastName', sp > 0 ? full.slice(sp + 1).trim() : '');
-      fd.delete('fullName');
-      const res = await fetch('/forms/contact', { method: 'POST', body: fd });
-      const out = await res.json();
-      if (out.success) { form.reset(); this.setState({ sent: true }); }
-      else this.setState({ errorMsg: out.error || 'Unable to send your message. Please try again.' });
-    } catch (err) {
-      this.setState({ errorMsg: 'Unable to send your message. Please check your connection and try again.' });
-    } finally {
-      resetTs();
-      this.setState({ sending: false });
-    }
   }
 
   componentDidMount() {
-    this.mountTurnstile();
-    // HubSpot booking calendar (same scheduling page as the live /book page). Its script looks for
-    // .meetings-iframe-container boxes when it loads, so mark the box up first, then add the script.
-    const box = this.bookRef.current;
-    if (box && !box.dataset.src) {
-      box.className = 'meetings-iframe-container';
-      box.dataset.src = 'https://meetings-eu1.hubspot.com/erika-ziranu?embed=true';
-      const s = document.createElement('script');
-      s.src = 'https://static.hsappstatic.net/MeetingsEmbed/ex/MeetingsEmbedCode.js';
-      document.body.appendChild(s);
-      // "Loading calendar…" sits behind the calendar; fade it once HubSpot's frame has loaded and drawn
-      const wait = this.bookWaitRef.current;
-      if (wait) {
-        const mo = new MutationObserver(() => {
-          const f = box.querySelector('iframe');
-          if (!f) return;
-          mo.disconnect();
-          f.addEventListener('load', () => setTimeout(() => { wait.style.opacity = '0'; }, 1200));
-        });
-        mo.observe(box, { childList: true, subtree: true });
-      }
-    }
+    // four in a row, 2x2 below 900px, one column on phones: never 3+1
+    this._onVw = () => { if (this.state.vw !== window.innerWidth) this.setState({ vw: window.innerWidth }); };
+    window.addEventListener('resize', this._onVw);
+    this._onVw();
     this._lastY = window.scrollY || 0;
     this._onScroll = () => {
       const y = window.scrollY || 0;
       const hidden = y > 140 && y > this._lastY;
       const solid = y > 40;
       const hero = this.heroRef.current;
-      const himg = this.heroImgRef.current;
-      const hcv = this.sparkRef.current;
-      if (y < 1000) {
-        const t = '0 ' + (y * 0.14).toFixed(1) + 'px';
-        if (himg) himg.style.translate = t;
-        if (hcv) hcv.style.translate = t;
-        const hcv2 = this.sparkRef2 && this.sparkRef2.current;
-        if (hcv2) hcv2.style.translate = t;
-      }
       // Header ink follows whatever is actually behind the nav, not just the
       // hero: any element marked data-hdr-dark that crosses the header's
       // mid-line AND overlaps the nav horizontally counts. Testing the hero
@@ -274,188 +306,26 @@ class Component extends DCLogic {
       if (hidden !== this.state.hdrHidden || solid !== this.state.hdrSolid || onDark !== this.state.onDark) {
         this.setState({ hdrHidden: hidden, hdrSolid: solid, onDark: onDark });
       }
+      const himg = this.heroImgRef.current, hcv = this.sparkRef.current;
+      if (y < 1000) {
+        const t = '0 ' + (y * 0.14).toFixed(1) + 'px';
+        if (himg) himg.style.translate = t;
+        if (hcv) hcv.style.translate = t;
+      }
       this._lastY = y;
     };
     window.addEventListener('scroll', this._onScroll, { passive: true });
-    if (!(window.NR_BLOG_POSTS || []).length) this._postsT = setTimeout(() => this.forceUpdate(), 300);
     setTimeout(() => this.initSparks(), 80);
     this._onResize = () => { clearTimeout(this._rt); this._rt = setTimeout(() => this.initSparks(), 180); };
     window.addEventListener('resize', this._onResize);
   }
 
   componentWillUnmount() {
-    clearTimeout(this._tsT);
-    if (window.turnstile && this._tsId != null) window.turnstile.remove(this._tsId);
     window.removeEventListener('scroll', this._onScroll);
-    clearTimeout(this._postsT);
     window.removeEventListener('resize', this._onResize);
     cancelAnimationFrame(this._sparkRaf);
     if (this._sparkIO) this._sparkIO.disconnect();
     window.removeEventListener('resize', this._onSparkResize);
-  }
-
-  // Articles live in blog-posts.js so this page and the homepage stay in sync.
-  posts() {
-    return (typeof window !== 'undefined' && window.NR_BLOG_POSTS) || [];
-  }
-
-  featured() {
-    return this.posts().find(p => p.featured) || this.posts()[0] || {};
-  }
-
-  // Contact background: "data through the network". The graph is detected
-  // from the artwork itself (assets/network-contact.json): nodes are the bright
-  // junction dots, edges are the straight line runs that join them. Sparks hop
-  // node to node along real lines and light each node as they arrive, while
-  // motes drift up through the beam. The image is cover-cropped from the
-  // bottom, so the projection pins the bottom edge rather than centring.
-  // The earlier flow-field version is kept as initSparksFlow().
-  toggleFx() {
-    const order = ['network', 'flow', 'mix'];
-    const fx = order[(order.indexOf(this.state.fx || 'network') + 1) % order.length];
-    ['', '2'].forEach(k => { cancelAnimationFrame(this['_raf' + k]); if (this['_io' + k]) this['_io' + k].disconnect(); });
-    const c1 = this.sparkRef.current, c2 = this.sparkRef2.current;
-    [c1, c2].forEach(c => c && c.getContext('2d').clearRect(0, 0, c.width, c.height));
-    if (c2) c2.style.display = fx === 'mix' ? 'block' : 'none';
-    // in the mix the original trails fade out before the network starts
-    const m = fx === 'mix' ? 'linear-gradient(180deg, #000 0%, #000 38%, transparent 62%)' : 'none';
-    if (c1) { c1.style.maskImage = m; c1.style.webkitMaskImage = m; }
-    this._field = null;
-    this.setState({ fx }, () => this.initSparks());
-  }
-
-  async initSparks(o = {}) {
-    if (!o.cv) {
-      const fx = this.state.fx || 'network';
-      if (fx === 'flow') return this.initSparksFlow();
-      if (fx === 'mix') {
-        // option 3: original trails up top, network sparks along the lines below
-        this.initSparksFlow();
-        return this.initSparks({ cv: this.sparkRef2.current, key: '2', noMotes: true });
-      }
-    }
-    cancelAnimationFrame(this['_raf' + (o.key || '')]);
-    if (this['_io' + (o.key || '')]) this['_io' + (o.key || '')].disconnect();
-    const cv = (o.cv || this.sparkRef.current), img = this.heroImgRef.current;
-    if (!cv || !img) return;
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const ctx = cv.getContext('2d');
-    if (!this._net) {
-      try { this._net = await (await fetch('assets/network-contact.json')).json(); } catch (e) { return; }
-    }
-    if (!this._netMask) {
-      this._netMask = await new Promise((res) => { const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null); im.src = 'assets/network-contact-mask.png'; });
-    }
-    const MASK = this._netMask;
-    // sparks are painted on an offscreen layer, then cut to the real line
-    // pixels with the mask, so the light sits on the artwork's lines exactly
-    const off = document.createElement('canvas'), octx = off.getContext('2d');
-    const G = this._net, nodes = G.nodes, adj = nodes.map(() => []);
-    G.edges.forEach(([a, b]) => { adj[a].push(b); adj[b].push(a); });
-
-    let map = null;
-    const project = () => {
-      const W = cv.clientWidth, H = cv.clientHeight, dpr = Math.min(window.devicePixelRatio || 1, 2);
-      cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      off.width = cv.width; off.height = cv.height; octx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const iw = img.naturalWidth || 16, ih = img.naturalHeight || 9, sc = Math.max(W / iw, H / ih);
-      map = { w: iw * sc, h: ih * sc, x: (W - iw * sc) / 2, y: H - ih * sc, W, H };
-    };
-    project();
-    window.removeEventListener('resize', this['_rs' + (o.key || '')]);
-    this['_rs' + (o.key || '')] = () => project();
-    window.addEventListener('resize', this['_rs' + (o.key || '')]);
-    const P = (i) => [map.x + nodes[i][0] * map.w, map.y + nodes[i][1] * map.h];
-
-    const glow = new Float32Array(nodes.length);
-    const starts = nodes.map((n, i) => i).filter(i => adj[i].length);
-    const newSpark = (s) => {
-      s.a = starts[(Math.random() * starts.length) | 0];
-      s.b = adj[s.a][(Math.random() * adj[s.a].length) | 0];
-      s.t = 0; s.hops = 3 + ((Math.random() * 6) | 0);
-      s.v = 90 + Math.random() * 110;                 // px per second
-      s.warm = Math.random() < 0.14;
-      return s;
-    };
-    const sparks = Array.from({ length: 14 }, () => { const s = newSpark({}); s.t = Math.random(); return s; });
-
-    // motes rising through the beam: apex near the ring, widening upwards
-    const APEX = [0.5, 0.74], TOPL = 0.12, TOPR = 0.88;
-    const newMote = (m, anyY) => {
-      m.v = 0.02 + Math.random() * (APEX[1] - 0.04);
-      m.age = anyY ? Math.random() * 8 : 0; m.life = 8 + Math.random() * 8;
-      m.f = (Math.random() * 2 - 1) * 0.8;
-      m.s = 0.008 + Math.random() * 0.014; m.r = 0.6 + Math.random() * 1.2; m.ph = Math.random() * 6.28;
-      return m;
-    };
-    const motes = Array.from({ length: 64 }, () => newMote({}, true));
-
-    let last = 0;
-    const frame = (now) => {
-      const dt = last ? Math.min((now - last) / 1000, 0.05) : 0; last = now;
-      ctx.globalCompositeOperation = 'destination-out';
-      ctx.fillStyle = 'rgba(0,0,0,.2)'; ctx.fillRect(0, 0, map.W, map.H);
-      ctx.globalCompositeOperation = 'lighter';
-
-      if (!o.noMotes) for (const m of motes) {
-        m.v -= m.s * dt; m.ph += dt * 1.3; m.age += dt;
-        if (m.v < 0.02 || m.age > m.life) newMote(m, false);
-        const half = (0.5 - TOPL) * (1 - m.v / APEX[1]) + 0.02;
-        const x = map.x + (APEX[0] + m.f * half + Math.sin(m.ph) * 0.002) * map.w, y = map.y + m.v * map.h;
-        const a = Math.min(1, (APEX[1] - m.v) * 6) * Math.min(1, m.v * 5) * Math.sin(Math.PI * Math.min(1, m.age / m.life)) * 0.55;
-        ctx.fillStyle = 'rgba(150,255,236,' + a.toFixed(3) + ')';
-        ctx.beginPath(); ctx.arc(x, y, m.r, 0, 6.283); ctx.fill();
-      }
-
-      octx.clearRect(0, 0, map.W, map.H);
-      octx.globalCompositeOperation = 'lighter';
-      for (const s of sparks) {
-        const [x0, y0] = P(s.a), [x1, y1] = P(s.b), len = Math.hypot(x1 - x0, y1 - y0) || 1;
-        const tPrev = s.t;
-        s.t += (s.v * dt) / len;
-        if (s.t >= 1) {
-          glow[s.b] = 1;
-          if (--s.hops <= 0) { newSpark(s); continue; }
-          const next = adj[s.b].filter(n => n !== s.a);
-          const from = s.b;
-          s.a = from; s.b = next.length ? next[(Math.random() * next.length) | 0] : adj[from][0]; s.t = 0;
-          continue;
-        }
-        const tail = Math.max(0, s.t - 26 / len), hx = x0 + (x1 - x0) * s.t, hy = y0 + (y1 - y0) * s.t;
-        const tx = x0 + (x1 - x0) * tail, ty = y0 + (y1 - y0) * tail;
-        const col = s.warm ? '255,214,160' : '140,255,232';
-        const gr = ctx.createLinearGradient(tx, ty, hx, hy);
-        gr.addColorStop(0, 'rgba(' + col + ',0)'); gr.addColorStop(1, 'rgba(' + col + ',.95)');
-        octx.strokeStyle = gr; octx.lineWidth = MASK ? 9 : 1.6; octx.lineCap = 'round';
-        octx.beginPath(); octx.moveTo(tx, ty); octx.lineTo(hx, hy); octx.stroke();
-        octx.fillStyle = 'rgba(' + col + ',.9)';
-        octx.beginPath(); octx.arc(hx, hy, MASK ? 7 : 2.4, 0, 6.283); octx.fill();
-      }
-
-      for (let i = 0; i < nodes.length; i++) {
-        if (glow[i] < 0.02) continue;
-        const [x, y] = P(i), r = 2 + nodes[i][2] * 2.5;
-        const gr = ctx.createRadialGradient(x, y, 0, x, y, r * 3.2);
-        gr.addColorStop(0, 'rgba(190,255,240,' + (glow[i] * 0.42).toFixed(3) + ')');
-        gr.addColorStop(1, 'rgba(190,255,240,0)');
-        octx.fillStyle = gr; octx.beginPath(); octx.arc(x, y, r * 3.2, 0, 6.283); octx.fill();
-        glow[i] *= Math.pow(0.03, dt);
-      }
-      if (MASK) {
-        octx.globalCompositeOperation = 'destination-in';
-        octx.drawImage(MASK, map.x, map.y, map.w, map.h);
-      }
-      ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0);
-      ctx.globalCompositeOperation = 'lighter';
-      ctx.drawImage(off, 0, 0);
-      ctx.restore();
-      this['_raf' + (o.key || '')] = requestAnimationFrame(frame);
-    };
-    this['_io' + (o.key || '')] = new IntersectionObserver((es) => {
-      cancelAnimationFrame(this['_raf' + (o.key || '')]);
-      if (es[0] && es[0].isIntersecting) { last = 0; this['_raf' + (o.key || '')] = requestAnimationFrame(frame); }
-    }, { threshold: 0 });
-    this['_io' + (o.key || '')].observe(cv);
   }
 
   // Hero "data flow". The paths are not authored — they are read out of the
@@ -465,10 +335,9 @@ class Component extends DCLogic {
   // advected through that field, so every trail follows a real stream in the
   // picture and wears its colour. Field is in image space and is projected
   // through the object-fit: cover crop, so it stays aligned at any viewport.
-  async initSparksFlow(o = {}) {
-    if (this['_io' + (o.key || '')]) this['_io' + (o.key || '')].disconnect();
-    cancelAnimationFrame(this['_raf' + (o.key || '')]);
-    const cv = (o.cv || this.sparkRef.current), img = this.heroImgRef.current;
+  async initSparks() {
+    cancelAnimationFrame(this._sparkRaf);
+    const cv = this.sparkRef.current, img = this.heroImgRef.current;
     if (!cv || !img) return;
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const ctx = cv.getContext('2d');
@@ -483,15 +352,13 @@ class Component extends DCLogic {
     }
     const F = this._field, GW = F.w, GH = F.h;
 
-    // seed table: cells that actually sit on a strand, weighted by strength
     const seeds = [];
     for (let i = 0; i < F.coh.length; i++) if (F.coh[i] > 96) { seeds.push(i); if (F.coh[i] > 170) seeds.push(i); }
     if (!seeds.length) return;
 
     const sample = (u, v) => {
       const x = Math.min(GW - 1, Math.max(0, u * GW)), y = Math.min(GH - 1, Math.max(0, v * GH));
-      const i = (y | 0) * GW + (x | 0);
-      return i;
+      return (y | 0) * GW + (x | 0);
     };
 
     let map = null;
@@ -505,8 +372,8 @@ class Component extends DCLogic {
       map = { w: iw * sc, h: ih * sc, x: (W - iw * sc) / 2, y: (H - ih * sc) / 2, W, H };
     };
     project();
-    this['_rs' + (o.key || '')] = () => project();
-    window.addEventListener('resize', this['_rs' + (o.key || '')]);
+    this._onSparkResize = () => project();
+    window.addEventListener('resize', this._onSparkResize);
 
     const spawn = (p) => {
       const i = seeds[(Math.random() * seeds.length) | 0];
@@ -514,11 +381,10 @@ class Component extends DCLogic {
       p.v = (((i / GW) | 0) + Math.random()) / GH;
       p.life = 0;
       p.max = 1.6 + Math.random() * 2.8;
-      p.spd = 0.018 + Math.random() * 0.05;     // image widths per second
+      p.spd = 0.018 + Math.random() * 0.05;
       p.size = 0.7 + Math.random() * 1.5;
-      p.dx = 0; p.dy = 0;                        // heading, resolved on first step
-      const c = F.coh[i] / 255;
-      p.gain = 0.5 + c * 0.9;
+      p.dx = 0; p.dy = 0;
+      p.gain = 0.5 + (F.coh[i] / 255) * 0.9;
     };
     const P = [];
     for (let i = 0; i < 320; i++) { const p = {}; spawn(p); p.life = Math.random() * p.max; P.push(p); }
@@ -535,12 +401,11 @@ class Component extends DCLogic {
       for (const p of P) {
         const i = sample(p.u, p.v);
         const strength = F.coh[i] / 255;
-        // left the strands, or lived long enough: respawn on a fresh one
         if (strength < 0.3 || p.life > p.max || p.u < 0 || p.u > 1 || p.v < 0 || p.v > 1) { spawn(p); continue; }
 
-        const a = (F.ang[i] / 255) * Math.PI;     // 0..PI: orientation, not direction
+        const a = (F.ang[i] / 255) * Math.PI;
         let vx = Math.cos(a), vy = Math.sin(a);
-        // orientation is 180-ambiguous — keep travelling the way we already were
+        // orientation is 180-ambiguous, so keep travelling the way we already were
         if (p.dx || p.dy) { if (vx * p.dx + vy * p.dy < 0) { vx = -vx; vy = -vy; } }
         else if (Math.random() < 0.5) { vx = -vx; vy = -vy; }
         p.dx = vx; p.dy = vy;
@@ -548,14 +413,13 @@ class Component extends DCLogic {
         const u0 = p.u, v0 = p.v;
         const step = p.spd * dt;
         p.u += vx * step;
-        p.v += vy * step * (map.w / map.h);       // field is stored in image aspect
+        p.v += vy * step * (map.w / map.h);
         p.life += dt;
 
         const x0 = map.x + u0 * map.w, y0 = map.y + v0 * map.h;
         const x1 = map.x + p.u * map.w, y1 = map.y + p.v * map.h;
         if (x1 < -40 || x1 > map.W + 40 || y1 < -40 || y1 > map.H + 40) continue;
 
-        // fade in and out over the particle's life
         const t = p.life / p.max;
         const fade = Math.min(1, t * 6) * Math.min(1, (1 - t) * 3.2);
         const alpha = fade * p.gain * strength * 0.9;
@@ -569,15 +433,15 @@ class Component extends DCLogic {
           ctx.beginPath(); ctx.arc(x1, y1, p.size * 1.35, 0, 6.283); ctx.fill();
         }
       }
-      this['_raf' + (o.key || '')] = requestAnimationFrame(frame);
+      this._sparkRaf = requestAnimationFrame(frame);
     };
 
-    this['_io' + (o.key || '')] = new IntersectionObserver((es) => {
+    this._sparkIO = new IntersectionObserver((es) => {
       const vis = es[0] && es[0].isIntersecting;
-      cancelAnimationFrame(this['_raf' + (o.key || '')]);
-      if (vis) { last = 0; this['_raf' + (o.key || '')] = requestAnimationFrame(frame); }
+      cancelAnimationFrame(this._sparkRaf);
+      if (vis) { last = 0; this._sparkRaf = requestAnimationFrame(frame); }
     }, { threshold: 0 });
-    this['_io' + (o.key || '')].observe(cv);
+    this._sparkIO.observe(cv);
   }
 
 
@@ -598,58 +462,18 @@ class Component extends DCLogic {
 
   renderVals() {
     const p = this.props;
-    if (!this.formRef) { this.formRef = React.createRef(); this.turnstileRef = React.createRef(); }
-    const contact = {
-      formRef: this.formRef,
-      turnstileRef: this.turnstileRef,
-      submit: (e) => this.submitContact(e),
-      sending: !!this.state.sending,
-      sendLabel: this.state.sending ? 'Sending…' : 'Send Message',
-      sent: !!this.state.sent,
-      hasError: !!this.state.errorMsg,
-      errorMsg: this.state.errorMsg || ''
-    };
     const dark = this.state.onDark;
     return {
-      ...contact,
-      toggleFx: () => this.toggleFx(),
-      sparkRef2: this.sparkRef2 || (this.sparkRef2 = React.createRef()),
-      fxLabel: ({ flow: 'Original', mix: 'Option 3: both' })[this.state.fx] || 'Network',
       menuOpen: this.state.menuOpen,
       openMenu: () => this.setState({ menuOpen: true }),
       closeMenu: () => this.setState({ menuOpen: false }),
       heroRef: this.heroRef,
-      bookRef: this.bookRef,
-      bookWaitRef: this.bookWaitRef,
       heroImgRef: this.heroImgRef,
       sparkRef: this.sparkRef,
-      // 12 cards at a time; "Load more" adds the next batch on the same page
-      ...(() => {
-        const q = (this.state.query || '').trim().toLowerCase();
-        // while searching, the featured article is part of the results too
-        const all = (p.posts && p.posts.length ? p.posts : this.posts())
-          .filter(x => q ? [x.title, x.excerpt, x.category].join(' ').toLowerCase().includes(q) : !x.featured);
-        const n = Math.min(all.length, this.state.shown || 12);
-        return {
-          posts: all.slice(0, n),
-          hasMore: n < all.length,
-          shownCount: n,
-          totalCount: all.length,
-          loadMore: () => this.setState(s => ({ shown: (s.shown || 12) + 12 })),
-          query: this.state.query || '',
-          onQuery: (e) => this.setState({ query: e.target.value, shown: 12 }),
-          noResults: !!q && all.length === 0
-        };
-      })(),
-      featured: this.featured(),
-      hasArticles: this.posts().length > 0,
-      noArticles: this.posts().length === 0,
-      // summary stays collapsed until hover or focus, matching the grid cards
-      featRow: this.state.featOpen ? '1fr' : '0fr',
-      featEnter: () => this.setState({ featOpen: true }),
-      featLeave: () => this.setState({ featOpen: false }),
+      howCols: (() => { const w = this.state.vw || 1200; return w < 560 ? 1 : w < 900 ? 2 : 4; })(),
       themeVars: {
         '--teal': p.teal || '#17726B',
+        '--coral': p.coral || '#F7A98A',
         '--hdrY': this.state.hdrHidden ? '-120%' : '0px',
         '--hdrBlur': this.state.hdrSolid ? 'blur(14px)' : 'none',
         '--hdrInk': dark ? '#fff' : (p.teal || '#17726B'),
@@ -660,7 +484,7 @@ class Component extends DCLogic {
 }
 
 
-;NR.boot(Component, {"teal": "#17726B"});
+;NR.boot(Component, {"teal": "#17726B", "coral": "#F7A98A"});
 })();
 </script>
 </body>

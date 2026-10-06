@@ -1,923 +1,886 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Open to Work - NoResume</title>
-    <link rel="canonical" href="https://noresume.co.uk/candidates">
-    <link rel="alternate" hreflang="en-GB" href="https://noresume.co.uk/candidates">
-    <link rel="alternate" hreflang="en" href="https://noresume.co/candidates">
-    <link rel="alternate" hreflang="x-default" href="https://noresume.co/candidates">
-    <meta name="description" content="Applications are dead. Your Unique Profile is the new currency. Your Identity. Your Terms. Your Market.">
-    <meta property="og:title" content="Open to Work - NoResume">
-    <meta property="og:url" content="https://noresume.co.uk/candidates">
-    <meta property="og:type" content="website">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-
-    <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: #000000;
-            background: linear-gradient(180deg, #F8F6E6 0%, #FABE9B 100%);
-            background-attachment: fixed;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* ── NAVIGATION ─────────────────────────────── */
-        header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            background: rgba(248, 246, 230, 0.95);
-            backdrop-filter: blur(8px);
-            padding: 1rem 0;
-            box-shadow: 0 2px 20px rgba(6, 27, 64, 0.06);
-        }
-
-        .header-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: clamp(10px, 3vw, 20px);
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 clamp(10px, 3vw, 20px);
-        }
-
-        .logo img { height: clamp(29px, 6.6vw, 45px); }
-
-        .nav-buttons {
-            display: flex;
-            gap: clamp(5px, 1.4vw, 12px);
-            align-items: center;
-        }
-
-        .btn-nav {
-            background: linear-gradient(135deg, #1A5F5F 0%, #36C5C5 100%);
-            color: white;
-            padding: clamp(6px, 1.4vw, 10px) clamp(5px, 1.5vw, 24px);
-            border-radius: 16px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: clamp(10px, 2.55vw, 14px);
-            transition: opacity 0.2s, transform 0.2s;
-            white-space: nowrap;
-        }
-
-        .btn-nav:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
-        /* current page = "you are here": light-green fill + thin dark-green gradient border */
-        .btn-nav.active {
-            padding: calc(clamp(6px, 1.4vw, 10px) - 1.5px) calc(clamp(5px, 1.5vw, 24px) - 1.5px);
-            border: 1.5px solid transparent;
-            background:
-                linear-gradient(135deg, #C2F2E2 0%, #E3FFF6 42%) padding-box,
-                linear-gradient(135deg, #0a3d2e 0%, #1A5F5F 100%) border-box;
-            color: #1A5F5F;
-        }
-
-        /* Subtle shine sweep on the "Try it now" CTA so it catches the eye */
-        .btn-try-now { position: relative; overflow: hidden; }
-        .btn-try-now::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -150%;
-            width: 60%;
-            height: 100%;
-            background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.45) 50%, transparent 100%);
-            transform: skewX(-20deg);
-            animation: btnShine 2.6s ease-in-out infinite;
-            pointer-events: none;
-        }
-        @keyframes btnShine {
-            0%   { left: -150%; }
-            18%  { left: 150%; }
-            100% { left: 150%; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .btn-try-now::after { animation: none; }
-        }
-
-        /* ── MAIN ───────────────────────────────────── */
-        main { padding-top: 80px; }
-
-        /* ── PART 1: Hero Statement ─────────────────── */
-        .hero-statement {
-            padding: 40px 0 20px 0;
-        }
-
-        .hero-statement-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 40px;
-        }
-
-        .hero-text h1 {
-            font-size: clamp(1.2rem, 2.2vw, 1.8rem);
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 8px;
-            line-height: 1.2;
-        }
-
-        .hero-text p {
-            font-size: clamp(1rem, 1.8vw, 1.2rem);
-            color: #555;
-            font-weight: 400;
-            margin-bottom: 0;
-        }
-
-        /* "Try it now" CTA -> live job-seeker tool (talent.noresume.co) */
-        .btn-try {
-            display: inline-block;
-            margin-top: 18px;
-            background: linear-gradient(135deg, #1A5F5F 0%, #36C5C5 100%);
-            color: #fff;
-            padding: 14px 28px;
-            border-radius: 16px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            box-shadow: 0 6px 18px rgba(26, 95, 95, 0.25);
-            transition: opacity 0.2s, transform 0.2s;
-        }
-        .btn-try:hover { opacity: 0.93; transform: translateY(-2px); }
-        @media (max-width: 480px) {
-            .btn-try { display: block; text-align: center; font-size: 15px; padding: 13px 20px; }
-        }
-
-        .btn-commission {
-            background: linear-gradient(135deg, #C2F2E2 0%, #E3FFF6 42%);
-            color: #555;
-            padding: 6px 16px;
-            border-radius: 16px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 12px;
-            white-space: nowrap;
-            transition: opacity 0.2s, transform 0.2s;
-            flex-shrink: 0;
-            align-self: flex-start;
-            margin-top: 4px;
-        }
-
-        .btn-commission:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
-        /* ── PART 2: How It Works ───────────────────── */
-        .how-section {
-            padding: 40px 0 40px 0;
-        }
-
-        .how-header {
-            margin-bottom: 8px;
-        }
-
-        .how-header h2 {
-            font-size: clamp(1.4rem, 2.5vw, 2rem);
-            font-weight: 700;
-            color: #000000;
-        }
-
-        .how-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .falcon-col {
-            width: 100%;
-        }
-
-        .falcon-col svg {
-            width: 100% !important;
-            height: auto !important;
-            display: block;
-        }
-
-        /* Click-to-play video (replaces the old steps scene) */
-        .nr-video {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            border-radius: 20px;
-            overflow: hidden;
-            cursor: pointer;
-            box-shadow: 0 12px 32px rgba(26, 95, 95, 0.22);
-        }
-        .nr-video img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        /* hover darken — pointer-events:none so it can never block the player controls */
-        .nr-video::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0);
-            transition: background 0.2s ease;
-            pointer-events: none;
-        }
-        .nr-video:hover::after { background: rgba(0, 0, 0, 0.12); }
-        .nr-video.playing { cursor: default; }
-        .nr-video.playing::after { display: none; }
-        .nr-video-play {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border: 0;
-            background: none;
-            padding: 0;
-            cursor: pointer;
-            filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.4));
-            transition: transform 0.2s ease;
-        }
-        .nr-video:hover .nr-video-play { transform: translate(-50%, -50%) scale(1.08); }
-        /* !important needed: .falcon-col svg above forces width:100% !important */
-        .nr-video-play svg { width: 84px !important; height: 59px !important; display: block; }
-        .nr-video-iframe {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        .steps-heading {
-            font-size: clamp(1.2rem, 2vw, 1.6rem);
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 20px;
-        }
-
-        .steps-col .step {
-            margin-bottom: 16px;
-        }
-
-        .steps-col .step h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #000000;
-            margin-bottom: 4px;
-        }
-
-        .steps-col .step h3 span {
-            background: linear-gradient(135deg, #1A5F5F 0%, #36C5C5 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
-        }
-
-        .steps-col .step p {
-            font-size: 0.95rem;
-            color: #555;
-            line-height: 1.5;
-        }
-
-        .steps-col .step p strong {
-            color: #000000;
-        }
-
-        /* ── PART 3: Visual Market Insights ────────── */
-        .insights-section {
-            padding: 60px 0;
-        }
-
-        .insights-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .insights-text h2 {
-            font-size: clamp(1.2rem, 2vw, 1.6rem);
-            font-weight: 700;
-            margin-bottom: 16px;
-            background: linear-gradient(135deg, #1A5F5F 0%, #36C5C5 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .insights-text p {
-            font-size: 1rem;
-            color: #555;
-            line-height: 1.7;
-        }
-
-        .insights-text p strong {
-            color: #000000;
-        }
-
-        .insights-image {
-            width: 100%;
-        }
-
-        .insights-image svg {
-            width: 100% !important;
-            height: auto !important;
-            display: block;
-        }
-
-        /* ── PART 4: Share the Revolution ───────────── */
-        .referral-section {
-            padding: 60px 0;
-        }
-
-        .referral-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .referral-image {
-            width: 100%;
-        }
-
-        .referral-image svg {
-            width: 100% !important;
-            height: auto !important;
-            display: block;
-        }
-
-        .referral-text h2 {
-            font-size: clamp(1.2rem, 2vw, 1.6rem);
-            font-weight: 700;
-            margin-bottom: 16px;
-            background: linear-gradient(135deg, #1A5F5F 0%, #36C5C5 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .referral-text p {
-            font-size: 1rem;
-            color: #555;
-            line-height: 1.7;
-            margin-bottom: 8px;
-        }
-
-        .referral-text p strong {
-            color: #000000;
-        }
-
-        /* ── PART 5: CTA ────────────────────────────── */
-        .cta-section {
-            padding: 60px 0;
-            text-align: center;
-        }
-
-        .cta-section h2 {
-            font-size: clamp(1.6rem, 3vw, 2.2rem);
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 8px;
-        }
-
-        .cta-section p {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 36px;
-        }
-
-        .app-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-app-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            background: white;
-            border-radius: 16px;
-            padding: 12px 24px;
-            text-decoration: none;
-            color: #333;
-            transition: transform 0.2s, box-shadow 0.2s;
-            min-width: 180px;
-            border: none;
-            box-shadow: 0 4px 12px rgba(26, 95, 95, 0.3), 0 4px 12px rgba(54, 197, 197, 0.2);
-        }
-
-        .btn-app-badge:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(26, 95, 95, 0.4);
-        }
-
-        /* Official store badges (matches download.html / talent funnel) */
-        .app-buttons .store-badge { display: inline-block; transition: transform 0.2s; }
-        .app-buttons .store-badge img { height: 56px; width: auto; display: block; }
-        .app-buttons .store-badge:hover { transform: translateY(-2px); }
-        @media (max-width: 480px) { .app-buttons .store-badge img { height: 50px; } }
-
-        .badge-icon {
-            width: 32px;
-            height: 32px;
-            fill: #333;
-            flex-shrink: 0;
-        }
-
-        .badge-text {
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-        }
-
-        .badge-sub {
-            font-size: 11px;
-            font-weight: 400;
-            color: #555;
-            line-height: 1.2;
-        }
-
-        .badge-main {
-            font-size: 17px;
-            font-weight: 700;
-            color: #000;
-            line-height: 1.2;
-        }
-
-        /* ── PART 6: FOOTER ─────────────────────────── */
-        footer {
-            background: linear-gradient(135deg, #1A5F5F 0%, #36C5C5 100%);
-            color: white;
-            margin-top: 40px;
-            padding: 50px 0 30px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 30px;
-        }
-
-        .footer-section h4 {
-            margin-bottom: 16px;
-            font-size: 14px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: rgba(255,255,255,0.7);
-        }
-
-        .footer-section p,
-        .footer-section a {
-            color: rgba(255,255,255,0.9);
-            font-size: 13px;
-            line-height: 2;
-            text-decoration: none;
-            display: block;
-        }
-
-        .footer-section a:hover { color: white; }
-
-        .social-links {
-            display: flex;
-            gap: 12px;
-            margin-top: 8px;
-        }
-
-        .social-links a {
-            width: 36px;
-            height: 36px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s;
-        }
-
-        .social-links a:hover { background: rgba(255,255,255,0.3); }
-
-        .social-links img {
-            width: 18px;
-            height: 18px;
-            filter: brightness(0) invert(1);
-        }
-
-        .btn-contact {
-            display: table;
-            margin-top: 12px;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            padding: 8px 24px;
-            border-radius: 16px;
-            font-size: 13px;
-            font-weight: 500;
-            text-decoration: none;
-            transition: background 0.2s;
-            border: 1px solid rgba(255,255,255,0.4);
-        }
-
-        .btn-contact:hover { background: rgba(255,255,255,0.3); color: white; }
-
-        .btn-ambassador {
-            display: table;
-            margin-top: 8px;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            padding: 8px 24px;
-            border-radius: 16px;
-            font-size: 13px;
-            font-weight: 500;
-            text-decoration: none;
-            transition: background 0.2s;
-            border: 1px solid rgba(255,255,255,0.4);
-        }
-
-        .btn-ambassador:hover { background: rgba(255,255,255,0.3); color: white; }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 24px;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            color: rgba(255,255,255,0.6);
-            font-size: 12px;
-        }
-
-        /* Hero: keep text + commission button on one row until real phones */
-        @media (max-width: 560px) {
-            .hero-statement-inner { flex-direction: column; gap: 8px; }
-            .btn-commission { align-self: flex-end; margin-top: 4px; }
-        }
-
-        /* ── MOBILE ─────────────────────────────────── */
-        @media (max-width: 768px) {
-            .how-grid,
-            .insights-grid,
-            .referral-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            /* Video before heading/text on mobile */
-            .falcon-col { order: 1; }
-            .steps-col { order: 2; }
-
-            .insights-text { order: 1; }
-            .insights-image { order: 2; }
-
-            .referral-image { order: 2; }
-            .referral-text { order: 1; }
-
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-                gap: 30px;
-            }
-
-            .app-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .footer-content { grid-template-columns: 1fr; }
-        }
-
-        /* Drop the "Try it now" arrow on phones where the 3 buttons get tight */
-        @media (max-width: 430px) { .nav-arrow { display: none; } }
-
-        @media (max-width: 389px) {
-            .header-inner { flex-wrap: wrap; justify-content: center; row-gap: 8px; }
-            .logo { width: 100%; text-align: center; }
-            .nav-buttons { width: 100%; justify-content: center; }
-            body main { padding-top: 118px; }
-        }
-        @keyframes breathe {
-            0%, 100% { transform: scale(1); }
-            50%       { transform: scale(1.03); }
-        }
-        .insights-image img {
-            animation: breathe 4s ease-in-out infinite;
-            transform-origin: center center;
-        }
-    </style>
-    <script src="/js/analytics.js?v=2"></script>
-    <script src="/js/waitlist.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open to Work - NoResume</title>
+<link rel="canonical" href="https://noresume.co.uk/candidates">
+<link rel="alternate" hreflang="en-GB" href="https://noresume.co.uk/candidates">
+<link rel="alternate" hreflang="en" href="https://noresume.co/candidates">
+<link rel="alternate" hreflang="x-default" href="https://noresume.co/candidates">
+<meta name="description" content="Applications are dead. Your Unique Profile is the new currency. Your Identity. Your Terms. Your Market.">
+<meta property="og:title" content="Open to Work - NoResume">
+<meta property="og:url" content="https://noresume.co.uk/candidates">
+<meta property="og:type" content="website">
+<script src="/js/analytics.js?v=2"></script>
+<style>
+.sc-placeholder { background: color-mix(in srgb, currentcolor 8%, transparent 92%); border: 1px solid color-mix(in srgb, currentcolor, transparent); border-radius: 2px; box-sizing: border-box; overflow: hidden; }
+@keyframes sc-shine { 
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+html.sc-dc-streaming .sc-placeholder, html.sc-dc-streaming .sc-interp.sc-missing { position: relative; background: color-mix(in srgb, currentcolor 5%, transparent 95%); border-color: transparent; }
+html.sc-dc-streaming .sc-placeholder::before, html.sc-dc-streaming .sc-interp.sc-missing::before { content: ""; position: absolute; inset: 0px; pointer-events: none; background: linear-gradient(90deg, rgba(217, 119, 87, 0) 25%, rgba(247, 225, 211, 0.95) 37%, rgba(217, 119, 87, 0) 63%) 0% 0% / 400% 100%; animation: 1.4s ease 0s infinite normal none running sc-shine; }
+html.sc-dc-streaming .sc-placeholder:nth-child(n+9 of .sc-placeholder)::before, html.sc-dc-streaming .sc-interp.sc-missing:nth-child(n+9 of .sc-interp.sc-missing)::before { animation: auto ease 0s 1 normal none running none; background: color-mix(in srgb, currentcolor 8%, transparent 92%); }
+.sc-placeholder-error { padding: 4px 8px; font: 11px / 1.4 ui-monospace, monospace; color: color-mix(in srgb, currentcolor 70%, transparent 30%); word-break: break-word; }
+.sc-interp.sc-missing { display: inline-block; width: 2em; height: 1em; overflow: hidden; vertical-align: text-bottom; background: rgba(255, 255, 255, 0.3); border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 2px; box-sizing: border-box; color: transparent; user-select: none; }
+.sc-interp.sc-unresolved { font-family: ui-monospace, monospace; font-size: 0.85em; color: color-mix(in srgb, currentcolor, transparent); background: color-mix(in srgb, currentcolor 10%, transparent 90%); border-radius: 3px; padding: 0px 3px; }
+.sc-host.sc-has-error { position: relative; }
+.sc-logic-error { position: absolute; top: 8px; left: 8px; z-index: 2147483647; max-width: 60ch; padding: 6px 10px; background: rgb(176, 0, 32); color: rgb(255, 255, 255); font: 12px / 1.4 ui-monospace, monospace; border-radius: 4px; white-space: pre-wrap; pointer-events: none; }
+@media print {
+  @page { margin: 0.5cm; }
+  figure, table { break-inside: avoid; }
+  #dc-root, #dc-root > .sc-host { height: auto; }
+  *, ::before, ::after { print-color-adjust: exact; backdrop-filter: none !important; animation-delay: -99s !important; animation-duration: 0.001s !important; animation-iteration-count: 1 !important; animation-fill-mode: both !important; animation-play-state: running !important; transition-duration: 0s !important; }
+}
+x-dc { display: none !important; }
+.scp0:hover { box-shadow: rgba(6, 27, 64, 0.22) 0px 26px 54px !important; }
+.scp1:hover { box-shadow: rgba(6, 27, 64, 0.28) 0px 32px 70px !important; }
+.scp2:hover { background: rgb(255, 255, 255) !important; transform: translateY(-2px) !important; }
+html, body { height: 100%; margin: 0px; }
+#dc-root, #dc-root > .sc-host { height: 100%; }
+[data-if][data-if-on="false"]{display:none!important}
+</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap">
+<style>
+  body { margin: 0; }
+  /* footer: logo + statement on the left (wider), icons under Contact; under 1000 px the statement gets its own row, phones one column */
+  [data-foot-grid] { grid-template-columns: minmax(0, 1.8fr) repeat(3, minmax(204px, 1fr)) !important; }
+  @media (max-width: 1000px) { [data-foot-grid] { grid-template-columns: 1fr 1fr !important; } [data-foot-brand] { grid-column: 1 / -1; } }
+  @media (max-width: 560px) { [data-foot-grid] { grid-template-columns: 1fr !important; } }
+  /* top section fills the visible screen on every device (at least 560 px); headline and buttons stay together, centred */
+  [data-hero-full] { height: 100vh !important; height: 100svh !important; min-height: 560px !important; max-height: none !important;
+    display: flex !important; flex-direction: column; justify-content: center; }
+  [data-hero-full] > [data-hero-text], [data-hero-full] > [data-hero-btns] { position: relative !important; top: auto !important; bottom: auto !important; transform: none !important; }
+  [data-hero-full] > [data-hero-btns] { margin-top: 44px; }
+  @media (max-width: 760px) { [data-hero-full] > [data-hero-btns] { margin-top: 28px; } }
+  /* footer social icons: the circle turns white and the logo teal on hover or keyboard focus */
+  [data-social]:hover, [data-social]:focus-visible { background: #fff !important; color: #17726B !important; }
+  /* desktop menu words two sizes up (17 -> 19 px) */
+  [data-desk-nav] a { font-size: 19px !important; }
+  /* phones: the headline wraps and sits higher, so the spotlight follows it */
+  @media (max-width: 760px) { [data-hero-spot] { background: radial-gradient(ellipse 62% 28% at 50% 45%, rgba(5,24,30,.78) 0%, rgba(5,24,30,.5) 45%, rgba(5,24,30,0) 100%) !important; } }
+  /* pulling past the top or bottom of the page shows this instead of white */
+  html { background: #06282C; }
+  a { color: #17726B; text-decoration: none; }
+  a:hover { color: #36C5C5; }
+  @media (max-width: 760px) { [data-desk-nav] { display: none !important; } }
+  /* carousel cards: the words and their shade sit on their own layer above the clip,
+     so iPhone never draws a starting video over them */
+  article > [data-rail-media] ~ span, article > [data-rail-media] ~ div { z-index: 1; transform: translateZ(0); }
+  /* phones: the demo video spans the full screen width, as big as it gets in portrait */
+  @media (max-width: 760px) { [data-demo-card] { width: 100vw !important; max-width: 100vw !important; border-radius: 0 !important; box-shadow: none !important; } }
+  @media (max-width: 760px) { section:has(> [data-hero-text]) { display: flex !important; flex-direction: column; justify-content: center; } [data-hero-text], [data-hero-btns] { position: relative !important; top: auto !important; bottom: auto !important; transform: none !important; } [data-hero-btns] { margin-top: 28px; } }
+  @keyframes nrHeroDrift { from { transform: scale(1.015) translate3d(-.5%, .2%, 0); } to { transform: scale(1.05) translate3d(.6%, -.4%, 0); } }
+  @media (prefers-reduced-motion: reduce) { [data-hero-img] { animation: none !important; } }
+</style>
 </head>
 <body>
+<div id="dc-root"><div class="sc-host" data-sc-name="candidates"><div data-b-style="[[ themeVars ]]" style="--teal: #17726B; --coral: #F7A98A; --hdrY: 0px; --hdrBlur: none; --hdrInk: #fff; --hdrShadow: 0 1px 12px rgba(0,0,0,.55); --tiltA: -2.5deg; --tiltC: 2.5deg;">
+  <div style="font-family: Poppins, sans-serif; color: rgb(17, 17, 17); line-height: 1.6; background: linear-gradient(rgb(248, 246, 230) 0%, rgb(250, 190, 155) 100%) fixed; overflow-x: hidden;">
 
-    <!-- ── NAVIGATION ─────────────────────────────── -->
-    <header>
-        <div class="header-inner">
-            <div class="logo">
-                <a href="/">
-                    <img src="assets/images/noresume_logo-color-orange.png" alt="NoResume">
-                </a>
-            </div>
-            <nav class="nav-buttons">
-                <a href="/employers" class="btn-nav">Looking to Hire</a>
-                <a href="/candidates" class="btn-nav active">Open to Work</a>
-                <a href="https://talent.noresume.co" class="btn-nav btn-try-now">Try it now<span class="nav-arrow"> →</span></a>
-            </nav>
+    
+    <section data-hdr-dark="true" data-hero-full="true" data-ref="heroRef" style="position: relative; min-height: 640px; height: 82vh; max-height: 860px; overflow: hidden; background: rgb(6, 40, 44);">
+      <video src="assets/video/talent-v10.mp4#t=0.1" poster="assets/video/posters/talent-v10.jpg?v=556aac2e" loop="" preload="auto" aria-hidden="true" data-ref="heroImgRef" autoplay="" playsinline="" muted="" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; display: block; background: rgb(6, 40, 44);"></video>
+      <div style="position: absolute; inset: 0px; background: linear-gradient(rgba(8, 40, 44, 0.5) 0%, rgba(8, 40, 44, 0) 26%, rgba(8, 40, 44, 0) 70%, rgba(8, 40, 44, 0.5) 100%);"></div>
+
+      <header style="position: fixed; top: 0px; left: 0px; right: 0px; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 22px 32px; transform: translateY(var(--hdrY, 0px)); transition: transform 0.32s;">
+        
+        <span aria-hidden="true" style="position: absolute; left: 0px; right: 0px; top: 0px; height: 106px; pointer-events: none; backdrop-filter: blur(4px); mask-image: linear-gradient(transparent 0%, transparent 40%, rgb(0, 0, 0) 60%, rgb(0, 0, 0) 80%, transparent 100%);"></span>
+        <span aria-hidden="true" style="position: absolute; left: 0px; right: 0px; top: 0px; height: 106px; pointer-events: none; backdrop-filter: blur(6px); mask-image: linear-gradient(transparent 0%, transparent 20%, rgb(0, 0, 0) 40%, rgb(0, 0, 0) 60%, transparent 80%);"></span>
+        <span aria-hidden="true" style="position: absolute; left: 0px; right: 0px; top: 0px; height: 106px; pointer-events: none; backdrop-filter: blur(10px); mask-image: linear-gradient(transparent 0%, rgb(0, 0, 0) 20%, rgb(0, 0, 0) 40%, transparent 60%);"></span>
+        <span aria-hidden="true" style="position: absolute; left: 0px; right: 0px; top: 0px; height: 106px; pointer-events: none; backdrop-filter: blur(18px); mask-image: linear-gradient(rgb(0, 0, 0) 0%, rgb(0, 0, 0) 20%, transparent 40%);"></span>
+        <span aria-hidden="true" style="position: absolute; left: 0px; right: 0px; top: 0px; height: 106px; pointer-events: none; backdrop-filter: blur(34px); mask-image: linear-gradient(rgb(0, 0, 0) 0%, transparent 20%);"></span>
+        <a href="/" style="display: block; flex: 0 0 auto; position: relative; z-index: 1;">
+          <img src="assets/images/noresume_logo-color-orange.png" alt="NoResume" style="height: clamp(32px, 21px + 3vw, 46px); width: auto; display: block; filter: drop-shadow(rgba(0, 0, 0, 0.45) 0px 2px 10px);">
+        </a>
+        <nav data-desk-nav="true" style="display: flex; align-items: center; gap: 34px; position: relative; z-index: 1;">
+          <a href="/employers" style="color: var(--hdrInk, #fff); font-size: 17px; font-weight: 500; text-shadow: var(--hdrShadow, 0 1px 12px rgba(0,0,0,.55)); transition: color 0.32s;">Hire Talent</a>
+          <a href="/candidates" style="color: var(--hdrInk, #fff); font-size: 17px; font-weight: 600; text-shadow: var(--hdrShadow, 0 1px 12px rgba(0,0,0,.55)); transition: color 0.32s;">I am Talent</a>
+          <a href="https://app.noresume.co" style="color: var(--hdrInk, #fff); font-size: 17px; font-weight: 600; text-shadow: var(--hdrShadow, 0 1px 12px rgba(0,0,0,.55)); transition: color 0.32s;">Log-in</a>
+        </nav>
+        <button type="button" aria-label="Menu" data-on="click:openMenu" style="flex: 0 0 auto; position: relative; z-index: 1; width: 48px; height: 48px; padding: 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: none; cursor: pointer; display: flex; flex-direction: column; justify-content: center; align-items: flex-end; gap: 6px;">
+          <span style="display: block; width: 30px; height: 3px; border-radius: 999px; background: var(--hdrInk, #fff); box-shadow: var(--hdrShadow, 0 1px 8px rgba(0,0,0,.45)); transition: background 0.32s;"></span>
+          <span style="display: block; width: 30px; height: 3px; border-radius: 999px; background: var(--hdrInk, #fff); box-shadow: var(--hdrShadow, 0 1px 8px rgba(0,0,0,.45)); transition: background 0.32s;"></span>
+          <span style="display: block; width: 30px; height: 3px; border-radius: 999px; background: var(--hdrInk, #fff); box-shadow: var(--hdrShadow, 0 1px 8px rgba(0,0,0,.45)); transition: background 0.32s;"></span>
+        </button>
+      </header>
+
+      
+      <div data-hero-spot="true" aria-hidden="true" style="position: absolute; inset: 0px; pointer-events: none; z-index: 2; background: radial-gradient(40% 30% at 50% 45%, rgba(5, 24, 30, 0.78) 0%, rgba(5, 24, 30, 0.5) 45%, rgba(5, 24, 30, 0) 100%);"></div>
+      <div data-hero-text="true" style="position: absolute; left: 0px; right: 0px; top: 50%; transform: translateY(-50%); z-index: 3; padding: 0px 32px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+        <h1 style="margin: 0px; max-width: 20ch; font-size: clamp(3.12rem, 6vw, 5.04rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; color: rgb(255, 255, 255); text-shadow: rgba(6, 30, 32, 0.75) 0px 4px 28px, rgba(6, 30, 32, 0.6) 0px 1px 4px; text-wrap: pretty;">Work on your Terms</h1>
+        <p style="margin: 16px 0px 0px; max-width: 62ch; font-size: clamp(1.5rem, 2.28vw, 1.92rem); font-weight: 600; line-height: 1.5; color: rgba(255, 255, 255, 0.96); text-shadow: rgba(6, 30, 32, 0.85) 0px 2px 18px, rgba(6, 30, 32, 0.7) 0px 1px 3px; text-wrap: pretty;">No Applications. Your Unique Profile is the new currency</p>
+      </div>
+
+      <div data-if="menuOpen" data-if-on="false" data-mounted="0" style="display: contents;"><template>
+        <div data-on="click:closeMenu" style="position: fixed; inset: 0px; z-index: 60; background: rgba(6, 30, 32, 0.5); backdrop-filter: blur(3px);"></div>
+        <aside style="position: fixed; top: 0px; right: 0px; bottom: 0px; z-index: 61; width: 320px; max-width: 86vw; background: rgb(248, 246, 230); box-shadow: rgba(6, 27, 64, 0.28) -20px 0px 60px; display: flex; flex-direction: column; padding: 26px 30px 34px;">
+          <div style="display: flex; justify-content: flex-end;">
+            <button type="button" aria-label="Close menu" data-on="click:closeMenu" style="width: 42px; height: 42px; padding: 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: none; cursor: pointer; display: grid; place-items: center; color: rgb(23, 114, 107);"><svg viewBox="0 0 24 24" aria-hidden="true" style="width: 22px; height: 22px; display: block;"><path d="M5 5 L19 19 M19 5 L5 19" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></path></svg></button>
+          </div>
+          <nav style="display: flex; flex-direction: column; gap: 4px; margin-top: 18px;">
+            <a href="/" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Home</a>
+            <a href="/employers" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Hire Talent</a>
+            <a href="/candidates" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 700; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">I am Talent</a>
+            <a href="/recruiters" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">For Recruiters</a>
+            <a href="/blog" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Insights</a>
+            <a href="/contact" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Contact Us</a>
+            <a href="/book" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Book a Call</a>
+          </nav>
+          <a href="https://app.noresume.co" style="margin-top: 26px; text-align: center; background: linear-gradient(135deg, rgb(26, 95, 95) 0%, rgb(54, 197, 197) 100%); color: rgb(255, 255, 255); padding: 14px 24px; border-radius: 999px; font-size: 17px; font-weight: 600;">Log-In</a>
+        </aside>
+      </template></div>
+
+      <div data-hero-btns="true" style="position: absolute; left: 0px; right: 0px; bottom: 118px; z-index: 3; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 0px 32px;">
+        <a href="https://talent.noresume.co" style="background: rgb(255, 255, 255); color: rgb(17, 17, 17); padding: 16px 20px; width: 210px; box-sizing: border-box; text-align: center; border-radius: 999px; font-size: 17px; font-weight: 500; box-shadow: rgba(0, 0, 0, 0.28) 0px 10px 34px;">Try Now</a>
+      </div>
+    </section>
+
+    
+    <section style="padding: 105px 0px 60px;">
+      <div style="max-width: 1240px; margin: 0px auto; padding: 0px 32px;">
+        <div style="text-align: center; margin-bottom: 46px;">
+          <h2 style="margin: 0px 0px 14px; font-size: clamp(1.9rem, 3.4vw, 2.7rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: var(--teal, #17726B); text-wrap: pretty;">A live market in your pocket.</h2>
+          <p style="margin: 0px auto; max-width: 68ch; font-size: clamp(1.15rem, 1.6vw, 1.4rem); line-height: 1.6; color: rgb(46, 58, 56); text-wrap: pretty;">Connect directly to real opportunities and manage your work life straight from your phone.</p>
         </div>
-    </header>
 
-    <main>
-
-        <!-- ── PART 1: Hero Statement ─────────────── -->
-        <section class="hero-statement">
-            <div class="container">
-                <div class="hero-statement-inner">
-                    <div class="hero-text">
-                        <h1>Applications are dead! Your Unique Profile is the new currency.</h1>
-                        <p>Your Identity. Your Terms. Your Market.</p>
-                    </div>
-                    <a href="#share-revolution" class="btn-commission">Claim your 1% Commissions →</a>
-                </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 58px;">
+          <div data-demo-card="true" style="position: relative; width: 100%; max-width: 940px; aspect-ratio: 16 / 9; border-radius: 24px; overflow: hidden; box-shadow: rgba(6, 27, 64, 0.18) 0px 22px 60px; background: rgb(6, 40, 44);">
+            <div data-if="demoPlaying" data-if-on="false" data-mounted="0" style="display: contents;"><template>
+              <iframe src="https://www.youtube-nocookie.com/embed/mHwi-vd7-yk?autoplay=1&amp;rel=0&amp;modestbranding=1&amp;playsinline=1" title="How NoResume works for talent" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen="" style="position: absolute; inset: 0px; width: 100%; height: 100%; border: 0px; display: block;"></iframe>
+            </template></div>
+            <div data-if="demoIdle" data-if-on="true" data-mounted="1" style="display: contents;"><template>
+              <button type="button" aria-label="Play the demo video" data-on="click:playDemo" style="position: absolute; inset: 0px; width: 100%; height: 100%; padding: 0px; border: 0px; cursor: pointer; background: none; display: block;">
+                <span aria-hidden="true" data-hdr-dark="true" style="position: absolute; left: 0px; right: 0px; top: 0px; height: 64%; pointer-events: none;"></span>
+                <img src="assets/images/talent-video-thumb.jpg" alt="Watch how NoResume works for talent" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; display: block;">
+                <span style="position: absolute; inset: 0px; background: rgba(6, 16, 36, 0.18);"></span>
+                <span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); color: rgb(17, 17, 17); padding: 14px 28px; border-radius: 999px; font-family: inherit; font-size: 16px; font-weight: 600; box-shadow: rgba(6, 16, 36, 0.32) 0px 12px 34px;">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" style="width: 16px; height: 16px; display: block;"><polygon points="6 4 20 12 6 20" fill="#17726B"></polygon></svg>
+                  Watch Demo
+                </span>
+              </button>
+            </template>
+              <button type="button" aria-label="Play the demo video" data-on="click:playDemo" style="position: absolute; inset: 0px; width: 100%; height: 100%; padding: 0px; border: 0px; cursor: pointer; background: none; display: block;">
+                <span aria-hidden="true" data-hdr-dark="true" style="position: absolute; left: 0px; right: 0px; top: 0px; height: 64%; pointer-events: none;"></span>
+                <img src="assets/images/talent-video-thumb.jpg" alt="Watch how NoResume works for talent" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; display: block;">
+                <span style="position: absolute; inset: 0px; background: rgba(6, 16, 36, 0.18);"></span>
+                <span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); color: rgb(17, 17, 17); padding: 14px 28px; border-radius: 999px; font-family: inherit; font-size: 16px; font-weight: 600; box-shadow: rgba(6, 16, 36, 0.32) 0px 12px 34px;">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" style="width: 16px; height: 16px; display: block;"><polygon points="6 4 20 12 6 20" fill="#17726B"></polygon></svg>
+                  Watch Demo
+                </span>
+              </button>
             </div>
-        </section>
+          </div>
 
-        <!-- ── PART 2: How It Works ───────────────── -->
-        <section class="how-section">
-            <div class="container">
-                <div class="how-grid">
-                    <div class="falcon-col" id="nr-falcon-section">
-                        <div class="nr-video" data-video-id="mHwi-vd7-yk">
-                            <img src="assets/images/talent-video-thumb.jpg" alt="Watch how NoResume works for candidates" loading="lazy" decoding="async">
-                            <button class="nr-video-play" aria-label="Play video">
-                                <svg viewBox="0 0 68 48" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="#f00"/>
-                                    <path d="M45 24 27 14v20" fill="#fff"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="steps-col">
-                        <h2 class="steps-heading">HOW IT WORKS: The Steps of Revolution</h2>
-                        <div class="step">
-                            <h3><span>Step 1.</span> Define Your Identity.</h3>
-                            <p>Complete your <strong>Profile DNA</strong> once. No more tailoring CVs, no more cover letters. Your expertise is now a living signal that never sleeps.</p>
-                        </div>
-                        <div class="step">
-                            <h3><span>Step 2.</span> Set Your Terms of Engagement.</h3>
-                            <p><strong>Your Talent</strong> is a Currency. You are the Architect - set your time, your compensation rate, and your lifestyle. You aren't fitting into a job; the market is fitting into your life.</p>
-                        </div>
-                        <div class="step">
-                            <h3><span>Step 3.</span> Activate Flexible-work Earning.</h3>
-                            <p>One toggle to open your DNA to occasional work, your extra stream of income. No manual invoices. The '<strong>Neon Falcon</strong>' handles the paperwork - you just handle the expertise.</p>
-                        </div>
-                        <div class="step">
-                            <h3><span>Step 4.</span> Direct Dialogue.</h3>
-                            <p>Forget the "Apply Now" button. Jump straight into a <strong>Real-Time Chat</strong>. No gatekeepers, no automated rejections. Just two humans seeing if the vibe matches the spec.</p>
-                        </div>
-                        <div class="step">
-                            <h3><span>Step 5.</span> The Master Pipeline.</h3>
-                            <p>Manage your entire professional life in-app. Video calls, offers, and payments – all in one place. You are <strong>closing a deal</strong> on your own terms.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ── PART 3: Visual Market Insights ───────── -->
-        <section class="insights-section">
-            <div class="container">
-                <div class="insights-grid">
-                    <div class="insights-text">
-                        <h2>Visual Market Insights.</h2>
-                        <p><strong>Know your Power</strong>. See exactly where you stand and what you're worth. No more guessing. Total transparency.</p>
-                    </div>
-                    <div class="insights-image" id="insights-falcon">
-                        <img src="assets/images/Candidate Market insight.jpeg" alt="Visual Market Insights" style="width:100%;height:auto;display:block;border-radius:12px;">
-
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ── PART 4: Share the Revolution ──────────── -->
-        <section class="referral-section" id="share-revolution">
-            <div class="container">
-                <div class="referral-grid">
-                    <div class="referral-image" id="referral-falcon">
-
-                    <div id="svg-share-revolution"></div>
-                    </div>
-                    <div class="referral-text">
-                        <h2>Share the Revolution.</h2>
-                        <p>Invite your circle with your unique QR code - any industry, any role, any gig work. Unlock Passive Commission on every connection.</p>
-                        <p><strong>Monetise your network… build your wealth.</strong></p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ── PART 5: CTA ────────────────────────── -->
-<section class="cta-section">
-<div class="container">
-<h2><strong>Ready for the Revolution?</strong></h2>
-<p>Join the Open Job Market. The Future is yours.</p>
-<div class="app-buttons">
-<a href="https://apps.apple.com/gb/app/noresume/id6759061302" target="_blank" rel="noopener" class="store-badge" aria-label="Download on the App Store">
-<img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store">
-</a>
-<a href="https://play.google.com/store/apps/details?id=noresume.app&gl=gb" target="_blank" rel="noopener" class="store-badge" aria-label="Get it on Google Play">
-<img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
-</a>
-</div>
-</div>
-</section>
-
-    </main>
-
-    <!-- ── PART 6: FOOTER ─────────────────────────── -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Social Media</h4>
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/company/noresume" target="_blank" rel="noopener">
-                            <img src="assets/images/vecteezy_linkedin-logo-png-linkedin-logo-transparent-png-linkedin_23986970.png" alt="LinkedIn">
-                        </a>
-                        <a href="https://www.tiktok.com/@thenoresume" target="_blank" rel="noopener">
-                            <img src="assets/images/tiktok_logo_social+media_icon.png" alt="TikTok">
-                        </a>
-                        <a href="https://www.youtube.com/@thenoresume" target="_blank" rel="noopener">
-                            <img src="assets/images/Youtube_logo_icon.png" alt="YouTube">
-                        </a>
-                        <a href="https://www.facebook.com/profile.php?id=61566370331980" target="_blank" rel="noopener">
-                            <img src="assets/images/facebook+logo_icon_2.png" alt="Facebook">
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>Location</h4>
-                    <p>NoResume</p>
-                    <p>71-75 Shelton Street</p>
-                    <p>Covent Garden</p>
-                    <p>London WC2H 9JQ</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <a href="/privacy-policy">Privacy Policy</a>
-                    <a href="/terms-of-service">Terms of Service</a>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <a href="/cdn-cgi/l/email-protection#4920272f2609273b2c3a3c242c672a2624"><span class="__cf_email__" data-cfemail="d4bdbab2bb94baa6b1a7a1b9b1fab7bbb9">[email&#160;protected]</span></a>
-                    <a href="/contact" class="btn-contact">Contact Us</a>
-                    <a href="#" class="btn-ambassador">Ambassador Programme</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 NoResume. All rights reserved.</p>
-            </div>
         </div>
+      </div>
+    </section>
+
+    
+    <section style="padding: 45px 0px 60px;">
+      <div style="max-width: 1240px; margin: 0px auto; padding: 0px 32px;">
+        <h2 style="margin: 0px auto 46px; text-align: center; font-size: clamp(1.9rem, 3.4vw, 2.7rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: var(--teal, #17726B);">End-to-End Control from your phone</h2>
+
+        <div style="position: relative; margin: 0px -32px;">
+          <div data-ref="railRef" style="padding: 30px 32px 78px; margin-bottom: -56px; touch-action: pan-y; overflow: hidden; pointer-events: none; mask-image: linear-gradient(to right, transparent 0px, rgb(0, 0, 0) 46px, rgb(0, 0, 0) calc(100% - 46px), transparent 100%);">
+            <div data-ref="trackRef" style="display: flex; gap: 26px; align-items: center; height: 467px; pointer-events: auto; will-change: transform;">
+          
+
+          <article data-hdr-dark="true" class="scp0" style="position: relative; flex: 0 0 auto; width: 258px; height: 374px; background: rgb(15, 111, 105); border-radius: 26px; box-sizing: border-box; overflow: hidden; box-shadow: rgba(6, 27, 64, 0.16) 0px 18px 44px; display: flex; flex-direction: column; justify-content: flex-end; transition: box-shadow 0.22s;">
+            <video data-rail-media="true" data-rail-video="true" src="assets/video/talent-market-insights.mp4#t=0.1" poster="assets/video/posters/talent-market-insights.jpg?v=eaeab446" loop="" preload="none" aria-label="Market insights in the NoResume app" playsinline="" muted="" style="position: absolute; left: 50%; top: -12px; width: 299px; height: calc(100% + 12px); transform: translateX(-50%); object-fit: cover; object-position: center top; display: block; background: rgb(15, 111, 105);"></video>
+            <span aria-hidden="true" style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 52%; background: linear-gradient(rgba(10, 70, 66, 0) 0%, rgba(10, 70, 66, 0.62) 46%, rgba(9, 62, 59, 0.96) 100%);"></span>
+            <div style="position: relative; padding: 0px 22px 24px; display: flex; flex-direction: column; gap: 9px;">
+              <h3 style="margin: 0px; font-size: 20px; font-weight: 700; line-height: 1.2; color: rgb(255, 255, 255);">Market Insights</h3>
+              <p style="margin: 0px; font-size: 14.5px; line-height: 1.5; color: rgb(255, 255, 255);">Know your market value. Real-Time salary benchmark gives you the leverage to price your skills with confidence.</p>
+            </div>
+          </article>
+
+          <article data-hdr-dark="true" class="scp0" style="position: relative; flex: 0 0 auto; width: 258px; height: 374px; background: rgb(15, 111, 105); border-radius: 26px; box-sizing: border-box; overflow: hidden; box-shadow: rgba(6, 27, 64, 0.16) 0px 18px 44px; display: flex; flex-direction: column; justify-content: flex-end; transition: box-shadow 0.22s;">
+            <video data-rail-media="true" data-rail-video="true" src="assets/video/talent-profile-builder.mp4#t=0.1" poster="assets/video/posters/talent-profile-builder.jpg?v=07510bee" loop="" preload="none" aria-label="The profile builder in the NoResume app" playsinline="" muted="" style="position: absolute; left: 50%; top: -12px; width: 299px; height: calc(100% + 12px); transform: translateX(-50%); object-fit: cover; object-position: center top; display: block; background: rgb(15, 111, 105);"></video>
+            <span aria-hidden="true" style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 52%; background: linear-gradient(rgba(10, 70, 66, 0) 0%, rgba(10, 70, 66, 0.62) 46%, rgba(9, 62, 59, 0.96) 100%);"></span>
+            <div style="position: relative; padding: 0px 22px 24px; display: flex; flex-direction: column; gap: 9px;">
+              <h3 style="margin: 0px; font-size: 20px; font-weight: 700; line-height: 1.2; color: rgb(255, 255, 255);">Profile Builder</h3>
+              <p style="margin: 0px; font-size: 14.5px; line-height: 1.5; color: rgb(255, 255, 255);">A smart tool that helps you showcase your skills and competence to stand out from the crowd.</p>
+            </div>
+          </article>
+
+          <article data-hdr-dark="true" class="scp0" style="position: relative; flex: 0 0 auto; width: 258px; height: 374px; background: rgb(15, 111, 105); border-radius: 26px; box-sizing: border-box; overflow: hidden; box-shadow: rgba(6, 27, 64, 0.16) 0px 18px 44px; display: flex; flex-direction: column; justify-content: flex-end; transition: box-shadow 0.22s;">
+            <video data-rail-media="true" data-rail-video="true" src="assets/video/talent-profile-dna.mp4#t=0.1" poster="assets/video/posters/talent-profile-dna.jpg?v=95270d1c" loop="" preload="none" aria-label="Your Profile DNA in the NoResume app" playsinline="" muted="" style="position: absolute; left: 50%; top: -12px; width: 299px; height: calc(100% + 12px); transform: translateX(-50%); object-fit: cover; object-position: center top; display: block; background: rgb(15, 111, 105);"></video>
+            <span aria-hidden="true" style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 52%; background: linear-gradient(rgba(10, 70, 66, 0) 0%, rgba(10, 70, 66, 0.62) 46%, rgba(9, 62, 59, 0.96) 100%);"></span>
+            <div style="position: relative; padding: 0px 22px 24px; display: flex; flex-direction: column; gap: 9px;">
+              <h3 style="margin: 0px; font-size: 20px; font-weight: 700; line-height: 1.2; color: rgb(255, 255, 255);">Your Profile DNA</h3>
+              <p style="margin: 0px; font-size: 14.5px; line-height: 1.5; color: rgb(255, 255, 255);">You don’t apply here. Your unique Profile is your 24/7 ‘Advert’; opportunities come to you. No need for different versions of yourself.</p>
+            </div>
+          </article>
+
+          <article data-hdr-dark="true" class="scp0" style="position: relative; flex: 0 0 auto; width: 258px; height: 374px; background: rgb(15, 111, 105); border-radius: 26px; box-sizing: border-box; overflow: hidden; box-shadow: rgba(6, 27, 64, 0.16) 0px 18px 44px; display: flex; flex-direction: column; justify-content: flex-end; transition: box-shadow 0.22s;">
+            <video data-rail-media="true" data-rail-video="true" src="assets/video/talent-set-your-terms.mp4#t=0.1" poster="assets/video/posters/talent-set-your-terms.jpg?v=bd96c96b" loop="" preload="none" aria-label="Setting your terms in the NoResume app" playsinline="" muted="" style="position: absolute; left: 50%; top: -12px; width: 299px; height: calc(100% + 12px); transform: translateX(-50%); object-fit: cover; object-position: center top; display: block; background: rgb(15, 111, 105);"></video>
+            <span aria-hidden="true" style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 52%; background: linear-gradient(rgba(10, 70, 66, 0) 0%, rgba(10, 70, 66, 0.62) 46%, rgba(9, 62, 59, 0.96) 100%);"></span>
+            <div style="position: relative; padding: 0px 22px 24px; display: flex; flex-direction: column; gap: 9px;">
+              <h3 style="margin: 0px; font-size: 20px; font-weight: 700; line-height: 1.2; color: rgb(255, 255, 255);">Set your Terms</h3>
+              <p style="margin: 0px; font-size: 14.5px; line-height: 1.5; color: rgb(255, 255, 255);">Availability, compensation rates, and working preferences. You aren’t fitting into a job; the market is fitting into your lifestyle.</p>
+            </div>
+          </article>
+
+          <article data-featured="true" data-hdr-dark="true" class="scp1" style="position: relative; flex: 0 0 auto; width: 258px; height: 467px; background: rgb(188, 231, 232); border-radius: 26px; box-sizing: border-box; overflow: hidden; box-shadow: rgba(6, 27, 64, 0.22) 0px 26px 60px; display: flex; flex-direction: column; justify-content: flex-end;">
+            <video data-rail-media="true" data-rail-video="true" src="assets/video/talent-homepage-v4.mp4#t=0.1" poster="assets/video/posters/talent-homepage-v4.jpg?v=ec6bf9c0" loop="" preload="none" aria-label="The NoResume talent home page on mobile" playsinline="" muted="" style="position: absolute; left: 50%; top: -40px; width: 259px; height: auto; aspect-ratio: 270 / 480; transform: translateX(-50%); display: block;"></video>
+            <span aria-hidden="true" style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 42%; background: linear-gradient(rgba(10, 70, 66, 0) 0%, rgba(10, 70, 66, 0.62) 46%, rgba(9, 62, 59, 0.96) 100%);"></span>
+            <div style="position: relative; padding: 0px 24px 26px; display: flex; flex-direction: column; gap: 9px;">
+              <h3 style="margin: 0px; font-size: 21px; font-weight: 700; line-height: 1.2; color: rgb(255, 255, 255);">All you need in One place</h3>
+              <p style="margin: 0px; font-size: 14.5px; line-height: 1.5; color: rgb(255, 255, 255);">One Home page for your profile, offers, and earnings. Take control of your work life in real time.</p>
+            </div>
+          </article>
+
+          <article data-hdr-dark="true" class="scp0" style="position: relative; flex: 0 0 auto; width: 258px; height: 374px; background: rgb(15, 111, 105); border-radius: 26px; box-sizing: border-box; overflow: hidden; box-shadow: rgba(6, 27, 64, 0.16) 0px 18px 44px; display: flex; flex-direction: column; justify-content: flex-end; transition: box-shadow 0.22s;">
+            <video data-rail-media="true" data-rail-video="true" src="assets/video/talent-payments.mp4#t=0.1" poster="assets/video/posters/talent-payments.jpg?v=2b6b0882" loop="" preload="none" aria-label="Payments in the NoResume app" playsinline="" muted="" style="position: absolute; left: 50%; top: -12px; width: 299px; height: calc(100% + 12px); transform: translateX(-50%); object-fit: cover; object-position: center top; display: block; background: rgb(15, 111, 105);"></video>
+            <span aria-hidden="true" style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 52%; background: linear-gradient(rgba(10, 70, 66, 0) 0%, rgba(10, 70, 66, 0.62) 46%, rgba(9, 62, 59, 0.96) 100%);"></span>
+            <div style="position: relative; padding: 0px 22px 24px; display: flex; flex-direction: column; gap: 9px;">
+              <h3 style="margin: 0px; font-size: 20px; font-weight: 700; line-height: 1.2; color: rgb(255, 255, 255);">Earnings</h3>
+              <p style="margin: 0px; font-size: 14.5px; line-height: 1.5; color: rgb(255, 255, 255);">Real-time earnings with automated timesheets and invoicing, built for flexible work and freelancers.</p>
+            </div>
+          </article>
+
+          <article data-hdr-dark="true" class="scp0" style="position: relative; flex: 0 0 auto; width: 258px; height: 374px; background: rgb(15, 111, 105); border-radius: 26px; box-sizing: border-box; overflow: hidden; box-shadow: rgba(6, 27, 64, 0.16) 0px 18px 44px; display: flex; flex-direction: column; justify-content: flex-end; transition: box-shadow 0.22s;">
+            <video data-rail-media="true" data-rail-video="true" src="assets/video/talent-rt-communication.mp4#t=0.1" poster="assets/video/posters/talent-rt-communication.jpg?v=3dd51ad6" loop="" preload="none" aria-label="Real-time communication in the NoResume app" playsinline="" muted="" style="position: absolute; left: 50%; top: -12px; width: 299px; height: calc(100% + 12px); transform: translateX(-50%); object-fit: cover; object-position: center top; display: block; background: rgb(15, 111, 105);"></video>
+            <span aria-hidden="true" style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 52%; background: linear-gradient(rgba(10, 70, 66, 0) 0%, rgba(10, 70, 66, 0.62) 46%, rgba(9, 62, 59, 0.96) 100%);"></span>
+            <div style="position: relative; padding: 0px 22px 24px; display: flex; flex-direction: column; gap: 9px;">
+              <h3 style="margin: 0px; font-size: 20px; font-weight: 700; line-height: 1.2; color: rgb(255, 255, 255);">Real-Time Communication</h3>
+              <p style="margin: 0px; font-size: 14.5px; line-height: 1.5; color: rgb(255, 255, 255);">Instant connections to opportunities you can accept or reject. Chat with employers and jump on a video call interview.</p>
+            </div>
+          </article>
+
+          <article data-hdr-dark="true" class="scp0" style="position: relative; flex: 0 0 auto; width: 258px; height: 374px; background: rgb(15, 111, 105); border-radius: 26px; box-sizing: border-box; overflow: hidden; box-shadow: rgba(6, 27, 64, 0.16) 0px 18px 44px; display: flex; flex-direction: column; justify-content: flex-end; transition: box-shadow 0.22s;">
+            <video data-rail-media="true" data-rail-video="true" src="assets/video/talent-new-offers.mp4#t=0.1" poster="assets/video/posters/talent-new-offers.jpg?v=2f53545b" loop="" preload="none" aria-label="New offers in the NoResume app" playsinline="" muted="" style="position: absolute; left: 50%; top: -12px; width: 299px; height: calc(100% + 12px); transform: translateX(-50%); object-fit: cover; object-position: center top; display: block; background: rgb(15, 111, 105);"></video>
+            <span aria-hidden="true" style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 52%; background: linear-gradient(rgba(10, 70, 66, 0) 0%, rgba(10, 70, 66, 0.62) 46%, rgba(9, 62, 59, 0.96) 100%);"></span>
+            <div style="position: relative; padding: 0px 22px 24px; display: flex; flex-direction: column; gap: 9px;">
+              <h3 style="margin: 0px; font-size: 20px; font-weight: 700; line-height: 1.2; color: rgb(255, 255, 255);">New Offers</h3>
+              <p style="margin: 0px; font-size: 14.5px; line-height: 1.5; color: rgb(255, 255, 255);">Keep track of every offer, manage negotiations, and make decisions in a few clicks.</p>
+            </div>
+          </article>
+            </div>
+          </div>
+        </div>
+
+        <div style="position: relative; z-index: 3; display: flex; justify-content: center; gap: 18px; margin-top: 26px;">
+          <button type="button" aria-label="Previous" data-on="click:railPrev" class="scp2" style="width: 54px; height: 54px; border-radius: 999px; border: 1.5px solid rgba(23, 114, 107, 0.4); background: rgba(255, 255, 255, 0.55); color: var(--teal, #17726B); display: grid; place-items: center; cursor: pointer; padding: 0px; transition: background 0.2s, transform 0.2s;">
+            <svg viewBox="0 0 24 24" aria-hidden="true" style="width: 20px; height: 20px; display: block;"><polyline points="15 5 8 12 15 19" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+          </button>
+          <button type="button" aria-label="Next" data-on="click:railNext" class="scp2" style="width: 54px; height: 54px; border-radius: 999px; border: 1.5px solid rgba(23, 114, 107, 0.4); background: rgba(255, 255, 255, 0.55); color: var(--teal, #17726B); display: grid; place-items: center; cursor: pointer; padding: 0px; transition: background 0.2s, transform 0.2s;">
+            <svg viewBox="0 0 24 24" aria-hidden="true" style="width: 20px; height: 20px; display: block;"><polyline points="9 5 16 12 9 19" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    
+    <section style="padding: 45px 0px 60px; text-align: center;">
+      <div style="max-width: 1240px; margin: 0px auto; padding: 0px 32px;">
+        <h2 style="margin: 0px auto 12px; max-width: 22ch; font-size: clamp(1.9rem, 3.4vw, 2.7rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: rgb(17, 17, 17); text-wrap: pretty;">Ready to work on your terms?</h2>
+        <p style="margin: 0px 0px 40px; font-size: 17px; color: rgb(58, 58, 58);">Join the Open Job Market. The future is yours.</p>
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+          <a href="https://apps.apple.com/gb/app/noresume/id6759061302" target="_blank" rel="noopener" aria-label="Download on the App Store" style="display: inline-block;">
+            <img src="assets/images/badge-app-store.svg" alt="Download on the App Store" style="height: 56px; width: auto; display: block;">
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=noresume.app&amp;gl=gb" target="_blank" rel="noopener" aria-label="Get it on Google Play" style="display: inline-block;">
+            <img src="assets/images/badge-google-play-official.png" alt="Get it on Google Play" style="height: 56px; width: auto; display: block;">
+          </a>
+        </div>
+      </div>
+    </section>
+
+    
+    <footer data-hdr-dark="true" style="background: linear-gradient(135deg, rgb(26, 95, 95) 0%, rgb(54, 197, 197) 100%); color: rgb(255, 255, 255); padding: 34px 0px 20px;">
+      <div style="max-width: 1240px; margin: 0px auto; padding: 0px 32px;">
+        <div data-foot-grid="true" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 18px;">
+          <div data-foot-brand="true">
+            <img src="assets/images/noresume_logo-white.png" alt="NoResume" style="height: 32px; width: auto; display: block; margin: 0px 0px 14px;">
+            <p style="margin: 0px; max-width: 46ch; font-size: 14px; line-height: 1.7; color: rgba(255, 255, 255, 0.92);">At noresume we empower workers and businesses to build authentic, direct relationships grounded in fairness and transparency. Our mission is to simplify the hiring process, replacing applications with real-time connections.</p>
+          </div>
+          <div>
+            <h4 style="margin: 0px 0px 18px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255, 255, 255, 0.8);">Location</h4>
+            <p style="margin: 0px; color: rgba(255, 255, 255, 0.95); font-size: 14px; line-height: 1.95;">NoResume<br>71-75 Shelton Street<br>Covent Garden<br>London WC2H 9JQ</p>
+          </div>
+          <div>
+            <h4 style="margin: 0px 0px 18px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255, 255, 255, 0.8);">Legal</h4>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <a href="/privacy-policy" style="color: rgba(255, 255, 255, 0.95); font-size: 14px;">Privacy Policy</a>
+              <a href="/terms-of-service" style="color: rgba(255, 255, 255, 0.95); font-size: 14px;">Terms of Service</a>
+            </div>
+          </div>
+          <div>
+            <h4 style="margin: 0px 0px 18px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255, 255, 255, 0.8);">Contact</h4>
+            <a href="mailto:hello@noresume.co" style="color: rgba(255, 255, 255, 0.95); font-size: 14px; display: block;">hello@noresume.co</a>
+            <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px; max-width: 260px;">
+              <a href="/contact" style="background: rgba(255, 255, 255, 0.22); border: 1px solid rgba(255, 255, 255, 0.42); color: rgb(255, 255, 255); padding: 11px 24px; border-radius: 999px; font-size: 14px; font-weight: 500;">Contact Us</a>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px;">
+              
+              <a data-social="true" href="https://www.linkedin.com/company/noresume" target="_blank" rel="noopener" aria-label="LinkedIn" style="width: 42px; height: 42px; border-radius: 999px; display: grid; place-items: center; color: rgb(255, 255, 255); background: rgba(255, 255, 255, 0.16); transition: background 0.2s, color 0.2s;"><svg viewBox="0 0 448 512" aria-hidden="true" fill="currentColor" style="width: 19px; height: 19px; display: block;"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path></svg></a>
+              <a data-social="true" href="https://www.tiktok.com/@thenoresume" target="_blank" rel="noopener" aria-label="TikTok" style="width: 42px; height: 42px; border-radius: 999px; display: grid; place-items: center; color: rgb(255, 255, 255); background: rgba(255, 255, 255, 0.16); transition: background 0.2s, color 0.2s;"><svg viewBox="0 0 448 512" aria-hidden="true" fill="currentColor" style="width: 19px; height: 19px; display: block;"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"></path></svg></a>
+              <a data-social="true" href="https://www.youtube.com/@thenoresume" target="_blank" rel="noopener" aria-label="YouTube" style="width: 42px; height: 42px; border-radius: 999px; display: grid; place-items: center; color: rgb(255, 255, 255); background: rgba(255, 255, 255, 0.16); transition: background 0.2s, color 0.2s;"><svg viewBox="0 0 576 512" aria-hidden="true" fill="currentColor" style="width: 19px; height: 19px; display: block;"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path></svg></a>
+              <a data-social="true" href="https://www.facebook.com/profile.php?id=61566370331980" target="_blank" rel="noopener" aria-label="Facebook" style="width: 42px; height: 42px; border-radius: 999px; display: grid; place-items: center; color: rgb(255, 255, 255); background: rgba(255, 255, 255, 0.16); transition: background 0.2s, color 0.2s;"><svg viewBox="0 0 320 512" aria-hidden="true" fill="currentColor" style="width: 19px; height: 19px; display: block;"><path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"></path></svg></a>
+            </div>
+          </div>
+        </div>
+        <div style="text-align: center; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, 0.22);">
+          <p style="margin: 0px; color: rgba(255, 255, 255, 0.7); font-size: 12.5px;">© 2026 NoResume. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
 
-    <!-- ── LOAD EXTERNAL SVGs INLINE (for GSAP access) ── -->
-    <script>
-        window._svgsReady = Promise.all([
-            { url: 'assets/images/candidates-share-revolution.svg', target: '#svg-share-revolution' }
-        ].map(function(item) {
-            return fetch(item.url)
-                .then(function(r) { return r.text(); })
-                .then(function(svgText) {
-                    document.querySelector(item.target).innerHTML = svgText;
-                });
-        }));
-    </script>
+  </div></div></div></div>
+<script src="nr-runtime.js"></script>
+<script>
+(function () {
 
-    <!-- ── SMOOTH SCROLL ──────────────────────────── -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        document.querySelector('a[href="#share-revolution"]').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector('#share-revolution').scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+class Component extends DCLogic {
+  state = { menuOpen: false, hdrHidden: false, hdrSolid: false, onDark: true };
+
+  componentDidMount() {
+    // hero video speed (Simon, 3 Oct 2026): 20% slower; defaultPlaybackRate survives the video loading
+    { const hv = this.heroImgRef && this.heroImgRef.current; if (hv) { hv.defaultPlaybackRate = 0.8; hv.playbackRate = 0.8; } }
+    this._lastY = window.scrollY || 0;
+    this._onScroll = () => {
+      const y = window.scrollY || 0;
+      const hidden = y > 140 && y > this._lastY;
+      const solid = y > 40;
+      const hero = this.heroRef.current;
+      const himg = this.heroImgRef.current;
+      const hcv = this.sparkRef.current;
+      if (y < 1000) {
+        const t = '0 ' + (y * 0.14).toFixed(1) + 'px';
+        if (himg) himg.style.translate = t;
+        if (hcv) hcv.style.translate = t;
+      }
+      // Header ink follows whatever is actually behind the nav, not just the
+      // hero: any element marked data-hdr-dark that crosses the header's
+      // mid-line AND overlaps the nav horizontally counts. Testing the hero
+      // alone missed dark cards scrolling underneath.
+      const onDark = this.inkOnDark();
+      if (hidden !== this.state.hdrHidden || solid !== this.state.hdrSolid || onDark !== this.state.onDark) {
+        this.setState({ hdrHidden: hidden, hdrSolid: solid, onDark: onDark });
+      }
+      this._lastY = y;
+      clearTimeout(this._vidT);
+      this._vidT = setTimeout(() => this.syncRailVideo(), 120);
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+
+    // a motion-sensitive visitor gets a still frame rather than a looping hero
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setTimeout(() => {
+        const v = this.heroImgRef.current;
+        if (v && v.tagName === 'VIDEO') { v.autoplay = false; v.pause(); v.currentTime = 0.1; }
+      }, 60);
+    }
+
+    this._centerRail = () => this.setupRail();
+    setTimeout(this._centerRail, 60);
+    setTimeout(() => this.initSparks(), 80);
+    // the iPhone address bar changes the window's height as the page scrolls; only a
+    // real width change (rotating the phone) needs the rail rebuilt
+    this._onRailResize = () => { if (window.innerWidth !== this._railW) this._centerRail(); };
+    window.addEventListener('resize', this._onRailResize);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(this._centerRail);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    window.removeEventListener('resize', this._onRailResize);
+    clearTimeout(this._vidT);
+    clearTimeout(this._wrapT);
+    cancelAnimationFrame(this._sparkRaf);
+    if (this._sparkIO) this._sparkIO.disconnect();
+    window.removeEventListener('resize', this._onSparkResize);
+  }
+
+  railRef = React.createRef();
+  trackRef = React.createRef();
+  heroRef = React.createRef();
+  heroImgRef = React.createRef();
+  sparkRef = React.createRef();
+
+  setupRail() {
+    const el = this.railRef.current, track = this.trackRef.current;
+    if (!el || !track) return;
+    this._railW = window.innerWidth;
+    track.querySelectorAll('[data-clone]').forEach(n => n.remove());
+    const originals = Array.from(track.children);
+    if (!originals.length) return;
+    this._count = originals.length;
+    const clone = (c) => {
+      const d = c.cloneNode(true);
+      d.setAttribute('data-clone', 'true');
+      d.setAttribute('aria-hidden', 'true');
+      return d;
+    };
+    originals.forEach(c => track.insertBefore(clone(c), originals[0]));
+    originals.forEach(c => track.appendChild(clone(c)));
+    const all = Array.from(track.children);
+    this._x0 = all[0].offsetLeft;
+    this._setW = all[this._count].offsetLeft - this._x0;
+    const pad = parseFloat(getComputedStyle(el).paddingLeft) || 0;
+    this._step = Math.max.apply(null, originals.map(c => c.offsetWidth)) + 26;
+    this._n = Math.max(1, Math.floor((el.clientWidth - pad * 2) / this._step) - 1);
+    const featured = originals.findIndex(c => c.hasAttribute('data-featured'));
+    // a rebuild (rotating the phone) keeps the card the visitor is on
+    const pos = this._idx == null ? Math.max(0, featured) : ((this._idx % this._count) + this._count) % this._count;
+    this._idx = this._count + pos;
+    this._off = this.railOffset(this._idx);
+    this.applyRail(false);
+    this.syncRailTiers();
+    this.syncRailVideo();
+    this.primeRail();
+    this.bindRailSwipe();
+  }
+
+  // Two-finger trackpad swipe and touch drag, in addition to the arrows. The
+  // rail is transform-driven rather than scrollable, so the browser produces no
+  // scroll of its own here; the wheel event's horizontal delta is read instead.
+  // Vertical intent is left alone so the page still scrolls over the rail.
+  bindRailSwipe() {
+    const el = this.railRef.current;
+    if (!el || el.dataset.swipeBound) return;
+    el.dataset.swipeBound = '1';
+
+    let acc = 0, cooling = false, resetT = null;
+    el.addEventListener('wheel', (ev) => {
+      if (Math.abs(ev.deltaX) <= Math.abs(ev.deltaY)) return;
+      ev.preventDefault();
+      if (cooling) return;
+      acc += ev.deltaX;
+      clearTimeout(resetT);
+      resetT = setTimeout(() => { acc = 0; }, 180);
+      if (Math.abs(acc) < 46) return;
+      const dir = acc > 0 ? 1 : -1;
+      acc = 0;
+      cooling = true;
+      setTimeout(() => { cooling = false; }, 440);
+      this.scrollRail(dir);
+    }, { passive: false });
+
+    let x0 = null, y0 = null, x1 = 0, y1 = 0, axis = null;
+    el.addEventListener('touchstart', (ev) => {
+      if (ev.touches.length !== 1) { x0 = null; return; }
+      x0 = x1 = ev.touches[0].clientX; y0 = y1 = ev.touches[0].clientY; axis = null;
+    }, { passive: true });
+    // The direction is decided after a few pixels. A sideways drag holds the page
+    // still, so iPhone Safari neither scrolls nor moves its address bar mid-swipe;
+    // an up/down drag is left alone and scrolls the page as normal.
+    el.addEventListener('touchmove', (ev) => {
+      if (x0 == null) return;
+      x1 = ev.touches[0].clientX; y1 = ev.touches[0].clientY;
+      if (!axis && (Math.abs(x1 - x0) > 6 || Math.abs(y1 - y0) > 6)) axis = Math.abs(x1 - x0) > Math.abs(y1 - y0) ? 'x' : 'y';
+      if (axis === 'x' && ev.cancelable) ev.preventDefault();
+    }, { passive: false });
+    const finishSwipe = () => {
+      if (x0 == null) return;
+      const dx = x1 - x0, dy = y1 - y0;
+      x0 = null;
+      if (axis === 'x' && Math.abs(dx) > 46 && Math.abs(dx) > Math.abs(dy)) this.scrollRail(dx < 0 ? 1 : -1);
+    };
+    el.addEventListener('touchend', (ev) => {
+      if (x0 != null && ev.changedTouches[0]) { x1 = ev.changedTouches[0].clientX; y1 = ev.changedTouches[0].clientY; }
+      finishSwipe();
+    }, { passive: true });
+    // iPhone can cancel a touch it has started handling itself; the swipe still counts
+    el.addEventListener('touchcancel', finishSwipe, { passive: true });
+  }
+
+  // Only the originals stay real videos. A browser keeps very few video
+  // decoders alive, so 24 buffered elements still cost a decoder spin-up
+  // (~1s) whenever one reaches the centre — and a wrap did it twice in a row.
+  // Clones instead carry a still frame captured from their original, so eight
+  // decoders exist in total and a step activates at most one.
+  primeRail() {
+    const track = this.trackRef.current;
+    if (!track) return;
+    const originals = Array.from(track.children).filter(c => !c.hasAttribute('data-clone'));
+
+    // A GIF cannot be paused — the browser animates it for as long as it is in
+    // the document. Capture a still once, then swap the src: the GIF only
+    // hangs off the element while that card is centred, and re-assigning it
+    // restarts from frame one.
+    const gifs = Array.from(track.querySelectorAll('img[data-rail-media]'));
+    const freeze = () => gifs.forEach(im => {
+      // clones are never the centre, so they only ever need the still
+      if (im.closest('[data-clone]') && im.dataset.still && im.getAttribute('src') !== im.dataset.still) {
+        im.src = im.dataset.still;
+      }
+    });
+    gifs.forEach(im => {
+      const url = im.dataset.gif || (/\.gif($|[?#])/i.test(im.src) ? im.src : null);
+      if (!url) return;
+      im.dataset.gif = url;
+      if (im.dataset.still) { freeze(); return; }
+      const shoot = () => {
+        try {
+          const c = document.createElement('canvas');
+          c.width = im.naturalWidth; c.height = im.naturalHeight;
+          c.getContext('2d').drawImage(im, 0, 0);
+          const still = c.toDataURL('image/jpeg', 0.86);
+          // share the still with every copy of the same GIF
+          gifs.forEach(o => { if (o.dataset.gif === url) o.dataset.still = still; });
+          freeze();
+        } catch (err) {}
+      };
+      if (im.complete && im.naturalWidth) shoot();
+      else im.addEventListener('load', shoot, { once: true });
+    });
+
+    // strip the clones' media; they keep the element for identical geometry
+    Array.from(track.querySelectorAll('[data-clone] video')).forEach(v => {
+      if (v.dataset.stripped) return;
+      v.dataset.stripped = '1';
+      v.removeAttribute('src');
+      v.preload = 'none';
+      try { v.load(); } catch (err) {}
+      const still = this._stills && this._stills.get(v.getAttribute('aria-label'));
+      if (still) v.poster = still;
+    });
+
+    const warm = () => originals.forEach((card, i) => {
+      const v = card.querySelector('video');
+      if (!v || v.dataset.primed) return;
+      v.preload = 'auto';
+      setTimeout(() => {
+        if (v.dataset.primed) return;
+        v.dataset.primed = '1';
+        const shoot = () => {
+          try {
+            // no frame decoded yet (clip not downloaded): keep the placeholder still
+            if (!v.videoWidth) return;
+            const c = document.createElement('canvas');
+            c.width = v.videoWidth; c.height = v.videoHeight;
+            c.getContext('2d').drawImage(v, 0, 0);
+            const url = c.toDataURL('image/jpeg', 0.82);
+            (this._stills || (this._stills = new Map())).set(v.getAttribute('aria-label'), url);
+            const src = (v.getAttribute('src') || '').split('#')[0];
+            track.querySelectorAll('[data-clone] video').forEach(cv => {
+              if (cv.dataset.of === src || cv.getAttribute('aria-label') === v.getAttribute('aria-label')) {
+                cv.dataset.of = src;
+                cv.poster = url;
+              }
             });
-        });
-    </script>
+          } catch (err) {}
+        };
+        // a silent play/pause is the only reliable way to force a decode
+        // a clip that arrives late may already be the card in the middle: leave that one
+        // playing instead of stopping and rewinding it straight after it starts
+        const isLiveNow = () => {
+          const el = this.railRef.current, c = this._idx != null && track.children[this._idx];
+          if (!el || !c) return false;
+          const rr = el.getBoundingClientRect();
+          return rr.bottom > 80 && rr.top < window.innerHeight - 80 && c.querySelector('[data-rail-media]') === v;
+        };
+        v.play().then(() => { if (!isLiveNow()) { v.pause(); v.currentTime = 0.1; } shoot(); }).catch(shoot);
+      }, 400 + i * 160);
+    });
+    // the hero video goes first: the carousel clips wait until it is playing (4 s at most)
+    const heroV = document.querySelector('section video');
+    if (this._heroGo || !heroV || (!heroV.paused && heroV.readyState >= 3)) { this._heroGo = true; warm(); }
+    else if (!this._heroWait) {
+      this._heroWait = true;
+      const go = () => { if (this._heroGo) return; this._heroGo = true; warm(); };
+      heroV.addEventListener('playing', go, { once: true });
+      setTimeout(go, 4000);
+    }
+  }
 
-    <!-- ── FALCON ANIMATION ───────────────────────── -->
-    <!-- ── CANDIDATE STEPS ANIMATION ───────────────────────── -->
-    <script>
-        gsap.registerPlugin(ScrollTrigger);
+  // Play only the copy sitting in the middle of the rail, and only while the
+  // section itself is on screen. The rail is transform-driven and its cards are
+  // cloned, so this is resolved from geometry rather than per-element observers.
+  // Height ladder: the card in the middle stands tallest, its two neighbours
+  // sit lower, everything further out sits lowest. Width never changes, so the
+  // rail's paging geometry is untouched.
+  syncRailTiers(instant) {
+    const el = this.trackRef.current;
+    if (!el || this._idx == null) return;
+    const TIERS = [467, 412, 374];
+    Array.from(el.children).forEach((c, i) => {
+      const d = Math.abs(i - this._idx);
+      // after the wrap jump the real card takes its copy's height at once; animating
+      // up from its old short height was the visible shrink-and-grow at the loop point
+      c.style.transition = instant ? 'none' : 'height .46s cubic-bezier(.22,.8,.3,1)';
+      c.style.height = TIERS[Math.min(d, TIERS.length - 1)] + 'px';
+    });
+    if (instant) void el.offsetHeight;
+  }
 
-        window._svgsReady.then(function() {
-            // ── QR SCENE ANIMATION ──
-            var svg = document.querySelector('#referral-falcon svg');
-            if (!svg) return;
+  // Which clip plays is decided by the authoritative index, never by measuring
+  // where things currently sit: a geometry read races the 460ms slide and the
+  // row hop, and lands on the neighbour.
+  syncRailVideo() {
+    const el = this.railRef.current, track = this.trackRef.current;
+    if (!el || !track) return;
+    const rr = el.getBoundingClientRect();
+    const onScreen = rr.bottom > 80 && rr.top < window.innerHeight - 80;
+    let centre = null;
+    if (this._idx != null && track.children[this._idx]) {
+      centre = track.children[this._idx].querySelector('[data-rail-media]');
+    } else {
+      const mid = rr.left + rr.width / 2;
+      let bestD = Infinity;
+      track.querySelectorAll('[data-rail-media]').forEach(v => {
+        const r = v.getBoundingClientRect();
+        const d = Math.abs(r.left + r.width / 2 - mid);
+        if (d < bestD) { bestD = d; centre = v; }
+      });
+    }
+    const media = el.querySelectorAll('[data-rail-media]');
+    media.forEach(v => {
+      const live = onScreen && v === centre;
+      // CSS keyframes keep running off-screen unless explicitly parked
+      const st = live ? 'running' : 'paused';
+      v.querySelectorAll('*').forEach(n => { if (n.style.animation) n.style.animationPlayState = st; });
+      if (v.tagName === 'IMG' && v.dataset.gif && v.dataset.still) {
+        const want = live ? v.dataset.gif : v.dataset.still;
+        if (v.getAttribute('src') !== want) v.src = want;
+      }
+      // clones have no media — they show a captured still and never play
+      if (v.tagName === 'VIDEO' && !v.dataset.stripped) {
+        v.muted = true;
+        if (live) { if (v.paused) v.play().catch(() => {}); }
+        else {
+          if (!v.paused) v.pause();
+          // park on the poster frame so an off-centre card never shows a
+          // half-played state; the data is already buffered, so the seek is
+          // cheap and the clip still resumes from the top
+          if (v.currentTime > 0.15 || v.currentTime === 0) v.currentTime = 0.1;
+        }
+      }
+    });
+  }
 
-            var background  = svg.querySelector('#Background');
-            var friends     = svg.querySelector('#Friends');
-            var girlPhone   = svg.querySelector('#Girl-Phone');
-            var phone       = svg.querySelector('#Phone');
-            var phoneScreen = svg.querySelector('#Phone-Screen');
-            var giftBox     = svg.querySelector('#Gift-Box');
+  // distance the track must shift for card i to sit centred in the viewport
+  railOffset(i) {
+    const el = this.railRef.current, track = this.trackRef.current;
+    const c = track && track.children[i];
+    if (!c) return this._off || 0;
+    const pad = parseFloat(getComputedStyle(el).paddingLeft) || 0;
+    return (c.offsetLeft - this._x0) - (el.clientWidth - pad * 2 - c.offsetWidth) / 2;
+  }
 
-            gsap.set([background, friends], { opacity: 1 });
-            gsap.set(girlPhone, { opacity: 0, x: '-40%' });
+  applyRail(animate) {
+    const track = this.trackRef.current;
+    if (!track) return;
+    track.style.transition = animate ? 'transform .46s cubic-bezier(.22,.8,.3,1)' : 'none';
+    track.style.willChange = 'transform';
+    track.style.transform = 'translateX(' + (-this._off) + 'px)';
+    if (!animate) void track.offsetWidth;
+  }
 
-            var tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: '#referral-falcon',
-                    start: 'top 70%',
-                    once: true
-                }
-            });
+  // The index is the only source of truth — nothing is ever read back from the
+  // DOM's own scroll position. Three identical copies of the row sit side by
+  // side; paging stays in the middle copy and jumps a whole row width when it
+  // leaves, which is invisible because the copies are identical.
+  scrollRail(dir) {
+    if (!this._count) return;
+    // Animate first, re-index afterwards. Hopping a whole row width *before*
+    // the step makes the tier heights swap copies mid-transition, which is the
+    // visible jolt at the wrap; the clones mean there is always a real card to
+    // slide onto, so the hop can wait until the motion has finished.
+    this._idx += dir;
+    this._off = this.railOffset(this._idx);
+    // the clip leaving stops now and goes back to its first frame; the card sliding
+    // in arrives with its text and still picture, and its clip starts once the
+    // slide has settled (syncRailVideo after the hop below)
+    const railTrack = this.trackRef.current;
+    if (railTrack) railTrack.querySelectorAll('video[data-rail-media]').forEach(v => {
+      if (v.dataset.stripped || v.paused) return;
+      v.pause();
+      v.currentTime = 0.1;
+    });
+    requestAnimationFrame(() => { this.applyRail(true); this.syncRailTiers(); });
 
-            tl.to(girlPhone, { opacity: 1, x: '0%', duration: 1.8, ease: 'power3.out' })
-              .to(phone, { rotation: 8, duration: 0.35, ease: 'power2.out', transformOrigin: '50% 100%' })
-              .to(phone, { rotation: 0, duration: 0.4, ease: 'elastic.out(1, 0.6)', transformOrigin: '50% 100%' })
-              .to(phone, { scale: 1.03, duration: 2.2, ease: 'sine.inOut', yoyo: true, repeat: -1, transformOrigin: '50% 50%' })
-              .to(phoneScreen, { scale: 1.03, duration: 2.2, ease: 'sine.inOut', yoyo: true, repeat: -1, transformOrigin: '50% 50%' }, '<')
-              .to(giftBox, { scale: 1.12, duration: 0.2, ease: 'power2.out', yoyo: true, repeat: -1, repeatDelay: 0.8, transformOrigin: '50% 50%' }, '<');
-        });
-    </script>
+    clearTimeout(this._wrapT);
+    this._wrapT = setTimeout(() => {
+      // same card, same tier distances — so nothing moves or resizes
+      const wrapped = this._idx >= this._count * 2 || this._idx < this._count;
+      if (this._idx >= this._count * 2) { this._idx -= this._count; this._off -= this._setW; this.applyRail(false); }
+      else if (this._idx < this._count) { this._idx += this._count; this._off += this._setW; this.applyRail(false); }
+      this.syncRailTiers(wrapped);
+      // after the hop, never before: resolving the centre mid-transition picks
+      // the clone, and playing it then swapping to the original 20ms later
+      // spins up two decoders back to back
+      this.syncRailVideo();
+    }, 500);
+  }
 
-    <!-- ── HOW-IT-WORKS VIDEO (click-to-play YouTube; thumbnail returns when the video ends) ── -->
-    <script>
-        (function () {
-            var apiPromise = null;
-            function loadYouTubeApi() {
-                if (apiPromise) return apiPromise;
-                apiPromise = new Promise(function (resolve) {
-                    if (window.YT && window.YT.Player) { resolve(); return; }
-                    var prev = window.onYouTubeIframeAPIReady;
-                    window.onYouTubeIframeAPIReady = function () {
-                        if (prev) prev();
-                        resolve();
-                    };
-                    var tag = document.createElement('script');
-                    tag.src = 'https://www.youtube.com/iframe_api';
-                    tag.onerror = function () { resolve(); };
-                    document.head.appendChild(tag);
-                });
-                return apiPromise;
-            }
-            document.querySelectorAll('.nr-video').forEach(function (box, i) {
-                var facade = box.innerHTML;
-                box.addEventListener('click', function () {
-                    if (box.classList.contains('playing')) return;
-                    var id = box.getAttribute('data-video-id');
-                    box.classList.add('playing');
-                    box.innerHTML =
-                        '<iframe class="nr-video-iframe" src="https://www.youtube-nocookie.com/embed/' + id +
-                        '?autoplay=1&rel=0&enablejsapi=1&origin=' + encodeURIComponent(window.location.origin) +
-                        '" title="NoResume - how it works" ' +
-                        'allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
-                    var iframe = box.querySelector('iframe');
-                    /* The IFrame API needs the iframe to have an id to route events */
-                    iframe.id = 'nr-yt-player-' + i;
-                    /* When the video ends, swap the thumbnail + play button back in so
-                       YouTube's end screen never sits on the page. If the API script is
-                       blocked, playback still works exactly as before - just no swap-back. */
-                    loadYouTubeApi().then(function () {
-                        if (!(window.YT && window.YT.Player)) return;
-                        new YT.Player(iframe, {
-                            events: {
-                                onStateChange: function (e) {
-                                    if (e.data === YT.PlayerState.ENDED) {
-                                        box.innerHTML = facade;
-                                        box.classList.remove('playing');
-                                    }
-                                }
-                            }
-                        });
-                    });
-                });
-            });
-        })();
-    </script>
+  // Hero "data flow". The paths are not authored — they are read out of the
+  // artwork itself: a structure-tensor pass over the image yields, per cell,
+  // the dominant orientation (along the strand), how strongly oriented it is,
+  // and the local colour. Particles are seeded only on strand cells and are
+  // advected through that field, so every trail follows a real stream in the
+  // picture and wears its colour. Field is in image space and is projected
+  // through the object-fit: cover crop, so it stays aligned at any viewport.
+  async initSparks() {
+    cancelAnimationFrame(this._sparkRaf);
+    const cv = this.sparkRef.current, img = this.heroImgRef.current;
+    if (!cv || !img) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const ctx = cv.getContext('2d');
 
+    if (!this._field) {
+      try {
+        const res = await fetch('assets/flow-field.json');
+        const j = await res.json();
+        const dec = (b) => { const s = atob(b), a = new Uint8Array(s.length); for (let i = 0; i < s.length; i++) a[i] = s.charCodeAt(i); return a; };
+        this._field = { w: j.w, h: j.h, ang: dec(j.ang), coh: dec(j.coh), r: dec(j.r), g: dec(j.g), b: dec(j.b) };
+      } catch (err) { return; }
+    }
+    const F = this._field, GW = F.w, GH = F.h;
+
+    // seed table: cells that actually sit on a strand, weighted by strength
+    const seeds = [];
+    for (let i = 0; i < F.coh.length; i++) if (F.coh[i] > 96) { seeds.push(i); if (F.coh[i] > 170) seeds.push(i); }
+    if (!seeds.length) return;
+
+    const sample = (u, v) => {
+      const x = Math.min(GW - 1, Math.max(0, u * GW)), y = Math.min(GH - 1, Math.max(0, v * GH));
+      const i = (y | 0) * GW + (x | 0);
+      return i;
+    };
+
+    let map = null;
+    const project = () => {
+      const W = cv.clientWidth, H = cv.clientHeight;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      cv.width = W * dpr; cv.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const iw = img.naturalWidth || 16, ih = img.naturalHeight || 9;
+      const sc = Math.max(W / iw, H / ih);
+      map = { w: iw * sc, h: ih * sc, x: (W - iw * sc) / 2, y: (H - ih * sc) / 2, W, H };
+    };
+    project();
+    this._onSparkResize = () => project();
+    window.addEventListener('resize', this._onSparkResize);
+
+    const spawn = (p) => {
+      const i = seeds[(Math.random() * seeds.length) | 0];
+      p.u = ((i % GW) + Math.random()) / GW;
+      p.v = (((i / GW) | 0) + Math.random()) / GH;
+      p.life = 0;
+      p.max = 1.6 + Math.random() * 2.8;
+      p.spd = 0.018 + Math.random() * 0.05;     // image widths per second
+      p.size = 0.7 + Math.random() * 1.5;
+      p.dx = 0; p.dy = 0;                        // heading, resolved on first step
+      const c = F.coh[i] / 255;
+      p.gain = 0.5 + c * 0.9;
+    };
+    const P = [];
+    for (let i = 0; i < 320; i++) { const p = {}; spawn(p); p.life = Math.random() * p.max; P.push(p); }
+
+    let last = 0;
+    const frame = (now) => {
+      const dt = last ? Math.min((now - last) / 1000, 0.05) : 0;
+      last = now;
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.fillStyle = 'rgba(0,0,0,.16)';
+      ctx.fillRect(0, 0, map.W, map.H);
+      ctx.globalCompositeOperation = 'lighter';
+
+      for (const p of P) {
+        const i = sample(p.u, p.v);
+        const strength = F.coh[i] / 255;
+        // left the strands, or lived long enough: respawn on a fresh one
+        if (strength < 0.3 || p.life > p.max || p.u < 0 || p.u > 1 || p.v < 0 || p.v > 1) { spawn(p); continue; }
+
+        const a = (F.ang[i] / 255) * Math.PI;     // 0..PI: orientation, not direction
+        let vx = Math.cos(a), vy = Math.sin(a);
+        // orientation is 180-ambiguous — keep travelling the way we already were
+        if (p.dx || p.dy) { if (vx * p.dx + vy * p.dy < 0) { vx = -vx; vy = -vy; } }
+        else if (Math.random() < 0.5) { vx = -vx; vy = -vy; }
+        p.dx = vx; p.dy = vy;
+
+        const u0 = p.u, v0 = p.v;
+        const step = p.spd * dt;
+        p.u += vx * step;
+        p.v += vy * step * (map.w / map.h);       // field is stored in image aspect
+        p.life += dt;
+
+        const x0 = map.x + u0 * map.w, y0 = map.y + v0 * map.h;
+        const x1 = map.x + p.u * map.w, y1 = map.y + p.v * map.h;
+        if (x1 < -40 || x1 > map.W + 40 || y1 < -40 || y1 > map.H + 40) continue;
+
+        // fade in and out over the particle's life
+        const t = p.life / p.max;
+        const fade = Math.min(1, t * 6) * Math.min(1, (1 - t) * 3.2);
+        const alpha = fade * p.gain * strength * 0.9;
+        const r = Math.min(255, F.r[i] + 60), g = Math.min(255, F.g[i] + 60), b = Math.min(255, F.b[i] + 60);
+        ctx.strokeStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + alpha.toFixed(3) + ')';
+        ctx.lineWidth = p.size;
+        ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+        if (p.size > 1.6) {
+          ctx.fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + (alpha * 0.45).toFixed(3) + ')';
+          ctx.beginPath(); ctx.arc(x1, y1, p.size * 1.35, 0, 6.283); ctx.fill();
+        }
+      }
+      this._sparkRaf = requestAnimationFrame(frame);
+    };
+
+    this._sparkIO = new IntersectionObserver((es) => {
+      const vis = es[0] && es[0].isIntersecting;
+      cancelAnimationFrame(this._sparkRaf);
+      if (vis) { last = 0; this._sparkRaf = requestAnimationFrame(frame); }
+    }, { threshold: 0 });
+    this._sparkIO.observe(cv);
+  }
+
+
+  inkOnDark() {
+    const BAND = 46;
+    const nav = this._navEl || (this._navEl = document.querySelector('header nav'));
+    const nr = nav ? nav.getBoundingClientRect() : { left: 0, right: window.innerWidth };
+    const els = document.querySelectorAll('[data-hdr-dark]');
+    for (const el of els) {
+      const r = el.getBoundingClientRect();
+      if (r.width < 40 || r.height < 20) continue;
+      if (r.top > BAND || r.bottom < BAND) continue;
+      if (r.right < nr.left || r.left > nr.right) continue;
+      return true;
+    }
+    return false;
+  }
+
+  renderVals() {
+    const p = this.props;
+    const tilt = p.tiltCards === false ? 0 : 2.5;
+    // facade: the YouTube player only loads on click, then plays in place
+    const demoPlaying = !!this.state.demoPlaying;
+    return {
+      demoPlaying, demoIdle: !demoPlaying,
+      playDemo: () => this.setState({ demoPlaying: true }),
+      menuOpen: this.state.menuOpen,
+      openMenu: () => this.setState({ menuOpen: true }),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      railRef: this.railRef,
+      trackRef: this.trackRef,
+      heroRef: this.heroRef,
+      heroImgRef: this.heroImgRef,
+      sparkRef: this.sparkRef,
+      railPrev: () => this.scrollRail(-1),
+      railNext: () => this.scrollRail(1),
+      themeVars: {
+        '--teal': p.teal || '#17726B',
+        '--coral': p.coral || '#F7A98A',
+        '--hdrY': this.state.hdrHidden ? '-120%' : '0px',
+        '--hdrBlur': this.state.hdrSolid ? 'blur(14px) saturate(1.1)' : 'none',
+        '--hdrInk': this.state.onDark ? '#fff' : (p.teal || '#17726B'),
+        '--hdrShadow': this.state.onDark ? '0 1px 12px rgba(0,0,0,.55)' : 'none',
+        '--tiltA': (-tilt) + 'deg',
+        '--tiltC': tilt + 'deg'
+      }
+    };
+  }
+}
+
+
+;NR.boot(Component, {"teal": "#17726B", "coral": "#F7A98A", "tiltCards": true});
+})();
+</script>
 </body>
 </html>

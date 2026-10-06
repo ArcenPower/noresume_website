@@ -404,25 +404,57 @@
         }
     </style>
     <script src="/js/analytics.js?v=2"></script>
+<style>
+[data-nr-chrome] a { text-decoration: none; }
+[data-desk-nav] a { font-size: 19px !important; }
+@media (max-width: 760px) { [data-desk-nav] { display: none !important; } }
+[data-if][data-if-on="false"]{display:none!important}
+</style>
 </head>
 <body>
 
     <!-- Header -->
-    <header>
-        <div class="header-inner">
-            <div class="logo">
-                <a href="/">
-                    <img src="assets/images/noresume_logo-color-orange.png" alt="noresume">
-                </a>
-            </div>
-            <nav>
-                <a href="/employers">Employers</a>
-                <a href="/candidates">Candidates</a>
-                <a href="/#contact">Contact</a>
-                <a href="/#contact" class="btn-demo">Book a Demo</a>
-            </nav>
-        </div>
-    </header>
+    <div data-nr-chrome data-b-style="[[ themeVars ]]" style="--teal: #17726B; --hdrY: 0px; --hdrBlur: none; --hdrInk: #17726B; --hdrShadow: none; font-family: Poppins, sans-serif; line-height: 1.6;">
+<header style="position: fixed; top: 0px; left: 0px; right: 0px; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 22px 32px; transform: translateY(var(--hdrY, 0px)); transition: transform 0.32s;">
+        
+        <span aria-hidden="true" style="position: absolute; left: 0px; right: 0px; top: 0px; height: 106px; pointer-events: none; backdrop-filter: blur(4px); mask-image: linear-gradient(transparent 0%, transparent 40%, rgb(0, 0, 0) 60%, rgb(0, 0, 0) 80%, transparent 100%);"></span>
+        <span aria-hidden="true" style="position: absolute; left: 0px; right: 0px; top: 0px; height: 106px; pointer-events: none; backdrop-filter: blur(6px); mask-image: linear-gradient(transparent 0%, transparent 20%, rgb(0, 0, 0) 40%, rgb(0, 0, 0) 60%, transparent 80%);"></span>
+        <span aria-hidden="true" style="position: absolute; left: 0px; right: 0px; top: 0px; height: 106px; pointer-events: none; backdrop-filter: blur(10px); mask-image: linear-gradient(transparent 0%, rgb(0, 0, 0) 20%, rgb(0, 0, 0) 40%, transparent 60%);"></span>
+        <span aria-hidden="true" style="position: absolute; left: 0px; right: 0px; top: 0px; height: 106px; pointer-events: none; backdrop-filter: blur(18px); mask-image: linear-gradient(rgb(0, 0, 0) 0%, rgb(0, 0, 0) 20%, transparent 40%);"></span>
+        <span aria-hidden="true" style="position: absolute; left: 0px; right: 0px; top: 0px; height: 106px; pointer-events: none; backdrop-filter: blur(34px); mask-image: linear-gradient(rgb(0, 0, 0) 0%, transparent 20%);"></span>
+        <a href="/" style="display: block; flex: 0 0 auto; position: relative; z-index: 1;">
+          <img src="assets/images/noresume_logo-color-orange.png" alt="NoResume" style="height: clamp(32px, 21px + 3vw, 46px); width: auto; display: block; filter: drop-shadow(rgba(0, 0, 0, 0.45) 0px 2px 10px);">
+        </a>
+        <nav data-desk-nav="true" style="display: flex; align-items: center; gap: 34px; position: relative; z-index: 1;">
+          <a href="/employers" style="color: var(--hdrInk, #fff); font-size: 17px; font-weight: 600; text-shadow: var(--hdrShadow, 0 1px 12px rgba(0,0,0,.55)); transition: color 0.32s;">Hire Talent</a>
+          <a href="/candidates" style="color: var(--hdrInk, #fff); font-size: 17px; font-weight: 600; text-shadow: var(--hdrShadow, 0 1px 12px rgba(0,0,0,.55)); transition: color 0.32s;">I am Talent</a>
+          <a href="https://app.noresume.co" style="color: var(--hdrInk, #fff); font-size: 17px; font-weight: 600; text-shadow: var(--hdrShadow, 0 1px 12px rgba(0,0,0,.55)); transition: color 0.32s;">Log-in</a>
+        </nav>
+        <button type="button" aria-label="Menu" data-on="click:openMenu" style="flex: 0 0 auto; position: relative; z-index: 1; width: 48px; height: 48px; padding: 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: none; cursor: pointer; display: flex; flex-direction: column; justify-content: center; align-items: flex-end; gap: 6px;">
+          <span style="display: block; width: 30px; height: 3px; border-radius: 999px; background: var(--hdrInk, #fff); box-shadow: var(--hdrShadow, 0 1px 8px rgba(0,0,0,.45)); transition: background 0.32s;"></span>
+          <span style="display: block; width: 30px; height: 3px; border-radius: 999px; background: var(--hdrInk, #fff); box-shadow: var(--hdrShadow, 0 1px 8px rgba(0,0,0,.45)); transition: background 0.32s;"></span>
+          <span style="display: block; width: 30px; height: 3px; border-radius: 999px; background: var(--hdrInk, #fff); box-shadow: var(--hdrShadow, 0 1px 8px rgba(0,0,0,.45)); transition: background 0.32s;"></span>
+        </button>
+      </header>
+<div data-if="menuOpen" data-if-on="false" data-mounted="0" style="display: contents;"><template>
+        <div data-on="click:closeMenu" style="position: fixed; inset: 0px; z-index: 60; background: rgba(6, 30, 32, 0.5); backdrop-filter: blur(3px);"></div>
+        <aside style="position: fixed; top: 0px; right: 0px; bottom: 0px; z-index: 61; width: 320px; max-width: 86vw; background: rgb(248, 246, 230); box-shadow: rgba(6, 27, 64, 0.28) -20px 0px 60px; display: flex; flex-direction: column; padding: 26px 30px 34px;">
+          <div style="display: flex; justify-content: flex-end;">
+            <button type="button" aria-label="Close menu" data-on="click:closeMenu" style="width: 42px; height: 42px; padding: 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: none; cursor: pointer; display: grid; place-items: center; color: rgb(23, 114, 107);"><svg viewBox="0 0 24 24" aria-hidden="true" style="width: 22px; height: 22px; display: block;"><path d="M5 5 L19 19 M19 5 L5 19" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></path></svg></button>
+          </div>
+          <nav style="display: flex; flex-direction: column; gap: 4px; margin-top: 18px;">
+            <a href="/" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Home</a>
+            <a href="/employers" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Hire Talent</a>
+            <a href="/candidates" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">I am Talent</a>
+            <a href="/recruiters" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">For Recruiters</a>
+            <a href="/blog" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Insights</a>
+            <a href="/contact" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Contact Us</a>
+            <a href="/book" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Book a Call</a>
+          </nav>
+          <a href="https://app.noresume.co" style="margin-top: 26px; text-align: center; background: linear-gradient(135deg, rgb(26, 95, 95) 0%, rgb(54, 197, 197) 100%); color: rgb(255, 255, 255); padding: 14px 24px; border-radius: 999px; font-size: 17px; font-weight: 600;">Log-In</a>
+        </aside>
+      </template></div>
+</div>
 
     <!-- Hero -->
     <section class="legal-hero">
@@ -604,5 +636,28 @@
         }
     </script>
 
+<script src="/nr-runtime.js"></script>
+<script>
+(function () {
+  // new menu bar on the older pages: hides when scrolling down, comes back when scrolling up, frosted once scrolled
+  class Component extends DCLogic {
+    state = { menuOpen: false, hdrHidden: false, hdrSolid: false };
+    componentDidMount() {
+      let last = window.scrollY || 0;
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY || 0, hidden = y > 140 && y > last, solid = y > 40;
+        if (hidden !== this.state.hdrHidden || solid !== this.state.hdrSolid) this.setState({ hdrHidden: hidden, hdrSolid: solid });
+        last = y;
+      }, { passive: true });
+    }
+    renderVals() {
+      return { menuOpen: this.state.menuOpen, openMenu: () => this.setState({ menuOpen: true }), closeMenu: () => this.setState({ menuOpen: false }),
+        themeVars: { '--teal': '#17726B', '--hdrY': this.state.hdrHidden ? '-120%' : '0px', '--hdrBlur': this.state.hdrSolid ? 'blur(14px)' : 'none',
+                     '--hdrInk': '#17726B', '--hdrShadow': 'none' } };
+    }
+  }
+  NR.boot(Component, {});
+})();
+</script>
 </body>
 </html>

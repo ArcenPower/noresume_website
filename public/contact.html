@@ -1,616 +1,681 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Contact Us - NoResume</title>
-    <link rel="canonical" href="https://noresume.co/contact">
-    <link rel="alternate" hreflang="en-GB" href="https://noresume.co.uk/contact">
-    <link rel="alternate" hreflang="en" href="https://noresume.co/contact">
-    <link rel="alternate" hreflang="x-default" href="https://noresume.co/contact">
-    <meta name="description" content="Get in touch with NoResume. We are here to help you with any questions about our services, your account or the app.">
-    <meta property="og:title" content="Contact Us - NoResume">
-    <meta property="og:url" content="https://noresume.co/contact">
-    <meta property="og:type" content="website">
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: #000000;
-            background: linear-gradient(180deg, #F8F6E6 0%, #FABE9B 100%);
-            background-attachment: fixed;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* ── NAVIGATION ─────────────────────────────── */
-        header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            background: rgba(248, 246, 230, 0.95);
-            backdrop-filter: blur(8px);
-            padding: 1rem 0;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
-        }
-
-        .header-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .logo img { height: 45px; }
-
-        .nav-buttons {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-
-        .btn-nav {
-            background: linear-gradient(135deg, #1A5F5F 0%, #36C5C5 100%);
-            color: white;
-            padding: 10px 24px;
-            border-radius: 16px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 14px;
-            transition: opacity 0.2s, transform 0.2s;
-            white-space: nowrap;
-        }
-
-        .btn-nav:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
-        /* ── MAIN ───────────────────────────────────── */
-        main {
-            padding-top: 80px;
-            min-height: 100vh;
-        }
-
-        /* ── CONTACT SECTION ────────────────────────── */
-        .contact-section {
-            padding: 60px 0 80px 0;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.3fr;
-            gap: 60px;
-            align-items: start;
-        }
-
-        /* ── LEFT COLUMN ─────────────────────────────── */
-        .contact-gif-anim {
-            width: 200px;
-            height: 200px;
-            border-radius: 16px;
-            margin-bottom: 24px;
-        }
-
-        .contact-left h1 {
-            font-size: clamp(1.6rem, 3vw, 2.2rem);
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 24px;
-            line-height: 1.2;
-        }
-
-        .contact-left p {
-            font-size: 1rem;
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 16px;
-        }
-
-        .contact-left a {
-            color: #1A5F5F;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .contact-left a:hover {
-            text-decoration: underline;
-        }
-
-        /* ── FORM ────────────────────────────────────── */
-        .contact-form-wrapper {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            color: #000000;
-        }
-
-        .required { color: #e74c3c; }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 20px;
-            border: 1px solid #e1e8ed;
-            border-radius: 50px;
-            font-size: 14px;
-            font-family: 'Poppins', sans-serif;
-            transition: border-color 0.2s;
-            background: white;
-            color: #000000;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: #1A5F5F;
-            box-shadow: 0 0 0 3px rgba(26, 95, 95, 0.1);
-        }
-
-        select.form-control {
-            cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%23636e72' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 20px center;
-            padding-right: 40px;
-        }
-
-        textarea.form-control {
-            resize: vertical;
-            min-height: 120px;
-            border-radius: 16px;
-        }
-
-        /* ── SEND BUTTON ─────────────────────────────── */
-        .btn-send {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #1A5F5F 0%, #36C5C5 100%);
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 16px;
-            font-size: 14px;
-            font-weight: 600;
-            font-family: 'Poppins', sans-serif;
-            cursor: pointer;
-            transition: opacity 0.2s, transform 0.2s;
-        }
-
-        .btn-send:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .btn-send-wrap {
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .btn-send:hover:not(:disabled) {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
-        .btn-send-icon {
-            width: 22px;
-            height: 22px;
-            background: rgba(255,255,255,0.25);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .btn-send-icon svg {
-            width: 12px;
-            height: 12px;
-            fill: white;
-        }
-
-        /* ── SUCCESS / ERROR MESSAGES ─────────────────── */
-        .success-message {
-            display: none;
-            background: linear-gradient(135deg, #C2F2E2 0%, #E3FFF6 42%);
-            border: 1px solid #1A5F5F;
-            border-radius: 12px;
-            padding: 16px 20px;
-            margin-bottom: 20px;
-            color: #1A5F5F;
-            font-size: 14px;
-        }
-
-        .success-message.show { display: block; }
-
-        .error-message {
-            display: none;
-            background: #FFF0F0;
-            border: 1px solid #e74c3c;
-            border-radius: 12px;
-            padding: 16px 20px;
-            margin-bottom: 20px;
-            color: #c0392b;
-            font-size: 14px;
-        }
-
-        .error-message.show { display: block; }
-
-        /* ── FOOTER ─────────────────────────────────── */
-        footer {
-            background: linear-gradient(135deg, #1A5F5F 0%, #36C5C5 100%);
-            color: white;
-            padding: 50px 0 30px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 30px;
-        }
-
-        .footer-section h4 {
-            margin-bottom: 16px;
-            font-size: 14px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: rgba(255,255,255,0.7);
-        }
-
-        .footer-section p,
-        .footer-section a {
-            color: rgba(255,255,255,0.9);
-            font-size: 13px;
-            line-height: 2;
-            text-decoration: none;
-            display: block;
-        }
-
-        .footer-section a:hover { color: white; }
-
-        .social-links {
-            display: flex;
-            gap: 12px;
-            margin-top: 8px;
-        }
-
-        .social-links a {
-            width: 36px;
-            height: 36px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s;
-        }
-
-        .social-links a:hover { background: rgba(255,255,255,0.3); }
-
-        .social-links img {
-            width: 18px;
-            height: 18px;
-            filter: brightness(0) invert(1);
-        }
-
-        .btn-contact-footer {
-            display: table;
-            margin-top: 12px;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            padding: 8px 24px;
-            border-radius: 16px;
-            font-size: 13px;
-            font-weight: 500;
-            text-decoration: none;
-            transition: background 0.2s;
-            border: 1px solid rgba(255,255,255,0.4);
-        }
-
-        .btn-contact-footer:hover { background: rgba(255,255,255,0.3); color: white; }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 24px;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            color: rgba(255,255,255,0.6);
-            font-size: 12px;
-        }
-
-        /* ── MOBILE ─────────────────────────────────── */
-        @media (max-width: 768px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-                gap: 30px;
-            }
-
-            .logo img { height: 38px; }
-            .nav-buttons { gap: 8px; }
-            .nav-buttons .btn-nav {
-                padding: 8px 14px;
-                font-size: 12px;
-                border-radius: 12px;
-            }
-
-            .contact-form-wrapper {
-                padding: 30px 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .footer-content { grid-template-columns: 1fr; }
-        }
-
-        @media (max-width: 400px) {
-            .header-inner { padding: 0 12px; }
-            .logo img { height: 32px; }
-            .nav-buttons { gap: 6px; }
-            .btn-nav {
-                padding: 7px 10px;
-                font-size: 11px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .footer-content { grid-template-columns: 1fr; }
-        }
-    </style>
-    <script src="/js/analytics.js?v=2"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact Us - NoResume</title>
+<link rel="canonical" href="https://noresume.co/contact">
+<link rel="alternate" hreflang="en-GB" href="https://noresume.co.uk/contact">
+<link rel="alternate" hreflang="en" href="https://noresume.co/contact">
+<link rel="alternate" hreflang="x-default" href="https://noresume.co/contact">
+<meta name="description" content="Get in touch with NoResume. We are here to help you with any questions about our services, your account or the app.">
+<meta property="og:title" content="Contact Us - NoResume">
+<meta property="og:url" content="https://noresume.co/contact">
+<meta property="og:type" content="website">
+<script src="/js/analytics.js?v=2"></script>
+<style>
+.sc-placeholder { background: color-mix(in srgb, currentcolor 8%, transparent 92%); border: 1px solid color-mix(in srgb, currentcolor, transparent); border-radius: 2px; box-sizing: border-box; overflow: hidden; }
+@keyframes sc-shine { 
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+html.sc-dc-streaming .sc-placeholder, html.sc-dc-streaming .sc-interp.sc-missing { position: relative; background: color-mix(in srgb, currentcolor 5%, transparent 95%); border-color: transparent; }
+html.sc-dc-streaming .sc-placeholder::before, html.sc-dc-streaming .sc-interp.sc-missing::before { content: ""; position: absolute; inset: 0px; pointer-events: none; background: linear-gradient(90deg, rgba(217, 119, 87, 0) 25%, rgba(247, 225, 211, 0.95) 37%, rgba(217, 119, 87, 0) 63%) 0% 0% / 400% 100%; animation: 1.4s ease 0s infinite normal none running sc-shine; }
+html.sc-dc-streaming .sc-placeholder:nth-child(n+9 of .sc-placeholder)::before, html.sc-dc-streaming .sc-interp.sc-missing:nth-child(n+9 of .sc-interp.sc-missing)::before { animation: auto ease 0s 1 normal none running none; background: color-mix(in srgb, currentcolor 8%, transparent 92%); }
+.sc-placeholder-error { padding: 4px 8px; font: 11px / 1.4 ui-monospace, monospace; color: color-mix(in srgb, currentcolor 70%, transparent 30%); word-break: break-word; }
+.sc-interp.sc-missing { display: inline-block; width: 2em; height: 1em; overflow: hidden; vertical-align: text-bottom; background: rgba(255, 255, 255, 0.3); border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 2px; box-sizing: border-box; color: transparent; user-select: none; }
+.sc-interp.sc-unresolved { font-family: ui-monospace, monospace; font-size: 0.85em; color: color-mix(in srgb, currentcolor, transparent); background: color-mix(in srgb, currentcolor 10%, transparent 90%); border-radius: 3px; padding: 0px 3px; }
+.sc-host.sc-has-error { position: relative; }
+.sc-logic-error { position: absolute; top: 8px; left: 8px; z-index: 2147483647; max-width: 60ch; padding: 6px 10px; background: rgb(176, 0, 32); color: rgb(255, 255, 255); font: 12px / 1.4 ui-monospace, monospace; border-radius: 4px; white-space: pre-wrap; pointer-events: none; }
+@media print {
+  @page { margin: 0.5cm; }
+  figure, table { break-inside: avoid; }
+  #dc-root, #dc-root > .sc-host { height: auto; }
+  *, ::before, ::after { print-color-adjust: exact; backdrop-filter: none !important; animation-delay: -99s !important; animation-duration: 0.001s !important; animation-iteration-count: 1 !important; animation-fill-mode: both !important; animation-play-state: running !important; transition-duration: 0s !important; }
+}
+x-dc { display: none !important; }
+.scp0:focus { box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 4px, rgba(20, 184, 166, 0.55) 0px 0px 0px 3px !important; }
+.scp1:hover { transform: translateY(-2px) !important; box-shadow: rgba(0, 0, 0, 0.3) 0px 8px 14px !important; }
+html, body { height: 100%; margin: 0px; }
+#dc-root, #dc-root > .sc-host { height: 100%; }
+[data-if][data-if-on="false"]{display:none!important}
+</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap">
+<script src="blog-posts.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async="" defer=""></script>
+<style>
+  body { margin: 0; }
+  /* footer: logo + statement on the left (wider), icons under Contact; under 1000 px the statement gets its own row, phones one column */
+  [data-foot-grid] { grid-template-columns: minmax(0, 1.8fr) repeat(3, minmax(204px, 1fr)) !important; }
+  @media (max-width: 1000px) { [data-foot-grid] { grid-template-columns: 1fr 1fr !important; } [data-foot-brand] { grid-column: 1 / -1; } }
+  @media (max-width: 560px) { [data-foot-grid] { grid-template-columns: 1fr !important; } }
+  /* footer social icons: the circle turns white and the logo teal on hover or keyboard focus */
+  [data-social]:hover, [data-social]:focus-visible { background: #fff !important; color: #17726B !important; }
+  /* desktop menu words two sizes up (17 -> 19 px) */
+  [data-desk-nav] a { font-size: 19px !important; }
+  /* pulling past the top or bottom of the page shows this instead of white */
+  html { background: #06282C; }
+  a { color: #17726B; text-decoration: none; }
+  a:hover { color: #36C5C5; }
+  @media (max-width: 760px) { [data-desk-nav] { display: none !important; } }
+  @keyframes nrHeroDrift { from { transform: scale(1.015) translate3d(-.5%, .2%, 0); } to { transform: scale(1.05) translate3d(.6%, -.4%, 0); } }
+  @media (prefers-reduced-motion: reduce) { [data-hero-img] { animation: none !important; } }
+</style>
 </head>
 <body>
+<div id="dc-root"><div class="sc-host" data-sc-name="contact"><div data-b-style="[[ themeVars ]]" style="--teal: #17726B; --hdrY: 0px; --hdrBlur: none; --hdrInk: #fff; --hdrShadow: 0 1px 12px rgba(0,0,0,.55);">
+  <div style="font-family: Poppins, sans-serif; color: rgb(17, 17, 17); line-height: 1.6; background: linear-gradient(rgb(248, 246, 230) 0%, rgb(250, 190, 155) 100%) fixed; overflow-x: hidden;">
 
-    <!-- ── NAVIGATION ─────────────────────────────── -->
-    <header>
-        <div class="header-inner">
-            <div class="logo">
-                <a href="/">
-                    <img src="assets/images/noresume_logo-color-orange.png" alt="NoResume">
-                </a>
+    
+    <section data-hdr-dark="true" data-ref="heroRef" style="position: relative; overflow: hidden; background: rgb(6, 42, 42);">
+      <img data-hero-img="true" src="assets/images/contact-bg.jpg" alt="" aria-hidden="true" data-ref="heroImgRef" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; display: block; transform-origin: 52% 50%; animation: 34s ease-in-out 0s infinite alternate none running nrHeroDrift;">
+      <canvas data-hero-img="true" aria-hidden="true" data-ref="sparkRef2" style="display: none; position: absolute; inset: 0px; width: 100%; height: 100%; pointer-events: none; mix-blend-mode: screen; transform-origin: 52% 50%; animation: 34s ease-in-out 0s infinite alternate none running nrHeroDrift;"></canvas>
+      <canvas data-hero-img="true" aria-hidden="true" data-ref="sparkRef" style="position: absolute; inset: 0px; width: 100%; height: 100%; display: block; pointer-events: none; mix-blend-mode: screen; transform-origin: 52% 50%; animation: 34s ease-in-out 0s infinite alternate none running nrHeroDrift;"></canvas>
+      <div style="position: absolute; inset: 0px; background: linear-gradient(rgba(4, 30, 30, 0.55) 0%, rgba(4, 30, 30, 0) 22%);"></div>
+
+      <header style="position: fixed; top: 0px; left: 0px; right: 0px; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 22px 32px; transform: translateY(var(--hdrY, 0px)); transition: transform 0.32s;">
+        
+        <span aria-hidden="true" style="position: absolute; left: 0px; right: 0px; top: 0px; height: 106px; pointer-events: none; backdrop-filter: blur(4px); mask-image: linear-gradient(transparent 0%, transparent 40%, rgb(0, 0, 0) 60%, rgb(0, 0, 0) 80%, transparent 100%);"></span>
+        <span aria-hidden="true" style="position: absolute; left: 0px; right: 0px; top: 0px; height: 106px; pointer-events: none; backdrop-filter: blur(6px); mask-image: linear-gradient(transparent 0%, transparent 20%, rgb(0, 0, 0) 40%, rgb(0, 0, 0) 60%, transparent 80%);"></span>
+        <span aria-hidden="true" style="position: absolute; left: 0px; right: 0px; top: 0px; height: 106px; pointer-events: none; backdrop-filter: blur(10px); mask-image: linear-gradient(transparent 0%, rgb(0, 0, 0) 20%, rgb(0, 0, 0) 40%, transparent 60%);"></span>
+        <span aria-hidden="true" style="position: absolute; left: 0px; right: 0px; top: 0px; height: 106px; pointer-events: none; backdrop-filter: blur(18px); mask-image: linear-gradient(rgb(0, 0, 0) 0%, rgb(0, 0, 0) 20%, transparent 40%);"></span>
+        <span aria-hidden="true" style="position: absolute; left: 0px; right: 0px; top: 0px; height: 106px; pointer-events: none; backdrop-filter: blur(34px); mask-image: linear-gradient(rgb(0, 0, 0) 0%, transparent 20%);"></span>
+        <a href="/" style="display: block; flex: 0 0 auto; position: relative; z-index: 1;">
+          <img src="assets/images/noresume_logo-color-orange.png" alt="NoResume" style="height: clamp(32px, 21px + 3vw, 46px); width: auto; display: block; filter: drop-shadow(rgba(0, 0, 0, 0.45) 0px 2px 10px);">
+        </a>
+        <nav data-desk-nav="true" style="display: flex; align-items: center; gap: 34px; position: relative; z-index: 1;">
+          <a href="/employers" style="color: var(--hdrInk, #fff); font-size: 17px; font-weight: 600; text-shadow: var(--hdrShadow, 0 1px 12px rgba(0,0,0,.55)); transition: color 0.32s;">Hire Talent</a>
+          <a href="/candidates" style="color: var(--hdrInk, #fff); font-size: 17px; font-weight: 600; text-shadow: var(--hdrShadow, 0 1px 12px rgba(0,0,0,.55)); transition: color 0.32s;">I am Talent</a>
+          <a href="https://app.noresume.co" style="color: var(--hdrInk, #fff); font-size: 17px; font-weight: 600; text-shadow: var(--hdrShadow, 0 1px 12px rgba(0,0,0,.55)); transition: color 0.32s;">Log-in</a>
+        </nav>
+        <button type="button" aria-label="Menu" data-on="click:openMenu" style="flex: 0 0 auto; position: relative; z-index: 1; width: 48px; height: 48px; padding: 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: none; cursor: pointer; display: flex; flex-direction: column; justify-content: center; align-items: flex-end; gap: 6px;">
+          <span style="display: block; width: 30px; height: 3px; border-radius: 999px; background: var(--hdrInk, #fff); box-shadow: var(--hdrShadow, 0 1px 8px rgba(0,0,0,.45)); transition: background 0.32s;"></span>
+          <span style="display: block; width: 30px; height: 3px; border-radius: 999px; background: var(--hdrInk, #fff); box-shadow: var(--hdrShadow, 0 1px 8px rgba(0,0,0,.45)); transition: background 0.32s;"></span>
+          <span style="display: block; width: 30px; height: 3px; border-radius: 999px; background: var(--hdrInk, #fff); box-shadow: var(--hdrShadow, 0 1px 8px rgba(0,0,0,.45)); transition: background 0.32s;"></span>
+        </button>
+      </header>
+
+      <div style="position: relative; z-index: 3; padding: 93px 32px 90px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+        <h1 style="margin: 0px; font-size: clamp(2.4rem, 4.4vw, 52px); font-weight: 700; line-height: 1.1; color: rgb(20, 184, 166); text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 20px;">Get in touch with us</h1>
+        <h2 style="margin: 10px 0px 0px; font-size: clamp(1.6rem, 2.8vw, 33px); font-weight: 700; line-height: 1.2; color: rgb(20, 184, 166); text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 16px;">We’d love to hear from you!</h2>
+        <p style="margin: 18px 0px 0px; max-width: 560px; font-size: 18px; line-height: 25px; color: rgb(255, 255, 255); text-wrap: pretty;">Whether you have a question about our services, need assistance with your account or the app functionality, or want to provide feedback… our team is ready to assist you!</p>
+        <a href="mailto:hello@noresume.co" style="margin-top: 20px; font-size: 20px; font-weight: 700; color: rgb(255, 255, 255); text-decoration: underline; text-underline-offset: 4px;">hello@noresume.co</a>
+
+        <div style="width: 100%; max-width: 605px; margin-top: 44px; box-sizing: border-box; text-align: left; border-radius: 20px; padding: 16px 29px 22px; background: linear-gradient(rgba(194, 242, 226, 0.69) 0%, rgba(227, 255, 246, 0.675) 42%); box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 4px; backdrop-filter: blur(6px);">
+          <div data-if="sent" data-if-on="false" data-mounted="0" style="display: contents;"><template>
+            <div role="status" style="margin: 6px 0px 16px; background: rgb(217, 249, 238); color: rgb(26, 95, 95); border-radius: 10px; padding: 12px 14px; font-size: 15px; line-height: 1.5;"><strong style="display: block;">Your Message Has Been Received</strong>We appreciate you reaching out. Our team will get back to you within 24-48 hours.</div>
+          </template></div>
+          <div data-if="hasError" data-if-on="false" data-mounted="0" style="display: contents;"><template>
+            <div role="alert" style="margin: 6px 0px 16px; background: rgb(253, 231, 223); color: rgb(138, 46, 18); border-radius: 10px; padding: 12px 14px; font-size: 15px; line-height: 1.5;"><span data-t="[[ errorMsg ]]"><span class="sc-interp"></span></span></div>
+          </template></div>
+
+          <form data-ref="formRef" data-on="submit:submit" style="display: flex; flex-direction: column; gap: 24px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px 40px;">
+              <div>
+                <label for="fullName" style="display: block; margin: 0px 0px 4px; font-size: 18px; font-weight: 600; line-height: 25px; color: rgb(26, 95, 95);">Full Name<span style="color: rgb(209, 16, 26);">*</span></label>
+                <input type="text" id="fullName" name="fullName" placeholder="Your Name" required="" class="scp0" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 18px; line-height: 25px; color: rgb(26, 95, 95); background: rgb(217, 249, 238); border-width: medium; border-style: none; border-color: currentcolor; border-image: none; border-radius: 10px; padding: 7px 13px; box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 4px; outline: none; transition: box-shadow 0.18s;">
+              </div>
+              <div>
+                <label for="email" style="display: block; margin: 0px 0px 4px; font-size: 18px; font-weight: 600; line-height: 25px; color: rgb(26, 95, 95);">Email<span style="color: rgb(209, 16, 26);">*</span></label>
+                <input type="email" id="email" name="email" placeholder="Your email address" required="" class="scp0" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 18px; line-height: 25px; color: rgb(26, 95, 95); background: rgb(217, 249, 238); border-width: medium; border-style: none; border-color: currentcolor; border-image: none; border-radius: 10px; padding: 7px 13px; box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 4px; outline: none; transition: box-shadow 0.18s;">
+              </div>
             </div>
-            <nav class="nav-buttons">
-                <a href="/employers" class="btn-nav">Looking to Hire</a>
-                <a href="/candidates" class="btn-nav">Open to Work</a>
-            </nav>
+            <div>
+              <label for="dropdown" style="display: block; margin: 0px 0px 4px; font-size: 18px; font-weight: 600; line-height: 25px; color: rgb(26, 95, 95);">Enquiry Type<span style="color: rgb(209, 16, 26);">*</span></label>
+              <div style="position: relative;">
+                <select id="dropdown" name="subject" required="" class="scp0" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 18px; line-height: 25px; color: rgb(26, 95, 95); background: rgb(217, 249, 238); border-width: medium; border-style: none; border-color: currentcolor; border-image: none; border-radius: 10px; padding: 7px 44px 7px 13px; box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 4px; outline: none; transition: box-shadow 0.18s; appearance: none; cursor: pointer;">
+                  <option value="">Select an option</option>
+                  <option value="Technical Issues">Technical Issues</option>
+                  <option value="Assistance with the App">Assistance with the App</option>
+                  <option value="Provide Feedback">Provide Feedback</option>
+                </select>
+                <svg viewBox="0 0 24 24" aria-hidden="true" style="position: absolute; right: 14px; top: 50%; width: 22px; height: 22px; transform: translateY(-50%); pointer-events: none; display: block;"><path d="M7 10l5 5 5-5" fill="none" stroke="#14B8A6" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </div>
+            </div>
+            <div>
+              <label for="message" style="display: block; margin: 0px 0px 4px; font-size: 18px; font-weight: 600; line-height: 25px; color: rgb(26, 95, 95);">How can we help you?</label>
+              <textarea id="message" name="message" placeholder="Enter your message here" rows="4" class="scp0" style="width: 100%; box-sizing: border-box; font-family: inherit; font-size: 18px; line-height: 25px; color: rgb(26, 95, 95); background: rgb(217, 249, 238); border-width: medium; border-style: none; border-color: currentcolor; border-image: none; border-radius: 10px; padding: 9px 13px; box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 4px; outline: none; transition: box-shadow 0.18s; height: 122px; resize: vertical;"></textarea>
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+              <div data-ref="turnstileRef" style="min-height: 65px;"></div>
+              <button type="submit" data-b-disabled="[[ sending ]]" class="scp1" style="margin-left: auto; display: inline-flex; align-items: center; gap: 10px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; cursor: pointer; font-family: inherit; background: linear-gradient(rgb(26, 95, 95) 0%, rgb(54, 197, 197) 100%); color: rgb(255, 255, 255); height: 39px; padding: 0px 12px 0px 14px; border-radius: 10px; font-size: 17px; font-weight: 700; box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 4px; transition: transform 0.2s, box-shadow 0.2s;">
+                <span><span data-t="[[ sendLabel ]]"><span class="sc-interp">Send Message</span></span></span>
+                <svg viewBox="0 0 16 16" aria-hidden="true" style="width: 25px; height: 25px; display: block;"><path fill="#D9F9EE" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"></path></svg>
+              </button>
+            </div>
+          </form>
         </div>
-    </header>
+      </div>
 
-    <main>
-        <section class="contact-section">
-            <div class="container">
-                <div class="contact-grid">
-                    <!-- ── LEFT ─────────────────────── -->
-                    <div class="contact-left">
-                        <h1>Get in touch with Us</h1>
-                        <img src="assets/images/contact-help-animation.gif" alt="Help animation" class="contact-gif-anim">
-                        <p>We are here to help you!</p>
-                        <p>Whether you have a question about our services, need assistance with your account or the app functionality, or want to provide feedback… our team is ready to assist you!</p>
-                        <p>We'd love to hear from you!<br>
-                            Connect with us using the form or email us at</p>
-                        <p><a href="mailto:support@noresume.co">support@noresume.co</a></p>
-                    </div>
+      <div data-if="menuOpen" data-if-on="false" data-mounted="0" style="display: contents;"><template>
+        <div data-on="click:closeMenu" style="position: fixed; inset: 0px; z-index: 60; background: rgba(6, 30, 32, 0.5); backdrop-filter: blur(3px);"></div>
+        <aside style="position: fixed; top: 0px; right: 0px; bottom: 0px; z-index: 61; width: 320px; max-width: 86vw; background: rgb(248, 246, 230); box-shadow: rgba(6, 27, 64, 0.28) -20px 0px 60px; display: flex; flex-direction: column; padding: 26px 30px 34px;">
+          <div style="display: flex; justify-content: flex-end;">
+            <button type="button" aria-label="Close menu" data-on="click:closeMenu" style="width: 42px; height: 42px; padding: 0px; border-width: medium; border-style: none; border-color: currentcolor; border-image: none; background: none; cursor: pointer; display: grid; place-items: center; color: rgb(23, 114, 107);"><svg viewBox="0 0 24 24" aria-hidden="true" style="width: 22px; height: 22px; display: block;"><path d="M5 5 L19 19 M19 5 L5 19" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></path></svg></button>
+          </div>
+          <nav style="display: flex; flex-direction: column; gap: 4px; margin-top: 18px;">
+            <a href="/" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Home</a>
+            <a href="/employers" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Hire Talent</a>
+            <a href="/candidates" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">I am Talent</a>
+            <a href="/recruiters" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">For Recruiters</a>
+            <a href="/blog" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Insights</a>
+            <a href="/contact" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 700; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Contact Us</a>
+            <a href="/book" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Book a Call</a>
+          </nav>
+          <a href="https://app.noresume.co" style="margin-top: 26px; text-align: center; background: linear-gradient(135deg, rgb(26, 95, 95) 0%, rgb(54, 197, 197) 100%); color: rgb(255, 255, 255); padding: 14px 24px; border-radius: 999px; font-size: 17px; font-weight: 600;">Log-In</a>
+        </aside>
+      </template></div>
+    </section>
 
-                    <!-- ── FORM ──────────────────────── -->
-                    <div class="contact-form-wrapper">
-                        <div class="success-message" id="successMessage">
-                            <strong>Your Message Has Been Received</strong><br>
-                            We appreciate you reaching out. Our team will get back to you within 24-48 hours.
-                        </div>
 
-                        <div class="error-message" id="errorMessage"></div>
-
-                        <form id="contactForm">
-                            <div class="form-group">
-                                <label>Name <span class="required">*</span></label>
-                                <div class="form-row">
-                                    <input type="text" class="form-control" name="firstName" placeholder="First Name" required>
-                                    <input type="text" class="form-control" name="lastName" placeholder="Last Name" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email <span class="required">*</span></label>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="dropdown">Enquiry Type <span class="required">*</span></label>
-                                <select class="form-control" id="dropdown" name="subject" required>
-                                    <option value="">Select an option</option>
-                                    <option value="Technical Issues">Technical Issues</option>
-                                    <option value="Assistance with the App">Assistance with the App</option>
-                                    <option value="Provide Feedback">Provide Feedback</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="message">How can we help you?</label>
-                                <textarea class="form-control" id="message" name="message" placeholder="Enter your message..."></textarea>
-                            </div>
-
-                            <div class="cf-turnstile" data-sitekey="0x4AAAAAAC9aeOFefNbPvWoB" data-callback="onTurnstileSuccess" style="margin-bottom: 16px;"></div>
-
-                            <div class="btn-send-wrap">
-                                <button type="submit" class="btn-send" id="submitBtn">
-                                    Send Message
-                                    <span class="btn-send-icon">
-                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M5 12h14M12 5l7 7-7 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-                                        </svg>
-                                    </span>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+    
+    <footer data-hdr-dark="true" style="background: linear-gradient(135deg, rgb(26, 95, 95) 0%, rgb(54, 197, 197) 100%); color: rgb(255, 255, 255); padding: 34px 0px 20px;">
+      <div style="max-width: 1240px; margin: 0px auto; padding: 0px 32px;">
+        <div data-foot-grid="true" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 18px;">
+          <div data-foot-brand="true">
+            <img src="assets/images/noresume_logo-white.png" alt="NoResume" style="height: 32px; width: auto; display: block; margin: 0px 0px 14px;">
+            <p style="margin: 0px; max-width: 46ch; font-size: 14px; line-height: 1.7; color: rgba(255, 255, 255, 0.92);">At noresume we empower workers and businesses to build authentic, direct relationships grounded in fairness and transparency. Our mission is to simplify the hiring process, replacing applications with real-time connections.</p>
+          </div>
+          <div>
+            <h4 style="margin: 0px 0px 18px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255, 255, 255, 0.8);">Location</h4>
+            <p style="margin: 0px; color: rgba(255, 255, 255, 0.95); font-size: 14px; line-height: 1.95;">NoResume<br>71-75 Shelton Street<br>Covent Garden<br>London WC2H 9JQ</p>
+          </div>
+          <div>
+            <h4 style="margin: 0px 0px 18px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255, 255, 255, 0.8);">Legal</h4>
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <a href="/privacy-policy" style="color: rgba(255, 255, 255, 0.95); font-size: 14px;">Privacy Policy</a>
+              <a href="/terms-of-service" style="color: rgba(255, 255, 255, 0.95); font-size: 14px;">Terms of Service</a>
             </div>
-        </section>
-    </main>
-
-    <!-- ── FOOTER ─────────────────────────────────── -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Social Media</h4>
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/company/noresume" target="_blank" rel="noopener">
-                            <img src="assets/images/vecteezy_linkedin-logo-png-linkedin-logo-transparent-png-linkedin_23986970.png" alt="LinkedIn">
-                        </a>
-                        <a href="https://www.tiktok.com/@thenoresume" target="_blank" rel="noopener">
-                            <img src="assets/images/tiktok_logo_social+media_icon.png" alt="TikTok">
-                        </a>
-                        <a href="https://www.youtube.com/@thenoresume" target="_blank" rel="noopener">
-                            <img src="assets/images/Youtube_logo_icon.png" alt="YouTube">
-                        </a>
-                        <a href="https://www.facebook.com/profile.php?id=61566370331980" target="_blank" rel="noopener">
-                            <img src="assets/images/facebook+logo_icon_2.png" alt="Facebook">
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>Location</h4>
-                    <p>NoResume</p>
-                    <p>71-75 Shelton Street</p>
-                    <p>Covent Garden</p>
-                    <p>London WC2H 9JQ</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <a href="/privacy-policy">Privacy Policy</a>
-                    <a href="/terms-of-service">Terms of Service</a>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <a href="mailto:info@noresume.co">info@noresume.co</a>
-                    <a href="/contact" class="btn-contact-footer">Contact Us</a>
-                </div>
+          </div>
+          <div>
+            <h4 style="margin: 0px 0px 18px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255, 255, 255, 0.8);">Contact</h4>
+            <a href="mailto:hello@noresume.co" style="color: rgba(255, 255, 255, 0.95); font-size: 14px; display: block;">hello@noresume.co</a>
+            <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px; max-width: 260px;">
+              <a href="/contact" style="background: rgba(255, 255, 255, 0.22); border: 1px solid rgba(255, 255, 255, 0.42); color: rgb(255, 255, 255); padding: 11px 24px; border-radius: 999px; font-size: 14px; font-weight: 500;">Contact Us</a>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 NoResume. All rights reserved.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px;">
+              
+              <a data-social="true" href="https://www.linkedin.com/company/noresume" target="_blank" rel="noopener" aria-label="LinkedIn" style="width: 42px; height: 42px; border-radius: 999px; display: grid; place-items: center; color: rgb(255, 255, 255); background: rgba(255, 255, 255, 0.16); transition: background 0.2s, color 0.2s;"><svg viewBox="0 0 448 512" aria-hidden="true" fill="currentColor" style="width: 19px; height: 19px; display: block;"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path></svg></a>
+              <a data-social="true" href="https://www.tiktok.com/@thenoresume" target="_blank" rel="noopener" aria-label="TikTok" style="width: 42px; height: 42px; border-radius: 999px; display: grid; place-items: center; color: rgb(255, 255, 255); background: rgba(255, 255, 255, 0.16); transition: background 0.2s, color 0.2s;"><svg viewBox="0 0 448 512" aria-hidden="true" fill="currentColor" style="width: 19px; height: 19px; display: block;"><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z"></path></svg></a>
+              <a data-social="true" href="https://www.youtube.com/@thenoresume" target="_blank" rel="noopener" aria-label="YouTube" style="width: 42px; height: 42px; border-radius: 999px; display: grid; place-items: center; color: rgb(255, 255, 255); background: rgba(255, 255, 255, 0.16); transition: background 0.2s, color 0.2s;"><svg viewBox="0 0 576 512" aria-hidden="true" fill="currentColor" style="width: 19px; height: 19px; display: block;"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"></path></svg></a>
+              <a data-social="true" href="https://www.facebook.com/profile.php?id=61566370331980" target="_blank" rel="noopener" aria-label="Facebook" style="width: 42px; height: 42px; border-radius: 999px; display: grid; place-items: center; color: rgb(255, 255, 255); background: rgba(255, 255, 255, 0.16); transition: background 0.2s, color 0.2s;"><svg viewBox="0 0 320 512" aria-hidden="true" fill="currentColor" style="width: 19px; height: 19px; display: block;"><path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"></path></svg></a>
             </div>
+          </div>
         </div>
+        <div style="text-align: center; padding-top: 18px; border-top: 1px solid rgba(255, 255, 255, 0.22);">
+          <p style="margin: 0px; color: rgba(255, 255, 255, 0.7); font-size: 12.5px;">© 2026 NoResume. All rights reserved.</p>
+        </div>
+      </div>
     </footer>
 
-    <script>
-        // Track Turnstile completion
-        let turnstileReady = false;
-        function onTurnstileSuccess() {
-            turnstileReady = true;
+  </div></div></div></div>
+<script src="nr-runtime.js"></script>
+<script>
+(function () {
+
+class Component extends DCLogic {
+  state = { menuOpen: false, hdrHidden: false, hdrSolid: false, onDark: true };
+
+  constructor(props) {
+    super(props);
+    this.heroRef = React.createRef();
+    this.heroImgRef = React.createRef();
+    this.sparkRef = React.createRef();
+  }
+
+  // Posts to the same Cloudflare Pages Function as the current site
+  // (/forms/contact), with the Turnstile token the widget injects into the form.
+  // Both only answer on the live domain, not in this preview.
+  mountTurnstile() {
+    const el = this.turnstileRef && this.turnstileRef.current;
+    if (!el || this._tsId != null) return;
+    // the sitekey only accepts NoResume domains; elsewhere (this preview) the
+    // widget throws cross-origin "Script error" on every retry, so skip it
+    if (!/(^|\.)noresume\.co(\.uk)?$/.test(location.hostname)) return;
+    if (!window.turnstile) { this._tsT = setTimeout(() => this.mountTurnstile(), 250); return; }
+    this._tsId = window.turnstile.render(el, { sitekey: '0x4AAAAAAC9aeOFefNbPvWoB' });
+  }
+
+  async submitContact(e) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    this.setState({ sent: false, errorMsg: '' });
+    const token = form.querySelector('[name="cf-turnstile-response"]');
+    if (!token || !token.value) { this.setState({ errorMsg: 'Please complete the security check.' }); return; }
+    this.setState({ sending: true });
+    const resetTs = () => { if (window.turnstile && this._tsId != null) window.turnstile.reset(this._tsId); };
+    try {
+      const fd = new FormData(form);
+      const full = String(fd.get('fullName') || '').trim();
+      const sp = full.indexOf(' ');
+      fd.set('firstName', sp > 0 ? full.slice(0, sp) : full);
+      fd.set('lastName', sp > 0 ? full.slice(sp + 1).trim() : '');
+      fd.delete('fullName');
+      const res = await fetch('/forms/contact', { method: 'POST', body: fd });
+      const out = await res.json();
+      if (out.success) { form.reset(); this.setState({ sent: true }); }
+      else this.setState({ errorMsg: out.error || 'Unable to send your message. Please try again.' });
+    } catch (err) {
+      this.setState({ errorMsg: 'Unable to send your message. Please check your connection and try again.' });
+    } finally {
+      resetTs();
+      this.setState({ sending: false });
+    }
+  }
+
+  componentDidMount() {
+    this.mountTurnstile();
+    this._lastY = window.scrollY || 0;
+    this._onScroll = () => {
+      const y = window.scrollY || 0;
+      const hidden = y > 140 && y > this._lastY;
+      const solid = y > 40;
+      const hero = this.heroRef.current;
+      const himg = this.heroImgRef.current;
+      const hcv = this.sparkRef.current;
+      if (y < 1000) {
+        const t = '0 ' + (y * 0.14).toFixed(1) + 'px';
+        if (himg) himg.style.translate = t;
+        if (hcv) hcv.style.translate = t;
+        const hcv2 = this.sparkRef2 && this.sparkRef2.current;
+        if (hcv2) hcv2.style.translate = t;
+      }
+      // Header ink follows whatever is actually behind the nav, not just the
+      // hero: any element marked data-hdr-dark that crosses the header's
+      // mid-line AND overlaps the nav horizontally counts. Testing the hero
+      // alone missed dark cards scrolling underneath.
+      const onDark = this.inkOnDark();
+      if (hidden !== this.state.hdrHidden || solid !== this.state.hdrSolid || onDark !== this.state.onDark) {
+        this.setState({ hdrHidden: hidden, hdrSolid: solid, onDark: onDark });
+      }
+      this._lastY = y;
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    if (!(window.NR_BLOG_POSTS || []).length) this._postsT = setTimeout(() => this.forceUpdate(), 300);
+    setTimeout(() => this.initSparks(), 80);
+    this._onResize = () => { clearTimeout(this._rt); this._rt = setTimeout(() => this.initSparks(), 180); };
+    window.addEventListener('resize', this._onResize);
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this._tsT);
+    if (window.turnstile && this._tsId != null) window.turnstile.remove(this._tsId);
+    window.removeEventListener('scroll', this._onScroll);
+    clearTimeout(this._postsT);
+    window.removeEventListener('resize', this._onResize);
+    cancelAnimationFrame(this._sparkRaf);
+    if (this._sparkIO) this._sparkIO.disconnect();
+    window.removeEventListener('resize', this._onSparkResize);
+  }
+
+  // Articles live in blog-posts.js so this page and the homepage stay in sync.
+  posts() {
+    return (typeof window !== 'undefined' && window.NR_BLOG_POSTS) || [];
+  }
+
+  featured() {
+    return this.posts().find(p => p.featured) || this.posts()[0] || {};
+  }
+
+  // Contact background: "data through the network". The graph is detected
+  // from the artwork itself (assets/network-contact.json): nodes are the bright
+  // junction dots, edges are the straight line runs that join them. Sparks hop
+  // node to node along real lines and light each node as they arrive, while
+  // motes drift up through the beam. The image is cover-cropped from the
+  // bottom, so the projection pins the bottom edge rather than centring.
+  // The earlier flow-field version is kept as initSparksFlow().
+  toggleFx() {
+    const order = ['network', 'flow', 'mix'];
+    const fx = order[(order.indexOf(this.state.fx || 'network') + 1) % order.length];
+    ['', '2'].forEach(k => { cancelAnimationFrame(this['_raf' + k]); if (this['_io' + k]) this['_io' + k].disconnect(); });
+    const c1 = this.sparkRef.current, c2 = this.sparkRef2.current;
+    [c1, c2].forEach(c => c && c.getContext('2d').clearRect(0, 0, c.width, c.height));
+    if (c2) c2.style.display = fx === 'mix' ? 'block' : 'none';
+    // in the mix the original trails fade out before the network starts
+    const m = fx === 'mix' ? 'linear-gradient(180deg, #000 0%, #000 38%, transparent 62%)' : 'none';
+    if (c1) { c1.style.maskImage = m; c1.style.webkitMaskImage = m; }
+    this._field = null;
+    this.setState({ fx }, () => this.initSparks());
+  }
+
+  async initSparks(o = {}) {
+    if (!o.cv) {
+      const fx = this.state.fx || 'network';
+      if (fx === 'flow') return this.initSparksFlow();
+      if (fx === 'mix') {
+        // option 3: original trails up top, network sparks along the lines below
+        this.initSparksFlow();
+        return this.initSparks({ cv: this.sparkRef2.current, key: '2', noMotes: true });
+      }
+    }
+    cancelAnimationFrame(this['_raf' + (o.key || '')]);
+    if (this['_io' + (o.key || '')]) this['_io' + (o.key || '')].disconnect();
+    const cv = (o.cv || this.sparkRef.current), img = this.heroImgRef.current;
+    if (!cv || !img) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const ctx = cv.getContext('2d');
+    if (!this._net) {
+      try { this._net = await (await fetch('assets/network-contact.json')).json(); } catch (e) { return; }
+    }
+    if (!this._netMask) {
+      this._netMask = await new Promise((res) => { const im = new Image(); im.onload = () => res(im); im.onerror = () => res(null); im.src = 'assets/network-contact-mask.png'; });
+    }
+    const MASK = this._netMask;
+    // sparks are painted on an offscreen layer, then cut to the real line
+    // pixels with the mask, so the light sits on the artwork's lines exactly
+    const off = document.createElement('canvas'), octx = off.getContext('2d');
+    const G = this._net, nodes = G.nodes, adj = nodes.map(() => []);
+    G.edges.forEach(([a, b]) => { adj[a].push(b); adj[b].push(a); });
+
+    let map = null;
+    const project = () => {
+      const W = cv.clientWidth, H = cv.clientHeight, dpr = Math.min(window.devicePixelRatio || 1, 2);
+      cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      off.width = cv.width; off.height = cv.height; octx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const iw = img.naturalWidth || 16, ih = img.naturalHeight || 9, sc = Math.max(W / iw, H / ih);
+      map = { w: iw * sc, h: ih * sc, x: (W - iw * sc) / 2, y: H - ih * sc, W, H };
+    };
+    project();
+    window.removeEventListener('resize', this['_rs' + (o.key || '')]);
+    this['_rs' + (o.key || '')] = () => project();
+    window.addEventListener('resize', this['_rs' + (o.key || '')]);
+    const P = (i) => [map.x + nodes[i][0] * map.w, map.y + nodes[i][1] * map.h];
+
+    const glow = new Float32Array(nodes.length);
+    const starts = nodes.map((n, i) => i).filter(i => adj[i].length);
+    const newSpark = (s) => {
+      s.a = starts[(Math.random() * starts.length) | 0];
+      s.b = adj[s.a][(Math.random() * adj[s.a].length) | 0];
+      s.t = 0; s.hops = 3 + ((Math.random() * 6) | 0);
+      s.v = 90 + Math.random() * 110;                 // px per second
+      s.warm = Math.random() < 0.14;
+      return s;
+    };
+    const sparks = Array.from({ length: 14 }, () => { const s = newSpark({}); s.t = Math.random(); return s; });
+
+    // motes rising through the beam: apex near the ring, widening upwards
+    const APEX = [0.5, 0.74], TOPL = 0.12, TOPR = 0.88;
+    const newMote = (m, anyY) => {
+      m.v = 0.02 + Math.random() * (APEX[1] - 0.04);
+      m.age = anyY ? Math.random() * 8 : 0; m.life = 8 + Math.random() * 8;
+      m.f = (Math.random() * 2 - 1) * 0.8;
+      m.s = 0.008 + Math.random() * 0.014; m.r = 0.6 + Math.random() * 1.2; m.ph = Math.random() * 6.28;
+      return m;
+    };
+    const motes = Array.from({ length: 64 }, () => newMote({}, true));
+
+    let last = 0;
+    const frame = (now) => {
+      const dt = last ? Math.min((now - last) / 1000, 0.05) : 0; last = now;
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.fillStyle = 'rgba(0,0,0,.2)'; ctx.fillRect(0, 0, map.W, map.H);
+      ctx.globalCompositeOperation = 'lighter';
+
+      if (!o.noMotes) for (const m of motes) {
+        m.v -= m.s * dt; m.ph += dt * 1.3; m.age += dt;
+        if (m.v < 0.02 || m.age > m.life) newMote(m, false);
+        const half = (0.5 - TOPL) * (1 - m.v / APEX[1]) + 0.02;
+        const x = map.x + (APEX[0] + m.f * half + Math.sin(m.ph) * 0.002) * map.w, y = map.y + m.v * map.h;
+        const a = Math.min(1, (APEX[1] - m.v) * 6) * Math.min(1, m.v * 5) * Math.sin(Math.PI * Math.min(1, m.age / m.life)) * 0.55;
+        ctx.fillStyle = 'rgba(150,255,236,' + a.toFixed(3) + ')';
+        ctx.beginPath(); ctx.arc(x, y, m.r, 0, 6.283); ctx.fill();
+      }
+
+      octx.clearRect(0, 0, map.W, map.H);
+      octx.globalCompositeOperation = 'lighter';
+      for (const s of sparks) {
+        const [x0, y0] = P(s.a), [x1, y1] = P(s.b), len = Math.hypot(x1 - x0, y1 - y0) || 1;
+        const tPrev = s.t;
+        s.t += (s.v * dt) / len;
+        if (s.t >= 1) {
+          glow[s.b] = 1;
+          if (--s.hops <= 0) { newSpark(s); continue; }
+          const next = adj[s.b].filter(n => n !== s.a);
+          const from = s.b;
+          s.a = from; s.b = next.length ? next[(Math.random() * next.length) | 0] : adj[from][0]; s.t = 0;
+          continue;
         }
+        const tail = Math.max(0, s.t - 26 / len), hx = x0 + (x1 - x0) * s.t, hy = y0 + (y1 - y0) * s.t;
+        const tx = x0 + (x1 - x0) * tail, ty = y0 + (y1 - y0) * tail;
+        const col = s.warm ? '255,214,160' : '140,255,232';
+        const gr = ctx.createLinearGradient(tx, ty, hx, hy);
+        gr.addColorStop(0, 'rgba(' + col + ',0)'); gr.addColorStop(1, 'rgba(' + col + ',.95)');
+        octx.strokeStyle = gr; octx.lineWidth = MASK ? 9 : 1.6; octx.lineCap = 'round';
+        octx.beginPath(); octx.moveTo(tx, ty); octx.lineTo(hx, hy); octx.stroke();
+        octx.fillStyle = 'rgba(' + col + ',.9)';
+        octx.beginPath(); octx.arc(hx, hy, MASK ? 7 : 2.4, 0, 6.283); octx.fill();
+      }
 
-        // Form submission — POST to the Cloudflare Pages Function
-        const form = document.getElementById('contactForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const successEl = document.getElementById('successMessage');
-        const errorEl = document.getElementById('errorMessage');
+      for (let i = 0; i < nodes.length; i++) {
+        if (glow[i] < 0.02) continue;
+        const [x, y] = P(i), r = 2 + nodes[i][2] * 2.5;
+        const gr = ctx.createRadialGradient(x, y, 0, x, y, r * 3.2);
+        gr.addColorStop(0, 'rgba(190,255,240,' + (glow[i] * 0.42).toFixed(3) + ')');
+        gr.addColorStop(1, 'rgba(190,255,240,0)');
+        octx.fillStyle = gr; octx.beginPath(); octx.arc(x, y, r * 3.2, 0, 6.283); octx.fill();
+        glow[i] *= Math.pow(0.03, dt);
+      }
+      if (MASK) {
+        octx.globalCompositeOperation = 'destination-in';
+        octx.drawImage(MASK, map.x, map.y, map.w, map.h);
+      }
+      ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.globalCompositeOperation = 'lighter';
+      ctx.drawImage(off, 0, 0);
+      ctx.restore();
+      this['_raf' + (o.key || '')] = requestAnimationFrame(frame);
+    };
+    this['_io' + (o.key || '')] = new IntersectionObserver((es) => {
+      cancelAnimationFrame(this['_raf' + (o.key || '')]);
+      if (es[0] && es[0].isIntersecting) { last = 0; this['_raf' + (o.key || '')] = requestAnimationFrame(frame); }
+    }, { threshold: 0 });
+    this['_io' + (o.key || '')].observe(cv);
+  }
 
-        function showError(msg) {
-            errorEl.textContent = msg;
-            errorEl.classList.add('show');
-            successEl.classList.remove('show');
+  // Hero "data flow". The paths are not authored — they are read out of the
+  // artwork itself: a structure-tensor pass over the image yields, per cell,
+  // the dominant orientation (along the strand), how strongly oriented it is,
+  // and the local colour. Particles are seeded only on strand cells and are
+  // advected through that field, so every trail follows a real stream in the
+  // picture and wears its colour. Field is in image space and is projected
+  // through the object-fit: cover crop, so it stays aligned at any viewport.
+  async initSparksFlow(o = {}) {
+    if (this['_io' + (o.key || '')]) this['_io' + (o.key || '')].disconnect();
+    cancelAnimationFrame(this['_raf' + (o.key || '')]);
+    const cv = (o.cv || this.sparkRef.current), img = this.heroImgRef.current;
+    if (!cv || !img) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const ctx = cv.getContext('2d');
+
+    if (!this._field) {
+      try {
+        const res = await fetch('assets/flow-field.json');
+        const j = await res.json();
+        const dec = (b) => { const s = atob(b), a = new Uint8Array(s.length); for (let i = 0; i < s.length; i++) a[i] = s.charCodeAt(i); return a; };
+        this._field = { w: j.w, h: j.h, ang: dec(j.ang), coh: dec(j.coh), r: dec(j.r), g: dec(j.g), b: dec(j.b) };
+      } catch (err) { return; }
+    }
+    const F = this._field, GW = F.w, GH = F.h;
+
+    // seed table: cells that actually sit on a strand, weighted by strength
+    const seeds = [];
+    for (let i = 0; i < F.coh.length; i++) if (F.coh[i] > 96) { seeds.push(i); if (F.coh[i] > 170) seeds.push(i); }
+    if (!seeds.length) return;
+
+    const sample = (u, v) => {
+      const x = Math.min(GW - 1, Math.max(0, u * GW)), y = Math.min(GH - 1, Math.max(0, v * GH));
+      const i = (y | 0) * GW + (x | 0);
+      return i;
+    };
+
+    let map = null;
+    const project = () => {
+      const W = cv.clientWidth, H = cv.clientHeight;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      cv.width = W * dpr; cv.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const iw = img.naturalWidth || 16, ih = img.naturalHeight || 9;
+      const sc = Math.max(W / iw, H / ih);
+      map = { w: iw * sc, h: ih * sc, x: (W - iw * sc) / 2, y: (H - ih * sc) / 2, W, H };
+    };
+    project();
+    this['_rs' + (o.key || '')] = () => project();
+    window.addEventListener('resize', this['_rs' + (o.key || '')]);
+
+    const spawn = (p) => {
+      const i = seeds[(Math.random() * seeds.length) | 0];
+      p.u = ((i % GW) + Math.random()) / GW;
+      p.v = (((i / GW) | 0) + Math.random()) / GH;
+      p.life = 0;
+      p.max = 1.6 + Math.random() * 2.8;
+      p.spd = 0.018 + Math.random() * 0.05;     // image widths per second
+      p.size = 0.7 + Math.random() * 1.5;
+      p.dx = 0; p.dy = 0;                        // heading, resolved on first step
+      const c = F.coh[i] / 255;
+      p.gain = 0.5 + c * 0.9;
+    };
+    const P = [];
+    for (let i = 0; i < 320; i++) { const p = {}; spawn(p); p.life = Math.random() * p.max; P.push(p); }
+
+    let last = 0;
+    const frame = (now) => {
+      const dt = last ? Math.min((now - last) / 1000, 0.05) : 0;
+      last = now;
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.fillStyle = 'rgba(0,0,0,.16)';
+      ctx.fillRect(0, 0, map.W, map.H);
+      ctx.globalCompositeOperation = 'lighter';
+
+      for (const p of P) {
+        const i = sample(p.u, p.v);
+        const strength = F.coh[i] / 255;
+        // left the strands, or lived long enough: respawn on a fresh one
+        if (strength < 0.3 || p.life > p.max || p.u < 0 || p.u > 1 || p.v < 0 || p.v > 1) { spawn(p); continue; }
+
+        const a = (F.ang[i] / 255) * Math.PI;     // 0..PI: orientation, not direction
+        let vx = Math.cos(a), vy = Math.sin(a);
+        // orientation is 180-ambiguous — keep travelling the way we already were
+        if (p.dx || p.dy) { if (vx * p.dx + vy * p.dy < 0) { vx = -vx; vy = -vy; } }
+        else if (Math.random() < 0.5) { vx = -vx; vy = -vy; }
+        p.dx = vx; p.dy = vy;
+
+        const u0 = p.u, v0 = p.v;
+        const step = p.spd * dt;
+        p.u += vx * step;
+        p.v += vy * step * (map.w / map.h);       // field is stored in image aspect
+        p.life += dt;
+
+        const x0 = map.x + u0 * map.w, y0 = map.y + v0 * map.h;
+        const x1 = map.x + p.u * map.w, y1 = map.y + p.v * map.h;
+        if (x1 < -40 || x1 > map.W + 40 || y1 < -40 || y1 > map.H + 40) continue;
+
+        // fade in and out over the particle's life
+        const t = p.life / p.max;
+        const fade = Math.min(1, t * 6) * Math.min(1, (1 - t) * 3.2);
+        const alpha = fade * p.gain * strength * 0.9;
+        const r = Math.min(255, F.r[i] + 60), g = Math.min(255, F.g[i] + 60), b = Math.min(255, F.b[i] + 60);
+        ctx.strokeStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + alpha.toFixed(3) + ')';
+        ctx.lineWidth = p.size;
+        ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+        if (p.size > 1.6) {
+          ctx.fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + (alpha * 0.45).toFixed(3) + ')';
+          ctx.beginPath(); ctx.arc(x1, y1, p.size * 1.35, 0, 6.283); ctx.fill();
         }
+      }
+      this['_raf' + (o.key || '')] = requestAnimationFrame(frame);
+    };
 
-        function hideMessages() {
-            errorEl.classList.remove('show');
-            successEl.classList.remove('show');
-        }
+    this['_io' + (o.key || '')] = new IntersectionObserver((es) => {
+      const vis = es[0] && es[0].isIntersecting;
+      cancelAnimationFrame(this['_raf' + (o.key || '')]);
+      if (vis) { last = 0; this['_raf' + (o.key || '')] = requestAnimationFrame(frame); }
+    }, { threshold: 0 });
+    this['_io' + (o.key || '')].observe(cv);
+  }
 
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            hideMessages();
 
-            // Basic client-side check that Turnstile completed
-            const turnstileInput = form.querySelector('[name="cf-turnstile-response"]');
-            if (!turnstileInput || !turnstileInput.value) {
-                showError('Please complete the security check.');
-                return;
-            }
+  inkOnDark() {
+    const BAND = 46;
+    const nav = this._navEl || (this._navEl = document.querySelector('header nav'));
+    const nr = nav ? nav.getBoundingClientRect() : { left: 0, right: window.innerWidth };
+    const els = document.querySelectorAll('[data-hdr-dark]');
+    for (const el of els) {
+      const r = el.getBoundingClientRect();
+      if (r.width < 40 || r.height < 20) continue;
+      if (r.top > BAND || r.bottom < BAND) continue;
+      if (r.right < nr.left || r.left > nr.right) continue;
+      return true;
+    }
+    return false;
+  }
 
-            // Disable button and show loading state
-            submitBtn.disabled = true;
-            const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = 'Sending…';
+  renderVals() {
+    const p = this.props;
+    if (!this.formRef) { this.formRef = React.createRef(); this.turnstileRef = React.createRef(); }
+    const contact = {
+      formRef: this.formRef,
+      turnstileRef: this.turnstileRef,
+      submit: (e) => this.submitContact(e),
+      sending: !!this.state.sending,
+      sendLabel: this.state.sending ? 'Sending…' : 'Send Message',
+      sent: !!this.state.sent,
+      hasError: !!this.state.errorMsg,
+      errorMsg: this.state.errorMsg || ''
+    };
+    const dark = this.state.onDark;
+    return {
+      ...contact,
+      toggleFx: () => this.toggleFx(),
+      sparkRef2: this.sparkRef2 || (this.sparkRef2 = React.createRef()),
+      fxLabel: ({ flow: 'Original', mix: 'Option 3: both' })[this.state.fx] || 'Network',
+      menuOpen: this.state.menuOpen,
+      openMenu: () => this.setState({ menuOpen: true }),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      heroRef: this.heroRef,
+      heroImgRef: this.heroImgRef,
+      sparkRef: this.sparkRef,
+      // 12 cards at a time; "Load more" adds the next batch on the same page
+      ...(() => {
+        const q = (this.state.query || '').trim().toLowerCase();
+        // while searching, the featured article is part of the results too
+        const all = (p.posts && p.posts.length ? p.posts : this.posts())
+          .filter(x => q ? [x.title, x.excerpt, x.category].join(' ').toLowerCase().includes(q) : !x.featured);
+        const n = Math.min(all.length, this.state.shown || 12);
+        return {
+          posts: all.slice(0, n),
+          hasMore: n < all.length,
+          shownCount: n,
+          totalCount: all.length,
+          loadMore: () => this.setState(s => ({ shown: (s.shown || 12) + 12 })),
+          query: this.state.query || '',
+          onQuery: (e) => this.setState({ query: e.target.value, shown: 12 }),
+          noResults: !!q && all.length === 0
+        };
+      })(),
+      featured: this.featured(),
+      hasArticles: this.posts().length > 0,
+      noArticles: this.posts().length === 0,
+      // summary stays collapsed until hover or focus, matching the grid cards
+      featRow: this.state.featOpen ? '1fr' : '0fr',
+      featEnter: () => this.setState({ featOpen: true }),
+      featLeave: () => this.setState({ featOpen: false }),
+      themeVars: {
+        '--teal': p.teal || '#17726B',
+        '--hdrY': this.state.hdrHidden ? '-120%' : '0px',
+        '--hdrBlur': this.state.hdrSolid ? 'blur(14px)' : 'none',
+        '--hdrInk': dark ? '#fff' : (p.teal || '#17726B'),
+        '--hdrShadow': dark ? '0 1px 12px rgba(0,0,0,.55)' : 'none'
+      }
+    };
+  }
+}
 
-            try {
-                const formData = new FormData(form);
 
-                const response = await fetch('/api/contact', {
-                    method: 'POST',
-                    body: formData,
-                });
-
-                const result = await response.json();
-
-                if (result.success) {
-                    successEl.classList.add('show');
-                    form.reset();
-                    // Reset Turnstile widget so it can be used again
-                    if (window.turnstile) {
-                        turnstile.reset();
-                    }
-                    turnstileReady = false;
-                    document.querySelector('.contact-form-wrapper').scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    showError(result.error + (result.debug ? ' DEBUG: ' + JSON.stringify(result.debug) : ''));
-                    // Reset Turnstile on failure so user can retry
-                    if (window.turnstile) {
-                        turnstile.reset();
-                    }
-                    turnstileReady = false;
-                }
-            } catch (err) {
-                showError('Unable to send your message. Please check your connection and try again.');
-                if (window.turnstile) {
-                    turnstile.reset();
-                }
-                turnstileReady = false;
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalText;
-            }
-        });
-    </script>
-
+;NR.boot(Component, {"teal": "#17726B"});
+})();
+</script>
 </body>
 </html>
