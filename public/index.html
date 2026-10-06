@@ -2,6 +2,16 @@
 <html lang="en-GB">
 <head>
 <meta charset="utf-8">
+<script>
+// opening clip: only for visitors arriving from outside the site, not clicks between NoResume pages, Back or reload
+(function () { try {
+  var nav = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || {};
+  var ref = document.referrer ? new URL(document.referrer).hostname : '';
+  var ours = /(^|\.)noresume\.co(\.uk)?$/.test(ref) || (ref && ref === location.hostname);
+  if (ours || nav.type === 'back_forward' || nav.type === 'reload') document.documentElement.setAttribute('data-skip-intro', '');
+} catch (e) {} })();
+</script>
+<style>html[data-skip-intro] [data-intro] { display: none !important; }</style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NoResume - The Future of Talent Exchange</title>
 <link rel="canonical" href="https://noresume.co/">
@@ -42,6 +52,7 @@ html.sc-dc-streaming .sc-placeholder:nth-child(n+9 of .sc-placeholder)::before, 
   #dc-root, #dc-root > .sc-host { height: auto; }
   *, ::before, ::after { print-color-adjust: exact; backdrop-filter: none !important; animation-delay: -99s !important; animation-duration: 0.001s !important; animation-iteration-count: 1 !important; animation-fill-mode: both !important; animation-play-state: running !important; transition-duration: 0s !important; }
 }
+html[data-skip-intro] [data-intro] { display: none !important; }
 x-dc { display: none !important; }
 .scp0:hover { transform: rotate(var(--tiltA, -2.5deg)) translateY(-8px) !important; box-shadow: rgba(6, 27, 64, 0.22) 0px 30px 74px !important; }
 .scp1:hover { transform: rotate(var(--tiltC, 2.5deg)) translateY(-8px) !important; box-shadow: rgba(6, 27, 64, 0.22) 0px 30px 74px !important; }
@@ -371,7 +382,8 @@ class Component extends DCLogic {
 
   componentDidMount() {
     // opening clip (as on the old homepage): fades away when it ends, when clicked, or after 8 s at most;
-    // skipped at once if the browser won't autoplay it (e.g. iPhone Low Power Mode) or Reduce Motion is on
+    // skipped at once for visitors already on the site (head script sets data-skip-intro), if the browser won't
+    // autoplay it (e.g. iPhone Low Power Mode) or Reduce Motion is on
     {
       const intro = document.querySelector('[data-intro]');
       if (intro) {
@@ -382,10 +394,15 @@ class Component extends DCLogic {
           done = true;
           try { v.pause(); } catch (e) {}
           intro.style.pointerEvents = 'none';
-          if (fast === true) { intro.style.display = 'none'; return; }
+          if (fast === true) {
+            intro.style.display = 'none';
+            v.removeAttribute('src'); try { v.load(); } catch (e) {}   // stop downloading it
+            return;
+          }
           intro.style.opacity = '0';
           setTimeout(() => { intro.style.display = 'none'; window.scrollTo(0, 0); }, 850);
         };
+        if (document.documentElement.hasAttribute('data-skip-intro')) finish(true);
         if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) finish(true);
         v.addEventListener('ended', () => finish());
         intro.addEventListener('click', () => finish());
