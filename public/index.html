@@ -434,6 +434,15 @@ class Component extends DCLogic {
         v.addEventListener('ended', () => finish());
         intro.addEventListener('click', () => finish());
         setTimeout(() => finish(), 8000);
+        // slow connection: if the clip hasn't started 3 s after the page began opening, skip it (stop its download and
+        // fade from its still to the page) rather than make the visitor wait through a stalling clip
+        let started = false;
+        v.addEventListener('playing', () => { started = true; });
+        setTimeout(() => {
+          if (done || started || v.currentTime > 0) return;
+          v.removeAttribute('src'); try { v.load(); } catch (e) {}
+          finish();
+        }, Math.max(0, 3000 - performance.now()));
         const p = !done && v.play ? v.play() : null;
         if (p && p.catch) p.catch(() => finish(true));
       }
