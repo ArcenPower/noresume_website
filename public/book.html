@@ -49,6 +49,9 @@ html, body { height: 100%; margin: 0px; }
   /* booking calendar: HubSpot draws an iframe inside the box */
   [data-book-box] iframe { width: 100%; min-height: 588px; border: 0; }
   @media (max-width: 760px) { [data-book-card] { padding: 6px !important; border-radius: 16px !important; } }
+  /* phones: HubSpot's calendar is never narrower than 312 px, so the margins beside the card shrink until it fits */
+  @media (max-width: 600px) { [data-book-wrap] { padding-left: 12px !important; padding-right: 12px !important; } }
+  @media (max-width: 347px) { [data-book-wrap] { padding-left: 4px !important; padding-right: 4px !important; } [data-book-card] { padding: 0 !important; overflow: hidden; } }
   /* footer: logo + statement on the left (wider), icons under Contact; under 1000 px the statement gets its own row, phones one column */
   [data-foot-grid] { grid-template-columns: minmax(0, 1.8fr) repeat(3, minmax(204px, 1fr)) !important; }
   @media (max-width: 1000px) { [data-foot-grid] { grid-template-columns: 1fr 1fr !important; } [data-foot-brand] { grid-column: 1 / -1; } }
@@ -99,7 +102,7 @@ html, body { height: 100%; margin: 0px; }
         </button>
       </header>
 
-      <div style="position: relative; z-index: 3; padding: 93px 32px 90px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+      <div data-book-wrap="true" style="position: relative; z-index: 3; padding: 93px 32px 90px; display: flex; flex-direction: column; align-items: center; text-align: center;">
         <h1 style="margin: 0px; font-size: clamp(2.4rem, 4.4vw, 52px); font-weight: 700; line-height: 1.1; color: rgb(20, 184, 166); text-shadow: rgba(0, 0, 0, 0.35) 0px 2px 20px;">Book a call with NoResume</h1>
         <p style="margin: 18px 0px 0px; max-width: 560px; font-size: 18px; line-height: 25px; color: rgb(255, 255, 255); text-wrap: pretty;">Pick a time that suits you to discover how the open job market works and get your questions answered.</p>
 
@@ -118,8 +121,8 @@ html, body { height: 100%; margin: 0px; }
           </div>
           <nav style="display: flex; flex-direction: column; gap: 4px; margin-top: 18px;">
             <a href="/" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Home</a>
-            <a href="/employers" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Hire Talent</a>
             <a href="/candidates" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">I am Talent</a>
+            <a href="/employers" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Hire Talent</a>
             <a href="/recruiters" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">For Recruiters</a>
             <a href="/blog" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Insights</a>
             <a href="/contact" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Contact Us</a>

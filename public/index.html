@@ -9,9 +9,18 @@
   var ref = document.referrer ? new URL(document.referrer).hostname : '';
   var ours = /(^|\.)noresume\.co(\.uk)?$/.test(ref) || (ref && ref === location.hostname);
   if (ours || nav.type === 'back_forward' || nav.type === 'reload') document.documentElement.setAttribute('data-skip-intro', '');
+  else if (!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    // the clip will play: it gets the connection first (its still straight away; things further down the page wait)
+    document.documentElement.setAttribute('data-intro-on', '');
+    var l = document.createElement('link'); l.rel = 'preload'; l.as = 'image'; l.href = 'assets/video/posters/intro-clip.jpg?v=b2435b05';
+    l.setAttribute('fetchpriority', 'high'); document.head.appendChild(l);
+    setTimeout(function () { document.documentElement.removeAttribute('data-intro-on'); }, 12000);   // safety net
+  }
 } catch (e) {} })();
 </script>
-<style>html[data-skip-intro] [data-intro] { display: none !important; }</style>
+<style>html[data-skip-intro] [data-intro] { display: none !important; }
+html[data-intro-on] [data-panel-tex] { background-image: none !important; }
+html[data-intro-on] [data-hero-img] { animation-play-state: paused !important; }</style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>NoResume - The Future of Talent Exchange</title>
 <link rel="canonical" href="https://noresume.co/">
@@ -53,6 +62,8 @@ html.sc-dc-streaming .sc-placeholder:nth-child(n+9 of .sc-placeholder)::before, 
   *, ::before, ::after { print-color-adjust: exact; backdrop-filter: none !important; animation-delay: -99s !important; animation-duration: 0.001s !important; animation-iteration-count: 1 !important; animation-fill-mode: both !important; animation-play-state: running !important; transition-duration: 0s !important; }
 }
 html[data-skip-intro] [data-intro] { display: none !important; }
+html[data-intro-on] [data-panel-tex] { background-image: none !important; }
+html[data-intro-on] [data-hero-img] { animation-play-state: paused !important; }
 x-dc { display: none !important; }
 .scp0:hover { transform: rotate(var(--tiltA, -2.5deg)) translateY(-8px) !important; box-shadow: rgba(6, 27, 64, 0.22) 0px 30px 74px !important; }
 .scp1:hover { transform: rotate(var(--tiltC, 2.5deg)) translateY(-8px) !important; box-shadow: rgba(6, 27, 64, 0.22) 0px 30px 74px !important; }
@@ -67,6 +78,11 @@ html, body { height: 100%; margin: 0px; }
 <script src="blog-posts.js"></script>
 <style>
   body { margin: 0; }
+  /* opening clip: screens held upright but wider than the clip's 9:16 (short phones, phones with browser bars, iPads)
+     show the whole frame instead of losing its top and bottom; the side strips show its first frame, blurred */
+  @media (orientation: portrait) and (min-aspect-ratio: 9/16) { [data-intro-video] { object-fit: contain !important; } [data-intro-fill] { display: block !important; } }
+  /* Market Intelligence card: Hiring / Talent buttons hidden for now (Simon, 8 Oct 2026); delete this line to show them again */
+  [data-mkt-pills] { display: none !important; }
   /* smallest phones: one column as wide as the space (the design's 290 px minimum overflowed a 320 px screen) */
   @media (max-width: 353px) { div:has(> [data-feat-card]) { grid-template-columns: 1fr !important; } }
   /* footer: logo + statement on the left (wider), icons under Contact; under 1000 px the statement gets its own row, phones one column */
@@ -107,13 +123,14 @@ html, body { height: 100%; margin: 0px; }
 <div id="dc-root"><div class="sc-host" data-sc-name="index"><div data-b-style="[[ themeVars ]]" style="--teal: #17726B; --coral: #F7A98A; --hdrY: 0px; --hdrBg: transparent; --hdrBlur: none; --hdrInk: #fff; --hdrShadow: 0 1px 12px rgba(0,0,0,.55); --tiltA: -2.5deg; --tiltC: 2.5deg;">
   
   <div data-intro="true" aria-hidden="true" style="position: fixed; inset: 0px; z-index: 9999; background: rgb(6, 40, 44); overflow: hidden; cursor: pointer; transition: opacity 0.8s ease-in-out;">
-    <video src="assets/video/intro-clip.mp4" poster="assets/video/posters/intro-clip.jpg?v=b2435b05" preload="auto" autoplay="" playsinline="" muted="" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; display: block;"></video>
+    <span data-intro-fill="true" style="position: absolute; inset: -40px; display: none; background: url(&quot;assets/video/posters/intro-clip.jpg?v=b2435b05&quot;) center center / cover no-repeat rgb(6, 40, 44); filter: blur(24px) brightness(0.85);"></span>
+    <video data-intro-video="true" src="assets/video/intro-clip.mp4" poster="assets/video/posters/intro-clip.jpg?v=b2435b05" preload="auto" autoplay="" playsinline="" muted="" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; display: block;"></video>
   </div>
   <div style="font-family: Poppins, sans-serif; color: rgb(17, 17, 17); line-height: 1.6; background: linear-gradient(rgb(248, 246, 230) 0%, rgb(250, 190, 155) 100%) fixed; overflow-x: hidden;">
 
     
     <section data-hdr-dark="true" data-hero-full="true" data-ref="heroRef" style="position: relative; min-height: 700px; height: 88vh; max-height: 900px; overflow: hidden; background: rgb(6, 40, 44);">
-      <img data-hero-img="true" src="assets/images/open-job-market-hero.jpg" alt="The Open Job Market" data-ref="heroImgRef" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; display: block; transform-origin: 52% 50%; animation: 34s ease-in-out 0s infinite alternate none running nrHeroDrift;">
+      <img data-hero-img="true" src="assets/images/open-job-market-hero-v2.jpg" alt="The Open Job Market" data-ref="heroImgRef" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; display: block; transform-origin: 52% 50%; animation: 34s ease-in-out 0s infinite alternate none running nrHeroDrift;">
       <canvas data-hero-img="true" aria-hidden="true" data-ref="sparkRef" style="position: absolute; inset: 0px; width: 100%; height: 100%; display: block; pointer-events: none; mix-blend-mode: screen; transform-origin: 52% 50%; animation: 34s ease-in-out 0s infinite alternate none running nrHeroDrift;"></canvas>
       <div style="position: absolute; inset: 0px; background: linear-gradient(rgba(8, 40, 44, 0.5) 0%, rgba(8, 40, 44, 0) 26%, rgba(8, 40, 44, 0) 70%, rgba(8, 40, 44, 0.5) 100%);"></div>
       
@@ -154,8 +171,8 @@ html, body { height: 100%; margin: 0px; }
           </div>
           <nav style="display: flex; flex-direction: column; gap: 4px; margin-top: 18px;">
             <a href="/" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 700; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Home</a>
-            <a href="/employers" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Hire Talent</a>
             <a href="/candidates" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">I am Talent</a>
+            <a href="/employers" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Hire Talent</a>
             <a href="/recruiters" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">For Recruiters</a>
             <a href="/blog" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Insights</a>
             <a href="/contact" data-on="click:closeMenu" style="padding: 13px 0px; font-size: 20px; font-weight: 500; color: rgb(23, 114, 107); border-bottom: 1px solid rgba(23, 114, 107, 0.16);">Contact Us</a>
@@ -231,7 +248,7 @@ html, body { height: 100%; margin: 0px; }
 
           <article data-feat-card="true" class="scp2" style="background: rgb(255, 255, 255); border-radius: 24px; padding: 26px; aspect-ratio: 1 / 1; box-shadow: rgba(6, 27, 64, 0.08) 0px 18px 44px; display: flex; flex-direction: column; gap: 11px; border-bottom: 5.5px solid transparent; transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;">
             <div style="position: relative; width: 54px; height: 54px; border-radius: 999px; background: rgb(248, 244, 228); display: grid; place-items: center;">
-              <img src="assets/icons/bolt-c.png" alt="" loading="eager" style="width: 46px; height: 46px; border-radius: 999px; object-fit: cover; display: block; background: rgb(248, 244, 228);">
+              <img src="assets/icons/bolt-c.png" alt="" loading="lazy" style="width: 46px; height: 46px; border-radius: 999px; object-fit: cover; display: block; background: rgb(248, 244, 228);">
               <span style="position: absolute; top: -2px; right: -2px; width: 18px; height: 18px; border-radius: 999px; background: var(--coral, #F7A98A);"></span>
             </div>
             <h3 style="margin: 0px; font-size: 19.5px; font-weight: 700; line-height: 1.25; color: var(--teal, #17726B);">Skill-Based Blind Matching</h3>
@@ -240,7 +257,7 @@ html, body { height: 100%; margin: 0px; }
 
           <article data-feat-card="true" class="scp2" style="background: rgb(255, 255, 255); border-radius: 24px; padding: 26px; aspect-ratio: 1 / 1; box-shadow: rgba(6, 27, 64, 0.08) 0px 18px 44px; display: flex; flex-direction: column; gap: 11px; border-bottom: 5.5px solid transparent; transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;">
             <div style="position: relative; width: 54px; height: 54px; border-radius: 999px; background: rgb(248, 244, 228); display: grid; place-items: center;">
-              <img src="assets/icons/layers-c.png" alt="" loading="eager" style="width: 46px; height: 46px; border-radius: 999px; object-fit: cover; display: block; background: rgb(248, 244, 228);">
+              <img src="assets/icons/layers-c.png" alt="" loading="lazy" style="width: 46px; height: 46px; border-radius: 999px; object-fit: cover; display: block; background: rgb(248, 244, 228);">
               <span style="position: absolute; top: -2px; right: -2px; width: 18px; height: 18px; border-radius: 999px; background: var(--coral, #F7A98A);"></span>
             </div>
             <h3 style="margin: 0px; font-size: 19.5px; font-weight: 700; line-height: 1.25; color: var(--teal, #17726B);">Flexible Hiring Models</h3>
@@ -249,7 +266,7 @@ html, body { height: 100%; margin: 0px; }
 
           <article data-feat-card="true" class="scp2" style="background: rgb(255, 255, 255); border-radius: 24px; padding: 26px; aspect-ratio: 1 / 1; box-shadow: rgba(6, 27, 64, 0.08) 0px 18px 44px; display: flex; flex-direction: column; gap: 11px; border-bottom: 5.5px solid transparent; transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;">
             <div style="position: relative; width: 54px; height: 54px; border-radius: 999px; background: rgb(248, 244, 228); display: grid; place-items: center;">
-              <img src="assets/icons/video-c.png" alt="" loading="eager" style="width: 46px; height: 46px; border-radius: 999px; object-fit: cover; display: block; background: rgb(248, 244, 228);">
+              <img src="assets/icons/video-c.png" alt="" loading="lazy" style="width: 46px; height: 46px; border-radius: 999px; object-fit: cover; display: block; background: rgb(248, 244, 228);">
               <span style="position: absolute; top: -2px; right: -2px; width: 18px; height: 18px; border-radius: 999px; background: var(--coral, #F7A98A);"></span>
             </div>
             <h3 style="margin: 0px; font-size: 19.5px; font-weight: 700; line-height: 1.25; color: var(--teal, #17726B);">Real-Time Communication Tools</h3>
@@ -258,7 +275,7 @@ html, body { height: 100%; margin: 0px; }
 
           <article data-feat-card="true" class="scp2" style="background: rgb(255, 255, 255); border-radius: 24px; padding: 26px; aspect-ratio: 1 / 1; box-shadow: rgba(6, 27, 64, 0.08) 0px 18px 44px; display: flex; flex-direction: column; gap: 11px; border-bottom: 5.5px solid transparent; transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;">
             <div style="position: relative; width: 54px; height: 54px; border-radius: 999px; background: rgb(248, 244, 228); display: grid; place-items: center;">
-              <img src="assets/icons/shield-c.png" alt="" loading="eager" style="width: 46px; height: 46px; border-radius: 999px; object-fit: cover; display: block; background: rgb(248, 244, 228);">
+              <img src="assets/icons/shield-c.png" alt="" loading="lazy" style="width: 46px; height: 46px; border-radius: 999px; object-fit: cover; display: block; background: rgb(248, 244, 228);">
               <span style="position: absolute; top: -2px; right: -2px; width: 18px; height: 18px; border-radius: 999px; background: var(--coral, #F7A98A);"></span>
             </div>
             <h3 style="margin: 0px; font-size: 19.5px; font-weight: 700; line-height: 1.25; color: var(--teal, #17726B);">Payment Processing &amp; Escrow</h3>
@@ -267,7 +284,7 @@ html, body { height: 100%; margin: 0px; }
 
           <article data-feat-card="true" class="scp2" style="background: rgb(255, 255, 255); border-radius: 24px; padding: 26px; aspect-ratio: 1 / 1; box-shadow: rgba(6, 27, 64, 0.08) 0px 18px 44px; display: flex; flex-direction: column; gap: 11px; border-bottom: 5.5px solid transparent; transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;">
             <div style="position: relative; width: 54px; height: 54px; border-radius: 999px; background: rgb(248, 244, 228); display: grid; place-items: center;">
-              <img src="assets/icons/fingerprint-c.png" alt="" loading="eager" style="width: 46px; height: 46px; border-radius: 999px; object-fit: cover; display: block; background: rgb(248, 244, 228);">
+              <img src="assets/icons/fingerprint-c.png" alt="" loading="lazy" style="width: 46px; height: 46px; border-radius: 999px; object-fit: cover; display: block; background: rgb(248, 244, 228);">
               <span style="position: absolute; top: -2px; right: -2px; width: 18px; height: 18px; border-radius: 999px; background: var(--coral, #F7A98A);"></span>
             </div>
             <h3 style="margin: 0px; font-size: 19.5px; font-weight: 700; line-height: 1.25; color: var(--teal, #17726B);">Profile DNA &amp; Profile Management</h3>
@@ -276,10 +293,10 @@ html, body { height: 100%; margin: 0px; }
 
           <article data-feat-card="true" data-ref="mktCardRef" class="scp2" style="position: relative; background: rgb(255, 255, 255); border-radius: 24px; padding: 26px; aspect-ratio: 1 / 1; box-shadow: rgba(6, 27, 64, 0.08) 0px 18px 44px; display: flex; flex-direction: column; gap: 11px; border-bottom: 5.5px solid transparent; transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;">
             <div style="position: relative; width: 54px; height: 54px; border-radius: 999px; background: rgb(248, 244, 228); display: grid; place-items: center;">
-              <img src="assets/icons/pie-c.png" alt="" loading="eager" style="width: 46px; height: 46px; border-radius: 999px; object-fit: cover; display: block; background: rgb(248, 244, 228);">
+              <img src="assets/icons/pie-c.png" alt="" loading="lazy" style="width: 46px; height: 46px; border-radius: 999px; object-fit: cover; display: block; background: rgb(248, 244, 228);">
               <span style="position: absolute; top: -2px; right: -2px; width: 18px; height: 18px; border-radius: 999px; background: var(--coral, #F7A98A);"></span>
             </div>
-            <div data-ref="mktPillsRef" style="position: absolute; top: 38px; right: 22px; display: flex; flex-wrap: nowrap; align-items: center; gap: 6px;">
+            <div data-mkt-pills="true" data-ref="mktPillsRef" style="position: absolute; top: 38px; right: 22px; display: flex; flex-wrap: nowrap; align-items: center; gap: 6px;">
               <a href="https://search.noresume.co" data-mkt-pill="true" class="scp3" style="position: relative; overflow: hidden; background: rgb(255, 255, 255); color: rgb(23, 114, 107); padding: 6px 12px; border: 1.5px solid rgb(54, 197, 197); border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; box-shadow: rgba(54, 197, 197, 0.22) 0px 6px 18px; transition: transform 0.18s, box-shadow 0.18s, background 0.18s, color 0.18s;"><span aria-hidden="true" style="position: absolute; top: 0px; bottom: 0px; left: -60%; width: 45%; background: linear-gradient(100deg, rgba(255, 255, 255, 0) 0%, rgba(54, 197, 197, 0.38) 50%, rgba(255, 255, 255, 0) 100%); transform: skewX(-18deg); animation: 4.2s ease-in-out 0s infinite normal none running nrPillSheen; pointer-events: none;"></span><span data-b-style="position: relative; display: [[ mktFull ]];" style="position: relative; display: inline;">Hiring - Try Now</span><span data-b-style="position: relative; display: [[ mktShort ]];" style="position: relative; display: none;">Hiring →</span></a>
               <a href="https://test.noresume.co.uk" data-mkt-pill="true" class="scp3" style="position: relative; overflow: hidden; background: rgb(255, 255, 255); color: rgb(23, 114, 107); padding: 6px 12px; border: 1.5px solid rgb(54, 197, 197); border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; box-shadow: rgba(54, 197, 197, 0.22) 0px 6px 18px; transition: transform 0.18s, box-shadow 0.18s, background 0.18s, color 0.18s;"><span aria-hidden="true" style="position: absolute; top: 0px; bottom: 0px; left: -60%; width: 45%; background: linear-gradient(100deg, rgba(255, 255, 255, 0) 0%, rgba(54, 197, 197, 0.38) 50%, rgba(255, 255, 255, 0) 100%); transform: skewX(-18deg); animation: 4.2s ease-in-out 0.35s infinite normal none running nrPillSheen; pointer-events: none;"></span><span data-b-style="position: relative; display: [[ mktFull ]];" style="position: relative; display: inline;">Talent - Try Now</span><span data-b-style="position: relative; display: [[ mktShort ]];" style="position: relative; display: none;">Talent →</span></a>
             </div>
@@ -314,10 +331,10 @@ html, body { height: 100%; margin: 0px; }
         <p style="margin: 0px 0px 40px; font-size: 17px; color: rgb(58, 58, 58);"><span style="white-space: pre-wrap;">Join the Open Job Market Today</span></p>
         <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
           <a href="https://apps.apple.com/gb/app/noresume/id6759061302" target="_blank" rel="noopener" aria-label="Download on the App Store" style="display: inline-block;">
-            <img src="assets/images/badge-app-store.svg" alt="Download on the App Store" style="height: 56px; width: auto; display: block;">
+            <img src="assets/images/badge-app-store.svg" loading="lazy" alt="Download on the App Store" style="height: 56px; width: auto; display: block;">
           </a>
           <a href="https://play.google.com/store/apps/details?id=noresume.app&amp;gl=gb" target="_blank" rel="noopener" aria-label="Get it on Google Play" style="display: inline-block;">
-            <img src="assets/images/badge-google-play-official.png" alt="Get it on Google Play" style="height: 56px; width: auto; display: block;">
+            <img src="assets/images/badge-google-play-official.png" loading="lazy" alt="Get it on Google Play" style="height: 56px; width: auto; display: block;">
           </a>
         </div>
       </div>
@@ -328,7 +345,7 @@ html, body { height: 100%; margin: 0px; }
       <div style="max-width: 1240px; margin: 0px auto; padding: 0px 32px;">
         <div data-foot-grid="true" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 18px;">
           <div data-foot-brand="true">
-            <img src="assets/images/noresume_logo-white.png" alt="NoResume" style="height: 32px; width: auto; display: block; margin: 0px 0px 14px;">
+            <img src="assets/images/noresume_logo-white.png" loading="lazy" alt="NoResume" style="height: 32px; width: auto; display: block; margin: 0px 0px 14px;">
             <p style="margin: 0px; max-width: 46ch; font-size: 14px; line-height: 1.7; color: rgba(255, 255, 255, 0.92);">At noresume we empower workers and businesses to build authentic, direct relationships grounded in fairness and transparency. Our mission is to simplify the hiring process, replacing applications with real-time connections.</p>
           </div>
           <div>
@@ -389,6 +406,15 @@ class Component extends DCLogic {
       if (intro) {
         const v = intro.querySelector('video');
         let done = false;
+        // while the clip plays, what can't be seen yet waits (card textures, sparkle trails, floating labels): on a slow
+        // connection the clip had been sharing it with them and stalled. The top picture still loads, decoded ready.
+        this._afterIntro = [];
+        const release = () => {
+          document.documentElement.removeAttribute('data-intro-on');
+          const q = this._afterIntro || []; this._afterIntro = null; q.forEach(f => f());
+        };
+        const hi = this.heroImgRef.current;
+        if (hi && hi.decode && !document.documentElement.hasAttribute('data-skip-intro')) hi.decode().catch(() => {});
         const finish = (fast) => {
           if (done) return;
           done = true;
@@ -397,10 +423,11 @@ class Component extends DCLogic {
           if (fast === true) {
             intro.style.display = 'none';
             v.removeAttribute('src'); try { v.load(); } catch (e) {}   // stop downloading it
+            release();
             return;
           }
           intro.style.opacity = '0';
-          setTimeout(() => { intro.style.display = 'none'; window.scrollTo(0, 0); }, 850);
+          setTimeout(() => { intro.style.display = 'none'; window.scrollTo(0, 0); release(); }, 850);
         };
         if (document.documentElement.hasAttribute('data-skip-intro')) finish(true);
         if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) finish(true);
@@ -478,8 +505,8 @@ class Component extends DCLogic {
 
     this._onResize = () => { clearTimeout(this._rt); this._rt = setTimeout(() => this.initFloat(), 180); };
     window.addEventListener('resize', this._onResize);
-    setTimeout(() => this.initFloat(), 60);
-    setTimeout(() => this.initSparks(), 80);
+    const startBg = () => { setTimeout(() => this.initFloat(), 60); setTimeout(() => this.initSparks(), 80); };
+    if (this._afterIntro) this._afterIntro.push(startBg); else startBg();   // after the opening clip, if it is playing
     if (!(window.NR_BLOG_POSTS || []).length) this._postsT = setTimeout(() => this.forceUpdate(), 300);
     // Poppins loads async — pills measured in the fallback font get the wrong
     // hitbox, so re-measure once the real font is in.
