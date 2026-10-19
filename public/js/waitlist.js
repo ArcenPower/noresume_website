@@ -1,8 +1,10 @@
 /**
  * NoResume Waitlist Modal
- * Intercepts clicks on .btn-app-badge buttons.
+ * Intercepts clicks on every App Store / Google Play link on the page.
  * If visitor is in UK (GB/IM/JE/GG), click proceeds to App Store.
  * Otherwise, shows a waitlist modal to capture their email + country.
+ * If the country is not known (lookup still running or failed), the click proceeds,
+ * so a UK visitor is never stopped by a failed lookup.
  */
 (function () {
   'use strict';
@@ -10,7 +12,7 @@
   const COUNTRY_API  = '/api/country';
   const WAITLIST_API = '/api/waitlist';
   const UK_CODES     = ['GB', 'IM', 'JE', 'GG'];
-  const BUTTON_SELECTOR = '.btn-app-badge';
+  const BUTTON_SELECTOR = 'a[href*="apps.apple.com"], a[href*="play.google.com"]';
 
   const COUNTRIES = [
     { code: 'AF', name: 'Afghanistan' },{ code: 'AL', name: 'Albania' },{ code: 'DZ', name: 'Algeria' },
@@ -88,31 +90,37 @@
   // STYLES
   // -------------------------------------------------------------
   const CSS = `
+    #nr-waitlist-backdrop, #nr-waitlist-backdrop * { box-sizing: border-box; }
     #nr-waitlist-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(26, 95, 95, 0.55);
-      backdrop-filter: blur(6px);
-      z-index: 99998;
+      background: rgba(6, 40, 44, 0.62);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      z-index: 2147483647;
       display: none;
       align-items: center;
       justify-content: center;
       padding: 20px;
+      overflow-y: auto;
       opacity: 0;
       transition: opacity 0.2s ease;
     }
     #nr-waitlist-backdrop.nr-open { display: flex; opacity: 1; }
 
     #nr-waitlist-modal {
-      background: white;
-      border-radius: 20px;
+      background: #fff;
+      border-radius: 24px;
       max-width: 460px;
       width: 100%;
-      padding: 36px 32px 28px;
-      box-shadow: 0 20px 60px rgba(6, 27, 64, 0.25);
+      margin: auto;
+      padding: 38px 34px 28px;
+      box-shadow: 0 24px 56px rgba(6, 27, 64, 0.22);
       font-family: 'Poppins', sans-serif;
+      color: #111;
+      text-align: left;
       position: relative;
-      transform: scale(0.95);
+      transform: scale(0.96);
       transition: transform 0.2s ease;
     }
     #nr-waitlist-backdrop.nr-open #nr-waitlist-modal { transform: scale(1); }
@@ -121,61 +129,71 @@
       position: absolute;
       top: 14px;
       right: 14px;
-      background: none;
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(23, 114, 107, 0.08);
       border: none;
+      border-radius: 50%;
+      font-family: inherit;
       font-size: 22px;
       line-height: 1;
       cursor: pointer;
-      color: #999;
-      padding: 6px 10px;
-      border-radius: 50%;
+      color: #17726B;
+      padding: 0;
       transition: background 0.15s;
     }
-    .nr-wl-close:hover { background: #f0f0f0; }
+    .nr-wl-close:hover, .nr-wl-close:focus-visible { background: rgba(23, 114, 107, 0.16); }
 
     .nr-wl-heading {
-      font-size: 1.5rem;
+      margin: 0 44px 10px 0;
+      font-size: 1.6rem;
       font-weight: 700;
-      color: #000;
-      margin-bottom: 10px;
-      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: #111;
+      line-height: 1.2;
     }
-    .nr-wl-heading span {
-      background: linear-gradient(135deg, #1A5F5F 0%, #36C5C5 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
+    .nr-wl-heading span { color: #17726B; }
 
     .nr-wl-subtext {
-      color: #555;
+      margin: 0 0 22px;
+      color: #3A3A3A;
       font-size: 0.95rem;
       line-height: 1.6;
-      margin-bottom: 22px;
     }
 
+    #nr-waitlist-form { margin: 0; }
     .nr-wl-field { margin-bottom: 14px; }
     .nr-wl-label {
       display: block;
       font-size: 0.8rem;
-      color: #666;
+      color: #2E3A38;
       margin-bottom: 6px;
-      font-weight: 500;
+      font-weight: 600;
     }
     .nr-wl-input, .nr-wl-select {
       width: 100%;
       padding: 12px 14px;
-      border: 1.5px solid #e0e0e0;
-      border-radius: 10px;
+      border: 1.5px solid rgba(23, 114, 107, 0.22);
+      border-radius: 12px;
       font-family: 'Poppins', sans-serif;
-      font-size: 0.95rem;
-      color: #000;
-      background: white;
-      transition: border-color 0.15s;
+      font-size: 16px;
+      color: #111;
+      background: #fff;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .nr-wl-select {
+      -webkit-appearance: none;
+      appearance: none;
+      padding-right: 42px;
+      background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%2317726B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 16px center;
     }
     .nr-wl-input:focus, .nr-wl-select:focus {
       outline: none;
-      border-color: #36C5C5;
+      border-color: #17726B;
+      box-shadow: 0 0 0 3px rgba(23, 114, 107, 0.15);
     }
 
     .nr-wl-error {
@@ -189,19 +207,20 @@
     .nr-wl-submit {
       width: 100%;
       background: linear-gradient(135deg, #1A5F5F 0%, #36C5C5 100%);
-      color: white;
-      padding: 14px;
-      border-radius: 50px;
+      color: #fff;
+      padding: 15px;
+      border-radius: 999px;
       border: none;
       font-family: 'Poppins', sans-serif;
       font-weight: 600;
       font-size: 1rem;
       cursor: pointer;
       margin-top: 10px;
+      box-shadow: 0 10px 30px rgba(26, 95, 95, 0.26);
       transition: opacity 0.15s, transform 0.15s;
     }
     .nr-wl-submit:hover:not(:disabled) {
-      opacity: 0.92;
+      opacity: 0.94;
       transform: translateY(-1px);
     }
     .nr-wl-submit:disabled {
@@ -212,13 +231,14 @@
     .nr-wl-secondary {
       display: block;
       text-align: center;
-      margin-top: 14px;
-      color: #666;
+      margin-top: 16px;
+      color: #17726B;
       font-size: 0.85rem;
+      font-weight: 500;
       text-decoration: none;
       transition: color 0.15s;
     }
-    .nr-wl-secondary:hover { color: #1A5F5F; }
+    .nr-wl-secondary:hover { color: #0F5A54; text-decoration: underline; }
 
     /* Success state */
     .nr-wl-success {
@@ -230,40 +250,42 @@
       height: 56px;
       border-radius: 50%;
       background: linear-gradient(135deg, #1A5F5F 0%, #36C5C5 100%);
-      color: white;
+      color: #fff;
       font-size: 28px;
       line-height: 56px;
       margin: 0 auto 16px;
+      box-shadow: 0 10px 30px rgba(26, 95, 95, 0.26);
     }
     .nr-wl-success h3 {
-      font-size: 1.3rem;
+      margin: 0 0 10px;
+      font-size: 1.35rem;
       font-weight: 700;
-      color: #000;
-      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+      color: #17726B;
     }
     .nr-wl-success p {
-      color: #555;
+      margin: 0 0 22px;
+      color: #3A3A3A;
       font-size: 0.95rem;
       line-height: 1.6;
-      margin-bottom: 22px;
     }
     .nr-wl-close-btn {
-      background: #f5f5f5;
-      color: #333;
+      background: rgba(23, 114, 107, 0.1);
+      color: #17726B;
       padding: 12px 32px;
-      border-radius: 50px;
+      border-radius: 999px;
       border: none;
       font-family: 'Poppins', sans-serif;
-      font-weight: 500;
+      font-weight: 600;
       font-size: 0.95rem;
       cursor: pointer;
       transition: background 0.15s;
     }
-    .nr-wl-close-btn:hover { background: #eaeaea; }
+    .nr-wl-close-btn:hover { background: rgba(23, 114, 107, 0.18); }
 
     @media (max-width: 480px) {
-      #nr-waitlist-modal { padding: 28px 20px 24px; }
-      .nr-wl-heading { font-size: 1.3rem; }
+      #nr-waitlist-modal { padding: 30px 20px 24px; border-radius: 20px; }
+      .nr-wl-heading { font-size: 1.35rem; }
     }
   `;
 
@@ -321,14 +343,15 @@
   // -------------------------------------------------------------
   // INIT
   // -------------------------------------------------------------
-  document.addEventListener('DOMContentLoaded', init);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 
-  async function init() {
+  function init() {
     injectStyles();
     injectModal();
-    await detectCountry();
     attachDownloadHandlers();
     attachModalHandlers();
+    detectCountry();
   }
 
   function injectStyles() {
@@ -358,31 +381,36 @@
   }
 
   function attachDownloadHandlers() {
-    document.querySelectorAll(BUTTON_SELECTOR).forEach(btn => {
-      btn.addEventListener('click', handleDownloadClick);
+    // one listener for the whole page, so store links drawn later are covered too
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest && e.target.closest(BUTTON_SELECTOR);
+      if (btn && !btn.closest('#nr-waitlist-backdrop')) handleDownloadClick.call(btn, e);
     });
   }
 
-    function handleDownloadClick(e) {
+  function handleDownloadClick(e) {
     const href = this.getAttribute('href') || '';
     const store = href.includes('apps.apple.com') ? 'ios'
                 : href.includes('play.google.com') ? 'android'
                 : 'other';
     const isUk = !!(detectedCountry && UK_CODES.includes(detectedCountry));
+    // ?waitlist-test on the page address shows the pop-up to anyone (for checking it from the UK)
+    const forced = new URLSearchParams(window.location.search).has('waitlist-test');
+    const showModal = forced || (!!detectedCountry && !isUk);
 
     trackEvent('download_clicked', {
       store: store,
       detected_country: detectedCountry || 'unknown',
       is_uk: isUk,
-      destination: isUk ? 'app_store' : 'waitlist_modal'
+      destination: showModal ? 'waitlist_modal' : 'app_store'
     });
 
-    // UK or a UK-adjacent region → let the normal click proceed
-    if (isUk) {
+    // UK, a UK-adjacent region, or country not known → let the normal click proceed
+    if (!showModal) {
       return;
     }
 
-    // Non-UK or unknown → intercept and show modal
+    // Outside the UK → intercept and show modal
     e.preventDefault();
     openModal(href);
   }
@@ -444,6 +472,8 @@
       countrySelect.value = detectedCountry;
     }
 
+    // last in the page, so it sits above the cookie banner (same top layer)
+    document.body.appendChild(backdrop);
     backdrop.classList.add('nr-open');
     document.body.style.overflow = 'hidden';
   }
