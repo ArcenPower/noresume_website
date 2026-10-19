@@ -156,12 +156,17 @@ export const CARD_CSS = `<style>
 .nr-bc:hover .nr-bc-ex, .nr-bc:focus-visible .nr-bc-ex { grid-template-rows: 1fr; }
 </style>`;
 
+// cards with their own picture (often a busy chart) get a deeper, full-height shade so the title stays readable;
+// the top of the picture still shows through
+export const COVER_FADE = 'linear-gradient(180deg, rgba(9,62,59,.15) 0%, rgba(9,62,59,.5) 34%, rgba(9,62,59,.92) 58%, rgba(9,62,59,.98) 100%)';
+
 // one grid card, as Blog Card.dc.html draws it (summary opens on hover / keyboard focus)
 export function cardHtml(c, bind) {
   const bg = c.cover ? esc(c.cover) : '/assets/images/texture-green.jpg';
   return `<a href="${esc(c.href)}" class="nr-bc"${bind ? ` data-b-style="[[ cardVis.${esc(c.slug)} ]]"` : ''}>
   <span aria-hidden="true" style="position: absolute; inset: 0; background-image: url('${bg}'); background-size: cover; background-position: center; display: block;"></span>
-  <span aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 72%; background: linear-gradient(180deg, rgba(9,62,59,0) 0%, rgba(9,62,59,.5) 40%, rgba(9,62,59,.93) 100%);"></span>
+  ${c.cover ? `<span aria-hidden="true" style="position: absolute; inset: 0; background: ${COVER_FADE};"></span>`
+    : '<span aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 72%; background: linear-gradient(180deg, rgba(9,62,59,0) 0%, rgba(9,62,59,.5) 40%, rgba(9,62,59,.93) 100%);"></span>'}
   <span style="position: absolute; left: 16px; top: 16px; background: rgba(255,255,255,.92); color: #17726B; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 5px 11px; border-radius: 999px;">${esc(c.category)}</span>
   <div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 8px;">
     <h3 style="margin: 0; font-size: 17px; font-weight: 700; line-height: 1.3; color: #fff; text-wrap: pretty;">${esc(c.title)}</h3>
