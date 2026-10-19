@@ -162,19 +162,17 @@ html, body { height: 100%; margin: 0px; }
               <svg viewBox="0 0 24 24" aria-hidden="true" style="position: absolute; left: 13px; width: 16px; height: 16px; pointer-events: none;"><circle cx="11" cy="11" r="7" fill="none" stroke="#17726B" stroke-width="2.2"></circle><line x1="16.2" y1="16.2" x2="21" y2="21" stroke="#17726B" stroke-width="2.2" stroke-linecap="round"></line></svg>
               <input type="search" placeholder="Search articles" aria-label="Search articles" data-b-value="[[ query ]]" data-on="input:onQuery" class="scp1" value="" style="font-family: inherit; font-size: 13.5px; color: rgb(17, 17, 17); width: 210px; max-width: 64vw; box-sizing: border-box; padding: 8px 16px 8px 36px; border: 1.5px solid rgba(23, 114, 107, 0.28); border-radius: 999px; background: rgba(255, 255, 255, 0.85); outline: none; transition: border-color 0.18s, box-shadow 0.18s;">
             </label>
-            <span style="background: rgba(23, 114, 107, 0.1); color: rgb(23, 114, 107); font-size: 13px; font-weight: 600; padding: 8px 16px; border-radius: 999px;">All</span>
-            <span style="background: rgba(255, 255, 255, 0.6); color: rgb(46, 58, 56); font-size: 13px; font-weight: 500; padding: 8px 16px; border-radius: 999px;">Hiring</span>
-            <span style="background: rgba(255, 255, 255, 0.6); color: rgb(46, 58, 56); font-size: 13px; font-weight: 500; padding: 8px 16px; border-radius: 999px;">Talent</span>
-            <span style="background: rgba(255, 255, 255, 0.6); color: rgb(46, 58, 56); font-size: 13px; font-weight: 500; padding: 8px 16px; border-radius: 999px;">Product</span>
+            <button type="button" data-on="click:catAll" data-b-style="[[ chipAll ]]" style="border: 0; font-family: inherit; cursor: pointer; font-size: 13px; padding: 8px 16px; border-radius: 999px; background: rgba(23, 114, 107, 0.1); color: rgb(23, 114, 107); font-weight: 600;">All</button>
+            <button type="button" data-on="click:catHiring" data-b-style="[[ chipHiring ]]" style="border: 0; font-family: inherit; cursor: pointer; font-size: 13px; padding: 8px 16px; border-radius: 999px; background: rgba(255, 255, 255, 0.6); color: rgb(46, 58, 56); font-weight: 500;">Hiring</button>
+            <button type="button" data-on="click:catTalent" data-b-style="[[ chipTalent ]]" style="border: 0; font-family: inherit; cursor: pointer; font-size: 13px; padding: 8px 16px; border-radius: 999px; background: rgba(255, 255, 255, 0.6); color: rgb(46, 58, 56); font-weight: 500;">Talent</button>
+            <button type="button" data-on="click:catProduct" data-b-style="[[ chipProduct ]]" style="border: 0; font-family: inherit; cursor: pointer; font-size: 13px; padding: 8px 16px; border-radius: 999px; background: rgba(255, 255, 255, 0.6); color: rgb(46, 58, 56); font-weight: 500;">Product</button>
           </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(288px, 1fr)); gap: 28px;">
-          
-        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(288px, 1fr)); gap: 28px;"><!--NR_BLOG_CARDS--></div>
 
         <div data-if="noResults" data-if-on="false" data-mounted="0" style="display: contents;"><template>
-          <p style="margin: 10px 0px 0px; text-align: center; font-size: 16px; color: rgb(58, 58, 58);"><span data-t="No articles match &amp;ldquo;[[ query ]]&amp;rdquo;.">No articles match “<span class="sc-interp"></span>”.</span></p>
+          <p style="margin: 10px 0px 0px; text-align: center; font-size: 16px; color: rgb(58, 58, 58);"><span data-t="[[ noResultsText ]]"></span></p>
         </template></div>
         <div data-if="hasMore" data-if-on="false" data-mounted="0" style="display: contents;"><template>
           <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; margin-top: 44px;">
@@ -463,10 +461,21 @@ class Component extends DCLogic {
       ...(() => {
         const q = (this.state.query || '').trim().toLowerCase();
         // while searching, the featured article is part of the results too
+        const cat = this.state.cat || '';
         const all = (p.posts && p.posts.length ? p.posts : this.posts())
-          .filter(x => q ? [x.title, x.excerpt, x.category].join(' ').toLowerCase().includes(q) : !x.featured);
+          .filter(x => (!cat || x.category === cat) && (q ? [x.title, x.excerpt, x.category].join(' ').toLowerCase().includes(q) : !x.featured));
         const n = Math.min(all.length, this.state.shown || 12);
+        // the cards are drawn by the server (functions/blog/index.js); these show / hide them
+        const shown = new Set(all.slice(0, n).map(x => x.slug));
+        const cardVis = {};
+        this.posts().forEach(x => { cardVis[x.slug] = shown.has(x.slug) ? 'display: block' : 'display: none'; });
+        const chip = (c) => cat === c ? 'background: rgba(23, 114, 107, 0.1); color: rgb(23, 114, 107); font-weight: 600;' : 'background: rgba(255, 255, 255, 0.6); color: rgb(46, 58, 56); font-weight: 500;';
+        const pick = (c) => () => this.setState({ cat: c, shown: 12 });
         return {
+          cardVis,
+          chipAll: chip(''), chipHiring: chip('Hiring'), chipTalent: chip('Talent'), chipProduct: chip('Product'),
+          catAll: pick(''), catHiring: pick('Hiring'), catTalent: pick('Talent'), catProduct: pick('Product'),
+          noResultsText: q ? 'No articles match \u201c' + q + '\u201d.' : 'No ' + cat + ' articles yet.',
           posts: all.slice(0, n),
           hasMore: n < all.length,
           shownCount: n,
@@ -474,7 +483,7 @@ class Component extends DCLogic {
           loadMore: () => this.setState(s => ({ shown: (s.shown || 12) + 12 })),
           query: this.state.query || '',
           onQuery: (e) => this.setState({ query: e.target.value, shown: 12 }),
-          noResults: !!q && all.length === 0
+          noResults: (!!q || !!cat) && all.length === 0
         };
       })(),
       featured: this.featured(),
