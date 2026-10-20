@@ -20,6 +20,7 @@ const TABLE_CSS = `<style>
 .nr-prose tfoot th, .nr-prose tfoot td { border-top: 2px solid #17726B; font-weight: 700; }
 .nr-prose th small { display: block; margin-top: 2px; font-size: 13px; font-weight: 400; color: #5E6B69; }
 .nr-prose figure:has(> table) figcaption { text-align: left; color: #17726B; font-weight: 600; }
+.nr-prose figure > ul { margin: 0 0 24px; }
 @media (max-width: 600px) {
   .nr-prose table { font-size: 13px; }
   .nr-prose caption { font-size: 1.05rem; }
@@ -53,7 +54,8 @@ export function renderArticle(post, opts = {}) {
   const date = ukDate(post.published_at || new Date().toISOString());
   const read = `${post.read_minutes || 1} min read`;
   const imgBase = opts.preview ? '/admin/img/' : '/blog/img/';
-  const cover = post.cover_image_id ? imgBase + post.cover_image_id : '';
+  // cover_on_page false (FIX_307): the picture is only the card / LinkedIn picture, e.g. when the article has the same table as text
+  const cover = post.cover_image_id && post.cover_on_page !== false ? imgBase + post.cover_image_id : '';
   let body = String(post.body_html || '');
   if (opts.preview) body = body.replace(/\/blog\/img\//g, '/admin/img/');
 

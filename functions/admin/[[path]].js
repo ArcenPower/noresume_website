@@ -74,6 +74,7 @@ export async function onRequest({ request, env, params }) {
         title: String(p.title || ''), category: CATEGORIES.includes(p.category) ? p.category : 'Hiring',
         excerpt: String(p.excerpt || ''), author_name: String(p.author_name || ''), published_at: p.published_at || null,
         cover_image_id: UUID.test(p.cover_image_id || '') ? p.cover_image_id : null, cover_caption: String(p.cover_caption || ''),
+        cover_on_page: p.cover_on_page !== false,
         original_url: /^https:\/\/[^\s"<>]+$/.test(p.original_url || '') ? p.original_url : '', related: [],
       };
       post.body_html = await cleanHtml(String(p.body_html || ''));
@@ -102,6 +103,7 @@ export async function onRequest({ request, env, params }) {
         body_html: body,
         cover_image_id: UUID.test(p.cover_image_id || '') ? p.cover_image_id : null,
         cover_caption: String(p.cover_caption || '').trim().slice(0, 300),
+        cover_on_page: p.cover_on_page !== false,   // FIX_307: show the top picture on the article page (card + previews always use it)
         author_name: String(p.author_name || '').trim().slice(0, 80),
         read_minutes: Math.max(1, Math.min(120, Math.round(words(body) / 200) || 1)),
         featured: !!p.featured,
