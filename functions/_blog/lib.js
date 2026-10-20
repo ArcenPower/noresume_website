@@ -93,7 +93,9 @@ export async function accessEmail(request, env) {
 
 // ── cleaning article HTML (everything the editor sends is cleaned again here before it is saved) ─────────────
 const DROP = 'script,style,iframe,object,embed,noscript,template,svg,math,form,input,button,textarea,select,head,title,meta,link,base,video,audio,canvas';
-const KEEP = new Set(['p', 'br', 'h2', 'h3', 'strong', 'em', 'u', 'a', 'ul', 'ol', 'li', 'blockquote', 'figure', 'figcaption', 'img', 'hr']);
+const KEEP = new Set(['p', 'br', 'h2', 'h3', 'strong', 'em', 'u', 'a', 'ul', 'ol', 'li', 'blockquote', 'figure', 'figcaption', 'img', 'hr',
+  // data tables (20 Oct 2026): the figures as text, so search engines and AI tools can read and quote them
+  'table', 'caption', 'thead', 'tbody', 'tfoot', 'tr', 'th', 'td', 'small']);
 const RENAME = { b: 'strong', i: 'em', h1: 'h2', h4: 'h3', h5: 'h3', h6: 'h3' };
 const IMG_SRC = /^\/(?:blog|admin)\/img\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/;
 
@@ -121,6 +123,10 @@ export async function cleanHtml(html) {
           keep.alt = (el.getAttribute('alt') || '').slice(0, 300);
           const w = parseInt(el.getAttribute('width') || '', 10), hh = parseInt(el.getAttribute('height') || '', 10);
           if (w > 0 && hh > 0) { keep.width = String(w); keep.height = String(hh); }
+        }
+        if (tag === 'th') {
+          const scope = (el.getAttribute('scope') || '').toLowerCase();
+          if (scope === 'row' || scope === 'col') keep.scope = scope;
         }
         for (const [name] of [...el.attributes]) el.removeAttribute(name);
         for (const [k, v] of Object.entries(keep)) el.setAttribute(k, v);

@@ -2,6 +2,44 @@
 import TEMPLATE from './article_template.js';
 import { esc, ukDate, imgUrl, SITE } from './lib.js';
 
+// Data tables in the article text (20 Oct 2026), drawn like the LinkedIn table pictures: teal heading row, bold
+// figures, a line above the total row. Kept here, not in article_template.js, because that template stays as on GitHub.
+const TABLE_CSS = `<style>
+.nr-prose figure:has(> table) { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.nr-prose table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 16px; line-height: 1.35; font-variant-numeric: tabular-nums; }
+.nr-prose caption { caption-side: top; text-align: left; margin: 0 0 16px; font-size: clamp(1.1rem, 1.6vw, 1.3rem); font-weight: 700; line-height: 1.3; color: #17282A; text-wrap: pretty; }
+.nr-prose th, .nr-prose td { padding: 14px 12px; text-align: right; vertical-align: middle; }
+.nr-prose th:first-child, .nr-prose td:first-child { text-align: left; padding-left: 18px; }
+.nr-prose th:last-child, .nr-prose td:last-child { padding-right: 18px; }
+.nr-prose thead th { background: #1C7A73; color: #fff; font-size: 14px; font-weight: 600; white-space: nowrap; }
+.nr-prose thead th:first-child { border-radius: 14px 0 0 14px; }
+.nr-prose thead th:last-child { border-radius: 0 14px 14px 0; }
+.nr-prose tbody th, .nr-prose tfoot th { font-weight: 600; color: #17282A; }
+.nr-prose tbody td, .nr-prose tfoot td { font-weight: 700; color: #111; }
+.nr-prose tbody th, .nr-prose tbody td { border-bottom: 1px solid rgba(23,114,107,.14); }
+.nr-prose tfoot th, .nr-prose tfoot td { border-top: 2px solid #17726B; font-weight: 700; }
+.nr-prose th small { display: block; margin-top: 2px; font-size: 13px; font-weight: 400; color: #5E6B69; }
+.nr-prose figure:has(> table) figcaption { text-align: left; color: #17726B; font-weight: 600; }
+@media (max-width: 600px) {
+  .nr-prose table { font-size: 13px; }
+  .nr-prose caption { font-size: 1.05rem; }
+  .nr-prose th, .nr-prose td { padding: 10px 4px; }
+  .nr-prose th:first-child, .nr-prose td:first-child { padding-left: 8px; }
+  .nr-prose th:last-child, .nr-prose td:last-child { padding-right: 8px; }
+  .nr-prose thead th { font-size: 11px; }
+  .nr-prose thead th:first-child { white-space: normal; }
+  .nr-prose th small { font-size: 11px; }
+}
+@media (max-width: 360px) {
+  .nr-prose table { font-size: 12px; }
+  .nr-prose th, .nr-prose td { padding: 9px 3px; }
+  .nr-prose th:first-child, .nr-prose td:first-child { padding-left: 6px; }
+  .nr-prose th:last-child, .nr-prose td:last-child { padding-right: 6px; }
+  .nr-prose thead th { font-size: 10px; }
+  .nr-prose th small { font-size: 10.5px; }
+}
+</style>`;
+
 const initials = (name) => {
   const w = String(name || '').replace(/^the\s+/i, '').split(/\s+/).filter(Boolean);
   if (/noresume/i.test(name || '') || !w.length) return 'NR';
@@ -26,7 +64,7 @@ export function renderArticle(post, opts = {}) {
     author: /noresume/i.test(post.author_name || '') ? { '@type': 'Organization', name: 'NoResume' } : { '@type': 'Person', name: post.author_name },
     publisher: { '@type': 'Organization', name: 'NoResume', logo: { '@type': 'ImageObject', url: `${SITE}/assets/images/noresume_logo-color-orange.png` } },
   };
-  const seo = opts.preview
+  const seo = (opts.preview
     ? `<title>Preview: ${esc(title)}</title>\n<meta name="robots" content="noindex, nofollow">`
     : [`<title>${esc(title)} - NoResume</title>`,
       `<link rel="canonical" href="${esc(url)}">`,
@@ -42,7 +80,8 @@ export function renderArticle(post, opts = {}) {
       `<meta property="og:image" content="${esc(ogImage)}">`,
       '<meta name="twitter:card" content="summary_large_image">',
       `<meta property="article:published_time" content="${esc(post.published_at)}">`,
-      `<script type="application/ld+json">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script>`].join('\n');
+      `<script type="application/ld+json">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script>`].join('\n'))
+    + (/<table[\s>]/.test(body) ? '\n' + TABLE_CSS : '');
 
   const share = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
   const mail = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(url)}`;
@@ -78,7 +117,7 @@ export function renderArticle(post, opts = {}) {
 ${cover ? `
       <div style="max-width: 1000px; margin: 34px auto 0; padding: 0 32px;">
         <figure style="margin: 0;">
-          <img src="${esc(cover)}" alt="" style="display: block; width: 100%; height: auto; border-radius: 24px; box-shadow: 0 22px 60px rgba(6,27,64,.16);">
+          <img src="${esc(cover)}" alt="${esc(post.cover_caption || title)}" style="display: block; width: 100%; height: auto; border-radius: 24px; box-shadow: 0 22px 60px rgba(6,27,64,.16);">
           ${post.cover_caption ? `<figcaption style="margin: 12px 0 0; font-size: 13.5px; color: #5A5A5A;">${esc(post.cover_caption)}</figcaption>` : ''}
         </figure>
       </div>` : ''}
