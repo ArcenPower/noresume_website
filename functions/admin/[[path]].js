@@ -16,7 +16,7 @@ const page = (html, status = 200) => htmlResponse(html, status, { ...NO_STORE, '
 
 function friendly(e) {
   const m = String(e.message || e);
-  if (/not an editor/.test(m)) return [403, 'This Google account is not on the editor list.'];
+  if (/not an editor/.test(m)) return [403, 'This Google account is not on the editor list. Use Switch account (top right) to sign in with another one.'];
   if (/not authorised/.test(m)) return [500, 'The website is not set up to talk to the database (BLOG_API_SECRET).'];
   for (const k of ['changed_elsewhere', 'slug_taken', 'slug_locked']) {
     if (m.includes(k + ':')) return [409, m.slice(m.indexOf(k + ':') + k.length + 1).trim()];
