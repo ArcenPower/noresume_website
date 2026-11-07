@@ -6,6 +6,9 @@ const APP = "https://hiring-app.noresume.co.uk";
 
 export async function onRequest({ request, env }) {
   const url = new URL(request.url);
+  // one address only: the browser remembers an invited person on www.noresume.co.uk, so noresume.co.uk and
+  // noresume.co send people there (7 Nov 2026)
+  if (url.hostname !== "www.noresume.co.uk") return Response.redirect("https://www.noresume.co.uk" + url.pathname + url.search, 301);
   if (url.pathname === "/hiring") return Response.redirect(url.origin + "/hiring/" + url.search, 301);
   const headers = new Headers(request.headers);
   headers.set("X-NR-Proxy", env.HIRING_PROXY_KEY || "");
