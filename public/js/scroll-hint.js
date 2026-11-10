@@ -68,6 +68,30 @@
       if (hasBar || cue.classList.contains('nr-wait')) place();                       // bar closed after a shift: nothing moves
     }).observe(document.body, { childList: true });
     addEventListener('scroll', function () { cue.classList.toggle('nr-gone', scrollY > 40); }, { passive: true });
+    // 8 Nov 2026 (Simon): pages marked data-auto-scroll glide down to the next section 4 s after they have fully loaded
+    // (after the Home opening clip), over 1 s. Never if the visitor has already touched, scrolled or pressed a key.
+    if (root.hasAttribute('data-auto-scroll') && next && !location.hash) {
+      var userOwned = false, frame = 0, timer = 0;
+      function own() { userOwned = true; clearTimeout(timer); cancelAnimationFrame(frame); }
+      ['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach(function (ev) { addEventListener(ev, own, { passive: true }); });
+      function glide() {
+        if (userOwned || scrollY > 5) return;
+        var from = scrollY, to = next.getBoundingClientRect().top + scrollY, t0 = null;
+        if (still) { scrollTo(0, to); return; }
+        root.style.setProperty('scroll-behavior', 'auto', 'important');
+        frame = requestAnimationFrame(function step(now) {
+          if (t0 === null) t0 = now;
+          var p = Math.min((now - t0) / 1000, 1), e = p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+          scrollTo(0, from + (to - from) * e);
+          if (p < 1 && !userOwned) frame = requestAnimationFrame(step); else root.style.removeProperty('scroll-behavior');
+        });
+      }
+      function arm() { if (!userOwned) timer = setTimeout(glide, 4000); }
+      function whenLoaded() { if (document.readyState === 'complete') arm(); else addEventListener('load', arm, { once: true }); }
+      if (!root.hasAttribute('data-intro-on')) whenLoaded();
+      else new MutationObserver(function (m, o) { if (!root.hasAttribute('data-intro-on')) { o.disconnect(); whenLoaded(); } })
+        .observe(root, { attributes: true, attributeFilter: ['data-intro-on'] });
+    }
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { setTimeout(setup, 0); });
   else setTimeout(setup, 0);

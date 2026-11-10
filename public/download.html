@@ -85,6 +85,16 @@ html, body { height: 100%; margin: 0px; }
 .nr-related:hover { transform: translateY(-5px); box-shadow: 0 24px 56px rgba(6,27,64,.16); }
 @media (max-width: 600px) { .nr-prose { font-size: 16.5px; } .nr-prose blockquote { padding: 20px 22px; font-size: 17px; } }
 </style>
+<style>
+  /* 8 Nov 2026: third badge beside App Store / Google Play: same black badge look, opens the Try Now web app */
+  .nr-web-badge { display: inline-flex; align-items: center; gap: 10px; height: 56px; box-sizing: border-box; padding: 0 22px 0 14px;
+    background: #000; border: 1px solid #A6A6A6; border-radius: 9px; color: #fff !important; text-align: left; font-family: system-ui, -apple-system, sans-serif; }
+  .nr-web-badge:hover { color: #fff !important; background: #1b1b1b; }
+  .nr-web-badge svg { width: 30px; height: 30px; flex: none; }
+  .nr-web-badge span { display: flex; flex-direction: column; line-height: 1.05; }
+  .nr-web-badge small { font-size: 12px; letter-spacing: .02em; }
+  .nr-web-badge b { font-size: 23px; font-weight: 500; letter-spacing: -.01em; }
+</style>
 </head>
 <body>
 <div id="dc-root"><div class="sc-host" data-sc-name="blog"><div data-b-style="[[ themeVars ]]" style="--teal: #17726B; --hdrY: 0px; --hdrBlur: none; --hdrInk: #17726B; --hdrShadow: none;">
@@ -144,6 +154,8 @@ html, body { height: 100%; margin: 0px; }
           <a id="google-badge" href="https://play.google.com/store/apps/details?id=noresume.app&amp;gl=gb" target="_blank" rel="noopener" aria-label="Get it on Google Play" style="display: inline-block; transition: opacity .2s;">
             <img src="/assets/images/badge-google-play-official.png" alt="Get it on Google Play" style="height: 56px; width: auto; display: block;">
           </a>
+          <a href="https://search.noresume.co" class="nr-web-badge" aria-label="Hiring Online"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.6 2.8 3.9 6 3.9 9.5s-1.3 6.7-3.9 9.5c-2.6-2.8-3.9-6-3.9-9.5s1.3-6.7 3.9-9.5z"/></svg><span><small>Hiring</small><b>Online</b></span></a>
+          <a href="https://talent.noresume.co" class="nr-web-badge" aria-label="Talent Online"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.6 2.8 3.9 6 3.9 9.5s-1.3 6.7-3.9 9.5c-2.6-2.8-3.9-6-3.9-9.5s1.3-6.7 3.9-9.5z"/></svg><span><small>Talent</small><b>Online</b></span></a>
         </div>
         <p style="margin: 18px 0 0; font-size: 15px; color: #3A3A3A;">Want to learn more? Visit <a href="https://noresume.co.uk" style="color: var(--teal, #17726B); font-weight: 600;">noresume.co.uk</a></p>
       </div>

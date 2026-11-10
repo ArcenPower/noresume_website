@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en-GB" data-auto-scroll>
 <head>
 <meta charset="utf-8">
 <script>
@@ -67,8 +67,8 @@ html[data-skip-intro] [data-intro] { display: none !important; }
 html[data-intro-on] [data-panel-tex] { background-image: none !important; }
 html[data-intro-on] [data-hero-img] { animation-play-state: paused !important; }
 x-dc { display: none !important; }
-.scp0:hover { transform: rotate(var(--tiltA, -2.5deg)) translateY(-8px) !important; box-shadow: rgba(6, 27, 64, 0.22) 0px 30px 74px !important; }
-.scp1:hover { transform: rotate(var(--tiltC, 2.5deg)) translateY(-8px) !important; box-shadow: rgba(6, 27, 64, 0.22) 0px 30px 74px !important; }
+.scp0:hover { transform: rotate(var(--tiltA, -3.5deg)) translateY(-8px) !important; box-shadow: rgba(6, 27, 64, 0.22) 0px 30px 74px !important; }
+.scp1:hover { transform: rotate(var(--tiltC, 3.5deg)) translateY(-8px) !important; box-shadow: rgba(6, 27, 64, 0.22) 0px 30px 74px !important; }
 .scp2:hover { transform: translateY(-6px) !important; box-shadow: rgba(6, 27, 64, 0.13) 0px 26px 54px !important; border-bottom-color: rgb(54, 197, 197) !important; }
 .scp3:hover { transform: translateY(-2px) !important; background: rgb(54, 197, 197) !important; color: rgb(255, 255, 255) !important; box-shadow: rgba(54, 197, 197, 0.36) 0px 10px 26px !important; }
 html, body { height: 100%; margin: 0px; }
@@ -120,6 +120,32 @@ html, body { height: 100%; margin: 0px; }
   @keyframes nrHeroDrift { from { transform: scale(1.015) translate3d(-.5%, .2%, 0); } to { transform: scale(1.05) translate3d(.6%, -.4%, 0); } }
   @media (prefers-reduced-motion: reduce) { [data-hero-img] { animation: none !important; } }
 </style>
+<style>
+  /* 9 Nov 2026: Home Hiring / Talent cards look tappable */
+  .nr-learn { margin-top: auto; font-size: 18px; font-weight: 500; color: rgb(51, 51, 51); }
+  .nr-arrow { display: inline-block; animation: nrNudge 2.2s ease-in-out infinite; }
+  @keyframes nrNudge { 0%, 55%, 100% { transform: translateX(0); } 70% { transform: translateX(6px); } 85% { transform: translateX(0); } }
+  a > article.scp0, a > article.scp1 { position: relative; -webkit-tap-highlight-color: transparent; }
+  a > article.scp0::after, a > article.scp1::after { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+    animation: nrCardPulse 2.8s ease-out infinite; }
+  a > article.scp1::after { animation-delay: 1.4s; --nr-ring: 240, 140, 100; }
+  @keyframes nrCardPulse { 0% { box-shadow: 0 0 0 0 rgba(var(--nr-ring, 18, 185, 166), .55); }
+    75% { box-shadow: 0 0 0 16px rgba(var(--nr-ring, 18, 185, 166), 0); } 100% { box-shadow: 0 0 0 0 rgba(var(--nr-ring, 18, 185, 166), 0); } }
+  a > article.scp0:active { transform: rotate(var(--tiltA, -3.5deg)) scale(.97) !important; transition-duration: .08s !important; }
+  a > article.scp1:active { transform: rotate(var(--tiltC, 3.5deg)) scale(.97) !important; transition-duration: .08s !important; }
+  @media (prefers-reduced-motion: reduce) { .nr-arrow, a > article.scp0::after, a > article.scp1::after { animation: none; } }
+  /* both cards always the same size (side by side and stacked on phones) */
+  div:has(> a > article.scp0) { align-items: stretch !important; grid-auto-rows: 1fr; }
+  a:has(> article.scp0), a:has(> article.scp1) { display: flex !important; }
+  a > article.scp0, a > article.scp1 { flex: 1; box-sizing: border-box; }
+  /* HIRE TALENT / I AM TALENT words stand off the picture like a button */
+  a > article [data-float-word] { text-shadow: 0 1px 0 rgba(255,255,255,.7), 0 4px 12px rgba(6,27,64,.38); }
+</style>
+<style>@media (max-width: 1099px) { .nr-br { display: none; } }</style>
+  <link rel="prefetch" href="/employers">
+  <link rel="prefetch" href="/candidates">
+<style>[data-insights-head]{position:relative;flex-direction:column;align-items:center!important;gap:6px!important;text-align:center}@media (min-width:1100px){[data-insights-head]>a{position:absolute;right:0;bottom:6px}}</style>
+<style>br.nr-pbr:not(.nr-br) { display: none; } @media (max-width: 760px) { br.nr-pbr { display: inline !important; } .nr-stmt { font-size: min(1.25rem, calc((100vw - 64px) / 20.2)) !important; } .nr-stmt > span { white-space: nowrap !important; } .nr-move { font-size: min(15px, calc((100vw - 64px) / 20.2 - 1px)) !important; font-weight: 500 !important; margin-top: 24px !important; margin-bottom: 31px !important; } }</style>
 </head>
 <body>
 <div id="dc-root"><div class="sc-host" data-sc-name="index"><div data-b-style="[[ themeVars ]]" style="--teal: #17726B; --coral: #F7A98A; --hdrY: 0px; --hdrBg: transparent; --hdrBlur: none; --hdrInk: #fff; --hdrShadow: 0 1px 12px rgba(0,0,0,.55); --tiltA: -2.5deg; --tiltC: 2.5deg;">
@@ -184,22 +210,25 @@ html, body { height: 100%; margin: 0px; }
         </aside>
       </template></div>
 
-      <div data-hero-btns="true" style="position: absolute; left: 0px; right: 0px; bottom: 118px; z-index: 3; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 0px 32px;">
-        <a href="https://search.noresume.co" style="background: rgb(255, 255, 255); color: rgb(17, 17, 17); padding: 16px 20px; width: 232px; box-sizing: border-box; text-align: center; border-radius: 999px; font-size: 17px; font-weight: 500; box-shadow: rgba(0, 0, 0, 0.28) 0px 10px 34px;">Hiring - Try Now</a>
-        <a href="https://talent.noresume.co" style="background: rgb(255, 255, 255); color: rgb(17, 17, 17); padding: 16px 20px; width: 232px; box-sizing: border-box; text-align: center; border-radius: 999px; font-size: 17px; font-weight: 500; box-shadow: rgba(0, 0, 0, 0.28) 0px 10px 34px;">Talent - Try Now</a>
-      </div>
     </section>
 
     
-    <section style="position: relative; background: transparent; overflow: hidden; padding: 105px 0px 60px;">
+    <section style="position: relative; background: transparent; overflow: hidden; padding: 52px 0px 42px;">
 
       <div style="position: relative; z-index: 2; max-width: 1240px; margin: 0px auto; padding: 0px 32px;">
         
-        <p style="margin: 0px auto 64px; max-width: 68ch; text-align: center; font-size: clamp(1.15rem, 1.6vw, 1.4rem); line-height: 1.6; color: rgb(46, 58, 56); text-wrap: pretty;"><span style="white-space: pre-wrap;">By removing traditional application friction, noresume empowers workers and businesses to build authentic, direct relationships grounded in fairness and transparency.</span></p>
+        <div style="text-align: center; margin-bottom: 4px;">
+          <h2 style="margin: 0px 0px 24px; font-size: clamp(2rem, 3.6vw, 2.9rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: var(--teal, #17726B); text-wrap: pretty;">The network is growing</h2>
+          <p style="margin: 0px auto; max-width: 40ch; font-size: min(clamp(1.3rem, 2vw, 1.7rem), calc((100vw - 72px) / 18.9)); font-weight: 600; line-height: 1.4; color: var(--teal, #17726B); text-wrap: pretty;">Freelance · Occasional · Permanent</p>
+        </div>
+
+        <p style="margin: 0px auto; max-width: 1200px; text-align: center; font-size: clamp(1.25rem, 1.9vw, 1.6rem); font-weight: 400; line-height: 1.6; color: var(--teal, #17726B); text-wrap: pretty;" class="nr-stmt"><span style="white-space: pre-wrap;">By removing traditional<br class="nr-pbr"> applications, noresume<br class="nr-pbr"> empowers talent and businesses<br class="nr-br nr-pbr"> to build authentic, direct relationships<br class="nr-pbr"> across all roles and sectors,<br class="nr-br nr-pbr"> grounded in fairness and transparency.</span></p>
+
+        <p class="nr-move" style="margin: 40px auto 48px; max-width: 1016px; text-align: center; font-size: 17px; font-weight: 600; line-height: 1.6; color: var(--teal, #17726B); text-wrap: pretty;">Every new member grows the market for everyone: more choice, more reach, more opportunities.</p>
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 90px; align-items: start; max-width: 818px; margin: 0px auto;">
 
-          <a href="/employers" style="display: block; color: inherit; text-decoration: none;"><article class="scp0" style="background: linear-gradient(rgb(18, 185, 166) 0%, rgb(18, 185, 166) 10%, rgb(118, 198, 180) 36%, rgb(197, 255, 248) 66%, rgb(218, 255, 251) 86%, rgb(218, 255, 251) 100%); border-radius: 26px; padding: 22px 22px 26px; box-shadow: rgba(6, 27, 64, 0.16) 0px 22px 60px; min-height: 517px; transform: rotate(var(--tiltA, -2.5deg)); display: flex; flex-direction: column; gap: 22px; transition: transform 0.28s, box-shadow 0.28s; cursor: pointer;">
+          <a href="/employers" style="display: block; color: inherit; text-decoration: none;"><article class="scp0" style="background: linear-gradient(rgb(18, 185, 166) 0%, rgb(18, 185, 166) 10%, rgb(118, 198, 180) 36%, rgb(197, 255, 248) 66%, rgb(218, 255, 251) 86%, rgb(218, 255, 251) 100%); border-radius: 26px; padding: 22px 22px 26px; box-shadow: rgba(6, 27, 64, 0.16) 0px 22px 60px; min-height: 517px; transform: rotate(var(--tiltA, -3.5deg)); display: flex; flex-direction: column; gap: 22px; transition: transform 0.28s, box-shadow 0.28s; cursor: pointer;">
             <div data-float-box="true" style="position: relative; height: 277px; border-radius: 18px; background: transparent; overflow: hidden;">
               <span data-panel-tex="true" aria-hidden="true" style="position: absolute; left: 0px; right: 0px; top: -18%; height: 136%; will-change: transform; background-image: url(&quot;assets/images/texture-green-2.jpg&quot;); background-size: cover; background-position: center center; opacity: 0.7;"></span>
               <span data-float-word="true" style="position: absolute; left: 50%; top: 130px; transform: translate(-50%, -50%) rotate(-2.5deg); z-index: 2; font-size: 32px; line-height: 1; font-weight: 700; letter-spacing: 0.01em; color: rgb(17, 17, 17); white-space: nowrap;">HIRE TALENT</span>
@@ -213,10 +242,10 @@ html, body { height: 100%; margin: 0px; }
               <h3 style="margin: 0px; font-size: 26px; font-weight: 600; letter-spacing: -0.01em;">Looking to Hire</h3>
               <p style="margin: 0px; font-size: 17px; line-height: 1.45; color: rgb(68, 68, 68);">Direct access to live, verified talent with smart search and automated pipeline, across all hiring models. Zero upfront fees, pay only when you hire.</p>
             </div>
-            <span style="font-size: 15px; color: rgb(51, 51, 51); margin-top: auto;">Learn More →</span>
+            <span class="nr-learn">Learn More <span class="nr-arrow" aria-hidden="true">→</span></span>
           </article></a>
 
-          <a href="/candidates" style="display: block; color: inherit; text-decoration: none;"><article class="scp1" style="background: linear-gradient(rgb(250, 185, 151) 0%, rgb(251, 195, 162) 22%, rgb(250, 211, 184) 52%, rgb(249, 232, 214) 82%, rgb(249, 218, 192) 100%); border-radius: 26px; padding: 22px 22px 26px; box-shadow: rgba(6, 27, 64, 0.16) 0px 22px 60px; min-height: 517px; transform: rotate(var(--tiltC, 2.5deg)); display: flex; flex-direction: column; gap: 22px; transition: transform 0.28s, box-shadow 0.28s; cursor: pointer;">
+          <a href="/candidates" style="display: block; color: inherit; text-decoration: none;"><article class="scp1" style="background: linear-gradient(rgb(250, 185, 151) 0%, rgb(251, 195, 162) 22%, rgb(250, 211, 184) 52%, rgb(249, 232, 214) 82%, rgb(249, 218, 192) 100%); border-radius: 26px; padding: 22px 22px 26px; box-shadow: rgba(6, 27, 64, 0.16) 0px 22px 60px; min-height: 517px; transform: rotate(var(--tiltC, 3.5deg)); display: flex; flex-direction: column; gap: 22px; transition: transform 0.28s, box-shadow 0.28s; cursor: pointer;">
             <div data-float-box="true" style="position: relative; height: 277px; border-radius: 18px; background: rgb(255, 255, 255); overflow: hidden;">
               <span data-panel-tex="true" aria-hidden="true" style="position: absolute; left: 0px; right: 0px; top: -18%; height: 136%; will-change: transform; background-image: url(&quot;assets/images/texture-coral.jpg&quot;); background-size: cover; background-position: center center; opacity: 0.7;"></span>
               <span data-float-word="true" style="position: absolute; left: 50%; top: 130px; transform: translate(-50%, -50%) rotate(2.5deg); z-index: 2; font-size: 32px; line-height: 1; font-weight: 700; letter-spacing: 0.01em; color: rgb(17, 17, 17); white-space: nowrap;">I AM TALENT</span>
@@ -230,7 +259,7 @@ html, body { height: 100%; margin: 0px; }
               <h3 style="margin: 0px; font-size: 26px; font-weight: 600; letter-spacing: -0.01em;">Open to Work</h3>
               <p style="margin: 0px; font-size: 17px; line-height: 1.45; color: rgb(68, 68, 68);">One Profile DNA to eliminate applications entirely. Set your terms, manage real opportunities, and take control of your work life in one place.</p>
             </div>
-            <span style="font-size: 15px; color: rgb(51, 51, 51); margin-top: auto;">Learn More →</span>
+            <span class="nr-learn">Learn More <span class="nr-arrow" aria-hidden="true">→</span></span>
           </article></a>
 
         </div>
@@ -239,11 +268,11 @@ html, body { height: 100%; margin: 0px; }
     </section>
 
     
-    <section style="background: transparent; padding: 45px 0px 60px;">
+    <section style="background: transparent; padding: 32px 0px 42px;">
       <div style="max-width: 1240px; margin: 0px auto; padding: 0px 32px;">
-        <div style="text-align: center; margin-bottom: 52px;">
-          <h2 style="margin: 0px 0px 14px; font-size: clamp(2rem, 3.6vw, 2.9rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: var(--teal, #17726B);">End-to-End Infrastructure</h2>
-          <p style="margin: 0px auto; max-width: 62ch; font-size: 17px; line-height: 1.6; color: rgb(15, 90, 84); text-wrap: pretty;"><span style="white-space: pre-wrap;">The suite of tools designed for direct connection and disruptive efficiency.</span></p>
+        <div style="text-align: center; margin-bottom: 21px;">
+          <h2 style="margin: 0px 0px 0px; font-size: clamp(2rem, 3.6vw, 2.9rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: var(--teal, #17726B);">End-to-End Infrastructure</h2>
+          <p style="margin: 0px auto; max-width: 62ch; font-size: clamp(1.3rem, 2vw, 1.7rem); font-weight: 600; line-height: 1.4; color: var(--teal, #17726B); text-wrap: pretty;"><span style="white-space: pre-wrap;">The suite of tools designed for direct connection and disruptive efficiency.</span></p>
         </div>
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 32px; max-width: 1016px; margin: 0px auto;">
@@ -312,9 +341,9 @@ html, body { height: 100%; margin: 0px; }
 
     <div data-if="hasArticles" data-if-on="false" data-mounted="0" style="display: contents;"><template>
     
-    <section style="padding: 45px 0px 60px;">
+    <section style="padding: 32px 0px 42px;">
       <div style="max-width: 1240px; margin: 0px auto; padding: 0px 32px;">
-        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 30px;">
+        <div data-insights-head="true" style="display: flex; align-items: baseline; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 12px;">
           <h2 style="margin: 0px; font-size: clamp(1.9rem, 3.4vw, 2.7rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: var(--teal, #17726B);">Insights from the Open Job Market</h2>
           <a href="/blog" style="font-size: 15px; font-weight: 600; color: rgb(15, 90, 84);">All articles →</a>
         </div>
@@ -325,7 +354,7 @@ html, body { height: 100%; margin: 0px; }
     </template></div>
 
     
-    <section style="background: transparent; padding: 45px 0px 60px; text-align: center;">
+    <section style="background: transparent; padding: 38px 0px 80px; text-align: center;">
       <div style="max-width: 1240px; margin: 0px auto; padding: 0px 32px;">
         <h2 style="margin: 0px auto 12px; max-width: 22ch; font-size: clamp(1.9rem, 3.4vw, 2.7rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: rgb(17, 17, 17); text-wrap: pretty;"><span style="white-space: pre-wrap;">Embrace the Future</span></h2>
         <p style="margin: 0px 0px 40px; font-size: 17px; color: rgb(58, 58, 58);"><span style="white-space: pre-wrap;">Join the Open Job Market Today</span></p>
@@ -881,7 +910,7 @@ class Component extends DCLogic {
 
   renderVals() {
     const p = this.props;
-    const tilt = p.tiltCards === false ? 0 : 2.5;
+    const tilt = p.tiltCards === false ? 0 : 3.5;
     return {
       menuOpen: this.state.menuOpen,
       openMenu: () => this.setState({ menuOpen: true }),

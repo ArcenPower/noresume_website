@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en-GB" data-auto-scroll>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,6 +75,29 @@ html, body { height: 100%; margin: 0px; }
   @media (max-width: 760px) { [data-demo-card] { width: 100vw !important; max-width: 100vw !important; border-radius: 0 !important; box-shadow: none !important; } }
   @media (max-width: 760px) { section:has(> [data-hero-text]) { display: flex !important; flex-direction: column; justify-content: center; } [data-hero-text], [data-hero-btns] { position: relative !important; top: auto !important; bottom: auto !important; transform: none !important; } [data-hero-btns] { margin-top: 28px; } }
 </style>
+<style>
+  /* 8-9 Nov 2026: Try Now / Book a Call under the phone-screenshot slider: light-to-dark teal, white 20 px words, gentle pulse */
+  [data-demo-card] { border: 12px solid #214141; box-sizing: border-box; }
+@media (max-width: 760px) { .nr-br { display: none; } }   /* Simon's line breaks: laptop only, phones flow */
+[data-cta-row] { position: relative; z-index: 3; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 34px; }
+  .nr-cta { background: linear-gradient(180deg, #5DBDBD 0%, #2E6B68 100%); color: #fff !important; padding: 15px 20px; width: 220px; box-sizing: border-box; text-align: center;
+    border-radius: 999px; font-size: 20px; font-weight: 600; animation: nrCtaPulse 2.6s ease-out infinite; transition: background .2s, transform .2s; }
+  .nr-cta:hover, .nr-cta:focus-visible { filter: brightness(1.08); color: #fff !important; transform: translateY(-2px); }
+  @keyframes nrCtaPulse { 0% { box-shadow: 0 10px 26px rgba(23,114,107,.28), 0 0 0 0 rgba(23,114,107,.45); }
+    70% { box-shadow: 0 10px 26px rgba(23,114,107,.28), 0 0 0 14px rgba(23,114,107,0); }
+    100% { box-shadow: 0 10px 26px rgba(23,114,107,.28), 0 0 0 0 rgba(23,114,107,0); } }
+  @media (prefers-reduced-motion: reduce) { .nr-cta { animation: none; box-shadow: 0 10px 26px rgba(23,114,107,.28); } }
+</style>
+<style>
+  /* 8 Nov 2026: third badge beside App Store / Google Play: same black badge look, opens the Try Now web app */
+  .nr-web-badge { display: inline-flex; align-items: center; gap: 10px; height: 56px; box-sizing: border-box; padding: 0 22px 0 14px;
+    background: #000; border: 1px solid #A6A6A6; border-radius: 9px; color: #fff !important; text-align: left; font-family: system-ui, -apple-system, sans-serif; }
+  .nr-web-badge:hover { color: #fff !important; background: #1b1b1b; }
+  .nr-web-badge svg { width: 30px; height: 30px; flex: none; }
+  .nr-web-badge span { display: flex; flex-direction: column; line-height: 1.05; }
+  .nr-web-badge small { font-size: 12px; letter-spacing: .02em; }
+  .nr-web-badge b { font-size: 23px; font-weight: 500; letter-spacing: -.01em; }
+</style>
 </head>
 <body>
 <div id="dc-root"><div class="sc-host" data-sc-name="employers"><div data-b-style="[[ themeVars ]]" style="--teal: #17726B; --coral: #F7A98A; --hdrY: 0px; --hdrBlur: none; --hdrInk: #fff; --hdrShadow: 0 1px 12px rgba(0,0,0,.55); --tiltA: -2.5deg; --tiltC: 2.5deg;">
@@ -133,66 +156,22 @@ html, body { height: 100%; margin: 0px; }
         </aside>
       </template></div>
 
-      <div data-hero-btns="true" style="position: absolute; left: 0px; right: 0px; bottom: 118px; z-index: 3; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; padding: 0px 32px;">
-        <a href="/book" style="background: rgb(255, 255, 255); color: rgb(17, 17, 17); padding: 16px 20px; width: 210px; box-sizing: border-box; text-align: center; border-radius: 999px; font-size: 17px; font-weight: 500; box-shadow: rgba(0, 0, 0, 0.28) 0px 10px 34px;">Book a Call</a>
-        <a href="https://search.noresume.co" style="background: rgb(255, 255, 255); color: rgb(17, 17, 17); padding: 16px 20px; width: 210px; box-sizing: border-box; text-align: center; border-radius: 999px; font-size: 17px; font-weight: 500; box-shadow: rgba(0, 0, 0, 0.28) 0px 10px 34px;">Try Now</a>
-      </div>
     </section>
 
     
-    <section style="padding: 105px 0px 60px;">
+    <section style="padding: 52px 0px 42px;">
       <div style="max-width: 1240px; margin: 0px auto; padding: 0px 32px;">
-        <div style="text-align: center; margin-bottom: 46px;">
-          <h2 style="margin: 0px 0px 14px; font-size: clamp(1.9rem, 3.4vw, 2.7rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: var(--teal, #17726B); text-wrap: pretty;">Seamless Workflow. End-to-End Control.</h2>
-          <p style="margin: 0px auto; max-width: 68ch; font-size: clamp(1.15rem, 1.6vw, 1.4rem); line-height: 1.6; color: rgb(46, 58, 56); text-wrap: pretty;">Experience the future of talent exchange. From your requirements to live chat and talent agreements, noresume makes recruitment effortless</p>
-        </div>
-
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 58px;">
-          <div data-demo-card="true" style="position: relative; width: 100%; max-width: 940px; aspect-ratio: 16 / 9; border-radius: 24px; overflow: hidden; box-shadow: rgba(6, 27, 64, 0.18) 0px 22px 60px; background: rgb(6, 40, 44);">
-            <div data-if="demoPlaying" data-if-on="false" data-mounted="0" style="display: contents;"><template>
-              <iframe src="https://www.youtube-nocookie.com/embed/mBJjWElKZw0?autoplay=1&amp;rel=0&amp;modestbranding=1&amp;playsinline=1" title="How NoResume works for employers" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen="" style="position: absolute; inset: 0px; width: 100%; height: 100%; border: 0px; display: block;"></iframe>
-            </template></div>
-            <div data-if="demoIdle" data-if-on="true" data-mounted="1" style="display: contents;"><template>
-              <button type="button" aria-label="Play the demo video" data-on="click:playDemo" style="position: absolute; inset: 0px; width: 100%; height: 100%; padding: 0px; border: 0px; cursor: pointer; background: none; display: block;">
-                <span aria-hidden="true" data-hdr-dark="true" style="position: absolute; left: 0px; right: 0px; top: 0px; height: 64%; pointer-events: none;"></span>
-                <img src="assets/images/employer-video-thumb.jpg" alt="Watch how NoResume works for employers" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; display: block;">
-                <span style="position: absolute; inset: 0px; background: rgba(6, 16, 36, 0.18);"></span>
-                <span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); color: rgb(17, 17, 17); padding: 14px 28px; border-radius: 999px; font-family: inherit; font-size: 16px; font-weight: 600; box-shadow: rgba(6, 16, 36, 0.32) 0px 12px 34px;">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" style="width: 16px; height: 16px; display: block;"><polygon points="6 4 20 12 6 20" fill="#17726B"></polygon></svg>
-                  Watch Demo
-                </span>
-              </button>
-            </template>
-              <button type="button" aria-label="Play the demo video" data-on="click:playDemo" style="position: absolute; inset: 0px; width: 100%; height: 100%; padding: 0px; border: 0px; cursor: pointer; background: none; display: block;">
-                <span aria-hidden="true" data-hdr-dark="true" style="position: absolute; left: 0px; right: 0px; top: 0px; height: 64%; pointer-events: none;"></span>
-                <img src="assets/images/employer-video-thumb.jpg" alt="Watch how NoResume works for employers" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; display: block;">
-                <span style="position: absolute; inset: 0px; background: rgba(6, 16, 36, 0.18);"></span>
-                <span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); color: rgb(17, 17, 17); padding: 14px 28px; border-radius: 999px; font-family: inherit; font-size: 16px; font-weight: 600; box-shadow: rgba(6, 16, 36, 0.32) 0px 12px 34px;">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" style="width: 16px; height: 16px; display: block;"><polygon points="6 4 20 12 6 20" fill="#17726B"></polygon></svg>
-                  Watch Demo
-                </span>
-              </button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    
-    <section style="padding: 45px 0px 60px;">
-      <div style="max-width: 1240px; margin: 0px auto; padding: 0px 32px;">
-        <h2 style="margin: 0px auto 46px; text-align: center; font-size: clamp(1.9rem, 3.4vw, 2.7rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: var(--teal, #17726B);">Everything from your first ‘hello’ to the final payout happens right here in noresume.<br>Explore what’s possible</h2>
+        <h2 style="margin: 0px auto 18px; text-align: center; font-size: clamp(2rem, 3.6vw, 2.9rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: var(--teal, #17726B);">Across all roles and sectors,<br class="nr-br"> everything from your first ‘hello’ to the final payout<br class="nr-br"> happens right here in noresume.</h2>
 
         <div style="position: relative; margin: 0px -32px;">
-          <div data-ref="railRef" style="padding: 30px 32px 78px; margin-bottom: -56px; touch-action: pan-y; overflow: hidden; pointer-events: none; mask-image: linear-gradient(to right, transparent 0px, rgb(0, 0, 0) 46px, rgb(0, 0, 0) calc(100% - 46px), transparent 100%);">
+          <div data-ref="railRef" style="padding: 8px 32px 78px; margin-bottom: -56px; touch-action: pan-y; overflow: hidden; pointer-events: none; mask-image: linear-gradient(to right, transparent 0px, rgb(0, 0, 0) 46px, rgb(0, 0, 0) calc(100% - 46px), transparent 100%);">
             <div data-ref="trackRef" style="display: flex; gap: 26px; align-items: center; height: 467px; pointer-events: auto; will-change: transform;">
           <article data-hdr-dark="true" class="scp0" style="position: relative; flex: 0 0 auto; width: 258px; height: 374px; background: rgb(15, 111, 105); border-radius: 26px; box-sizing: border-box; overflow: hidden; box-shadow: rgba(6, 27, 64, 0.16) 0px 18px 44px; display: flex; flex-direction: column; justify-content: flex-end; transition: box-shadow 0.22s;">
             <video data-rail-media="true" data-rail-video="true" src="assets/video/market-intelligence.mp4#t=0.1" poster="assets/video/posters/market-intelligence.jpg?v=33fa5f0d" loop="" preload="none" aria-label="Market Intelligence in the NoResume app" playsinline="" muted="" style="position: absolute; left: 50%; top: -12px; width: 299px; height: calc(100% + 12px); transform: translateX(-50%); object-fit: cover; object-position: center top; display: block; background: rgb(15, 111, 105);"></video>
             <span aria-hidden="true" style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 52%; background: linear-gradient(rgba(10, 70, 66, 0) 0%, rgba(10, 70, 66, 0.62) 46%, rgba(9, 62, 59, 0.96) 100%);"></span>
             <div style="position: relative; padding: 0px 22px 24px; display: flex; flex-direction: column; gap: 9px;">
               <h3 style="margin: 0px; font-size: 20px; font-weight: 700; line-height: 1.2; color: rgb(255, 255, 255);">Market Intelligence</h3>
-              <p style="margin: 0px; font-size: 14.5px; line-height: 1.5; color: rgb(255, 255, 255);">Understanding your performance against market standards make you competitive and attract Talent</p>
+              <p style="margin: 0px; font-size: 14.5px; line-height: 1.5; color: rgb(255, 255, 255);">Understanding your performance against market standards makes you competitive and helps you attract Talent.</p>
             </div>
           </article>
 
@@ -270,20 +249,64 @@ html, body { height: 100%; margin: 0px; }
             <svg viewBox="0 0 24 24" aria-hidden="true" style="width: 20px; height: 20px; display: block; pointer-events: none;"><polyline points="9 5 16 12 9 19" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></polyline></svg>
           </button>
         </div>
+        <div data-cta-row="true">
+          <a href="/book" class="nr-cta">Book a Call</a>
+          <a href="https://search.noresume.co" class="nr-cta">Try Now</a>
+        </div>
       </div>
     </section>
 
     
-    <section style="padding: 45px 0px 60px;">
+    <section data-hdr-dark="true" style="padding: 56px 0px 60px; margin: 32px 0px 0px; background: #1E5F5C;">
       <div style="max-width: 1240px; margin: 0px auto; padding: 0px 32px;">
-        <h2 style="margin: 0px auto 40px; text-align: center; font-size: clamp(1.9rem, 3.4vw, 2.7rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: var(--teal, #17726B); text-wrap: pretty;">Fair and Transparent Pricing for all business sizes</h2>
-        <img src="assets/images/pricing-cards.png" alt="Pricing comparison: NoResume, the Open Job Market — only pay when you hire, £0 per job post with search and contacts, 5% per direct hire — versus traditional job boards (£1,200–£10,000+ per year, pay whether you hire or not) and traditional agencies (12.5%–60%+ commission per position)" data-b-style="display: [[ pricingWide ]]; width: 100%; max-width: 1100px; height: auto; margin: 0 auto;" style="display: block; width: 100%; max-width: 1100px; height: auto; margin: 0px auto;">
-        <img src="assets/images/pricing-cards-mobile.png" alt="Pricing comparison: NoResume, the Open Job Market — only pay when you hire, £0 per job post with search and contacts, 5% per direct hire — versus traditional job boards (£1,200–£10,000+ per year, pay whether you hire or not) and traditional agencies (12.5%–60%+ commission per position)" data-b-style="display: [[ pricingNarrow ]]; width: 100%; max-width: 560px; height: auto; margin: 0 auto;" style="display: none; width: 100%; max-width: 560px; height: auto; margin: 0px auto;">
+        <div style="text-align: center; margin-bottom: 18px;">
+          <h2 style="margin: 0px; font-size: clamp(1.9rem, 3.4vw, 2.7rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: #fff; text-wrap: pretty;">Seamless Workflow. End-to-End Control.</h2>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 58px;">
+          <div data-demo-card="true" style="position: relative; width: 100%; max-width: 940px; aspect-ratio: 16 / 9; border-radius: 24px; overflow: hidden; box-shadow: rgba(6, 27, 64, 0.18) 0px 22px 60px; background: rgb(6, 40, 44);">
+            <div data-if="demoPlaying" data-if-on="false" data-mounted="0" style="display: contents;"><template>
+              <iframe src="https://www.youtube-nocookie.com/embed/mBJjWElKZw0?autoplay=1&amp;rel=0&amp;modestbranding=1&amp;playsinline=1" title="How NoResume works for employers" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen="" style="position: absolute; inset: 0px; width: 100%; height: 100%; border: 0px; display: block;"></iframe>
+            </template></div>
+            <div data-if="demoIdle" data-if-on="true" data-mounted="1" style="display: contents;"><template>
+              <button type="button" aria-label="Play the demo video" data-on="click:playDemo" style="position: absolute; inset: 0px; width: 100%; height: 100%; padding: 0px; border: 0px; cursor: pointer; background: none; display: block;">
+                <span aria-hidden="true" data-hdr-dark="true" style="position: absolute; left: 0px; right: 0px; top: 0px; height: 64%; pointer-events: none;"></span>
+                <img src="assets/images/employer-video-thumb.jpg" alt="Watch how NoResume works for employers" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; display: block;">
+                <span style="position: absolute; inset: 0px; background: rgba(6, 16, 36, 0.18);"></span>
+                <span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); color: rgb(17, 17, 17); padding: 14px 28px; border-radius: 999px; font-family: inherit; font-size: 16px; font-weight: 600; box-shadow: rgba(6, 16, 36, 0.32) 0px 12px 34px;">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" style="width: 16px; height: 16px; display: block;"><polygon points="6 4 20 12 6 20" fill="#17726B"></polygon></svg>
+                  Watch Demo
+                </span>
+              </button>
+            </template>
+              <button type="button" aria-label="Play the demo video" data-on="click:playDemo" style="position: absolute; inset: 0px; width: 100%; height: 100%; padding: 0px; border: 0px; cursor: pointer; background: none; display: block;">
+                <span aria-hidden="true" data-hdr-dark="true" style="position: absolute; left: 0px; right: 0px; top: 0px; height: 64%; pointer-events: none;"></span>
+                <img src="assets/images/employer-video-thumb.jpg" alt="Watch how NoResume works for employers" style="position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; display: block;">
+                <span style="position: absolute; inset: 0px; background: rgba(6, 16, 36, 0.18);"></span>
+                <span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 12px; background: rgb(255, 255, 255); color: rgb(17, 17, 17); padding: 14px 28px; border-radius: 999px; font-family: inherit; font-size: 16px; font-weight: 600; box-shadow: rgba(6, 16, 36, 0.32) 0px 12px 34px;">
+                  <svg viewBox="0 0 24 24" aria-hidden="true" style="width: 16px; height: 16px; display: block;"><polygon points="6 4 20 12 6 20" fill="#17726B"></polygon></svg>
+                  Watch Demo
+                </span>
+              </button>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
 
     
-    <section style="padding: 45px 0px 60px; text-align: center;">
+    <section style="padding: 32px 0px 42px;">
+      <div style="max-width: 1240px; margin: 0px auto; padding: 0px 32px;">
+        <h2 style="margin: 0px auto 0px; text-align: center; font-size: clamp(1.9rem, 3.4vw, 2.7rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: var(--teal, #17726B); text-wrap: pretty;">Fair Pricing across all hiring models.</h2>
+        <p style="margin: 0px auto 16px; max-width: 40ch; text-align: center; font-size: clamp(1.3rem, 2vw, 1.7rem); font-weight: 600; line-height: 1.4; color: var(--teal, #17726B); text-wrap: pretty;">See how we compare</p>
+        <img src="assets/images/pricing-cards.png?v=ac668912" alt="Pricing comparison: NoResume, the Open Job Market — only pay when you hire, £0 per job post with search and contacts, 5% per direct hire, 15% outsourcing and freelance — versus traditional job boards (£1,200–£10,000+ per year, pay whether you hire or not) and traditional agencies (20%–60%+ commission per position)" data-b-style="display: [[ pricingWide ]]; width: 100%; max-width: 1100px; height: auto; margin: 0 auto;" style="display: block; width: 100%; max-width: 1100px; height: auto; margin: 0px auto;">
+        <img src="assets/images/pricing-cards-mobile.png?v=ce76292f" alt="Pricing comparison: NoResume, the Open Job Market — only pay when you hire, £0 per job post with search and contacts, 5% per direct hire, 15% outsourcing and freelance — versus traditional job boards (£1,200–£10,000+ per year, pay whether you hire or not) and traditional agencies (20%–60%+ commission per position)" data-b-style="display: [[ pricingNarrow ]]; width: 100%; max-width: 560px; height: auto; margin: 0 auto;" style="display: none; width: 100%; max-width: 560px; height: auto; margin: 0px auto;">
+      </div>
+    </section>
+
+    
+    <section style="padding: 38px 0px 80px; text-align: center;">
       <div style="max-width: 1240px; margin: 0px auto; padding: 0px 32px;">
         <h2 style="margin: 0px auto 12px; max-width: 22ch; font-size: clamp(1.9rem, 3.4vw, 2.7rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: rgb(17, 17, 17); text-wrap: pretty;">Ready to experience the Open Job Market?</h2>
         <p style="margin: 0px 0px 40px; font-size: 17px; color: rgb(58, 58, 58);">Join the new way of hiring. Start today.</p>
@@ -294,6 +317,7 @@ html, body { height: 100%; margin: 0px; }
           <a href="https://play.google.com/store/apps/details?id=noresume.app&amp;gl=gb" target="_blank" rel="noopener" aria-label="Get it on Google Play" style="display: inline-block;">
             <img src="assets/images/badge-google-play-official.png" alt="Get it on Google Play" style="height: 56px; width: auto; display: block;">
           </a>
+          <a href="https://search.noresume.co" class="nr-web-badge" aria-label="Try now Online"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.6 2.8 3.9 6 3.9 9.5s-1.3 6.7-3.9 9.5c-2.6-2.8-3.9-6-3.9-9.5s1.3-6.7 3.9-9.5z"/></svg><span><small>Try now</small><b>Online</b></span></a>
         </div>
       </div>
     </section>
