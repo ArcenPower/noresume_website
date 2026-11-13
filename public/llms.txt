@@ -5,7 +5,7 @@
 ## How it works
 
 - [Home](https://noresume.co/): Overview of the platform — direct hiring, integrated payments, mobile-first, UK-focused.
-- [For candidates](https://noresume.co/candidates): Get hired without applying. Show your skills and personality, stay open to work, let employers come to you.
+- [For candidates](https://noresume.co/talent): Get hired without applying. Show your skills and personality, stay open to work, let employers come to you.
 - [For employers and hiring managers](https://noresume.co/employers): Hire talent without recruiters or job postings. Direct matching by skills and culture fit, with built-in payments and compliance.
 - [Download the NoResume app](https://noresume.co/download): NoResume is mobile-only — available on iOS and Android.
 
